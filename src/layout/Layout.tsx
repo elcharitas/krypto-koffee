@@ -2,6 +2,7 @@ import React, { FC, ReactNode } from "react";
 import { Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Navbar, INavbar } from "./Navbar";
+import { Credits } from "./Credits";
 
 const LayoutRoot = styled("div")(() => ({
     display: "flex",
@@ -32,5 +33,6 @@ export const MainLayout: FC<IMainLayout> = ({
             </Box>
         </LayoutRoot>
         <Navbar authWallet={authWallet} toggleAccount={toggleAccount} />
+        <Credits />
     </>
 );
