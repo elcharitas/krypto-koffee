@@ -13,10 +13,12 @@
         "@emotion/styled": "^11.10.4",
         "@mui/icons-material": "^5.10.3",
         "@mui/material": "^5.10.3",
+        "@walletconnect/ethereum-provider": "^1.8.0",
         "@web3-react/coinbase-wallet": "8.0.22-beta.0",
         "@web3-react/core": "8.0.35-beta.0",
         "@web3-react/metamask": "8.0.28-beta.0",
         "@web3-react/network": "8.0.27-beta.0",
+        "@web3-react/types": "8.0.20-beta.0",
         "@web3-react/walletconnect": "8.0.35-beta.0",
         "@worldcoin/id": "^0.8.0",
         "ethers": "^5.7.0",
@@ -38,5 +40,10 @@
         "eslint": "8.23.0",
         "eslint-config-next": "12.2.5",
         "typescript": "4.8.2"
+    },
+    "pnpm": {
+        "overrides": {
+            "@web3-react/types": "8.0.20-beta.0"
+        }
     }
 }
