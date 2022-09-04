@@ -20,9 +20,9 @@ const NavbarRoot = styled(AppBar)(({ theme }) => ({
 
 export interface INavbar {
     authWallet: TAuthWallet;
-    toggleAccount: TCallback;
+    toggleAccounts: TCallback;
 }
-export const Navbar: FC<INavbar> = ({ authWallet, toggleAccount }) => (
+export const Navbar: FC<INavbar> = ({ authWallet, toggleAccounts }) => (
     <>
         <NavbarRoot>
             <Toolbar
@@ -58,7 +58,7 @@ export const Navbar: FC<INavbar> = ({ authWallet, toggleAccount }) => (
                             sx={{ textTransform: "capitalize" }}
                             color="warning"
                             variant="outlined"
-                            onClick={toggleAccount}
+                            onClick={toggleAccounts}
                         >
                             {!authWallet.connected ? (
                                 <Typography

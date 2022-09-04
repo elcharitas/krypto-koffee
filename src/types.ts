@@ -1,4 +1,4 @@
-export type TCallback<T = void> = () => T;
+export type TCallback<T = void, D = unknown> = (arg?: D) => T;
 
 export type TAuthWallet = {
     address: string;
@@ -6,8 +6,3 @@ export type TAuthWallet = {
     photoURL: string;
     connected: boolean;
 };
-
-export enum EWallet {
-    Connect,
-    Disconnect,
-}
