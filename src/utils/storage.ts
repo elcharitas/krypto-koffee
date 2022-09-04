@@ -2,9 +2,7 @@
  * @param text
  * @returns
  */
-export const parseJson = <T = unknown>(
-    text: string | null
-): Record<string, T> | null => {
+export const parseJson = <T = unknown>(text: string | null): T | null => {
     try {
         return JSON.parse(String(text));
     } catch (e) {
@@ -15,7 +13,7 @@ export const parseJson = <T = unknown>(
 export const { stringify } = JSON;
 
 export const Storage = {
-    getItem<T = unknown>(key: string, def: T) {
+    getItem<T = unknown>(key: string, def?: T) {
         const item = this.store.getItem(key);
         const storedValue = parseJson<T>(item);
         return storedValue ?? def;
