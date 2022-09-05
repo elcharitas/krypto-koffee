@@ -35,7 +35,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
     const connectWallet = (wallet = EWallet.MetaMask) => {
         provider
             .connect(wallet, String(network), console.log)
-            .then(() => provider.ethers()?.listAccounts())
+            .then(() => provider.send<string[]>("eth_requestAccounts"))
             .then((accounts) => {
                 if (accounts) {
                     const [account] = accounts;
@@ -57,7 +57,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
 
     useEffect(() => {
         const savedWallet = Storage.getItem<TAuthWallet>("paymematic");
-        if (savedWallet) updateWallet(savedWallet);
+        if (savedWallet) connectWallet(savedWallet.wallet);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

@@ -16,6 +16,7 @@ interface IWalletProvider {
     disconnect(): void | Promise<void> | undefined;
     ethers(): providers.Web3Provider | undefined;
     ethersSync(uri: string): providers.JsonRpcProvider;
+    send<T = unknown>(method: string): Promise<T>;
 }
 
 export const provider: IWalletProvider = {
@@ -39,5 +40,10 @@ export const provider: IWalletProvider = {
             this.rpcNode = new providers.JsonRpcProvider(uri);
         }
         return this.rpcNode;
+    },
+    send<T = unknown>(method: string) {
+        return Promise.resolve<T>(
+            this.connector?.provider?.request({ method }) as Promise<T>
+        );
     },
 };
