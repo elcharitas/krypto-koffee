@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from "react";
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Navbar, INavbar } from "./Navbar";
 import { Credits } from "./Credits";
@@ -28,9 +28,10 @@ export const MainLayout: FC<IMainLayout> = ({
                     flexDirection: "column",
                     width: "100%",
                     minHeight: "85vh",
+                    paddingTop: "8px",
                 }}
             >
-                {children}
+                <Container>{children}</Container>
             </Box>
         </LayoutRoot>
         <Navbar authWallet={authWallet} toggleAccounts={toggleAccounts} />
