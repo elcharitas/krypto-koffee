@@ -57,10 +57,6 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
     useEffect(() => {
         const savedWallet = Storage.getItem<TAuthWallet>("paymematic");
         if (savedWallet) updateWallet(savedWallet);
-
-        return () => {
-            Storage.setItem("paymematic", authWallet);
-        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
