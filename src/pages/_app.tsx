@@ -12,6 +12,7 @@ import { TAuthWallet } from "src/types";
 import { AccountsModal } from "src/sections";
 import { provider } from "src/utils/provider";
 import { EWallet } from "src/utils/network";
+import { formatAddress } from "src/utils/formats";
 
 const theme = createTheme({
     palette: {
@@ -39,12 +40,14 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
             .then((accounts) => {
                 if (accounts) {
                     const [account] = accounts;
-                    updateWallet({
+                    const wallet = {
                         address: account,
-                        shortAddress: account,
+                        shortAddress: formatAddress(account),
                         connected: true,
                         photoURL: "",
-                    });
+                    };
+                    updateWallet(wallet);
+                    Storage.setItem("paymematic", wallet);
                 }
             })
             .catch(() => {});
