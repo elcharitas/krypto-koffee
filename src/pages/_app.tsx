@@ -8,10 +8,9 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { MainLayout } from "src/layout";
 import { useApp } from "src/hooks";
 import { Storage } from "src/utils/storage";
-import { TAuthWallet } from "src/types";
+import { EWallet, TAuthWallet } from "src/types";
 import { AccountsModal } from "src/sections";
 import { provider } from "src/utils/provider";
-import { EWallet } from "src/utils/network";
 import { formatAddress } from "src/utils/formats";
 
 const theme = createTheme({
@@ -40,14 +39,16 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
             .then((accounts) => {
                 if (accounts) {
                     const [account] = accounts;
-                    const wallet = {
+                    const newAuthWallet = {
+                        accounts,
                         address: account,
                         shortAddress: formatAddress(account),
                         connected: true,
                         photoURL: "",
+                        wallet,
                     };
-                    updateWallet(wallet);
-                    Storage.setItem("paymematic", wallet);
+                    updateWallet(newAuthWallet);
+                    Storage.setItem("paymematic", newAuthWallet);
                 }
             })
             .then(toggleAccounts)

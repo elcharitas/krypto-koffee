@@ -2,12 +2,7 @@ import { MetaMask } from "@web3-react/metamask";
 import { WalletConnect } from "@web3-react/walletconnect";
 import { CoinbaseWallet } from "@web3-react/coinbase-wallet";
 import { initializeConnector } from "@web3-react/core";
-
-export enum EWallet {
-    MetaMask = "metamask",
-    Coinbase = "coinbase",
-    WalletConnect = "walletconnect",
-}
+import { EWallet } from "src/types";
 
 type TWalletOpts = {
     options: {

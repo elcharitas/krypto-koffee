@@ -1,3 +1,9 @@
+export enum EWallet {
+    MetaMask = "metamask",
+    Coinbase = "coinbase",
+    WalletConnect = "walletconnect",
+}
+
 export type TColor =
     | "primary"
     | "secondary"
@@ -11,6 +17,8 @@ export type TCallback<T = void, D = unknown> = (arg?: D) => T;
 export type TAuthWallet = {
     address: string;
     shortAddress: string;
+    accounts: string[];
+    wallet: EWallet;
     photoURL: string;
     connected: boolean;
 };

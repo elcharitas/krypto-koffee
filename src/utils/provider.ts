@@ -1,8 +1,8 @@
 import { providers } from "ethers";
 import { Web3ReactHooks } from "@web3-react/core";
 import { Connector } from "@web3-react/types";
-import { TCallback } from "src/types";
-import { EWallet, initConnector } from "./network";
+import { EWallet, TCallback } from "src/types";
+import { initConnector } from "./network";
 
 interface IWalletProvider {
     chainId: string;
