@@ -21,7 +21,14 @@ const theme = createTheme({
 });
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
-    const { authWallet, updateWallet, showAccounts, toggleAccounts } = useApp();
+    const {
+        authWallet,
+        updateWallet,
+        showAccounts,
+        toggleAccounts,
+        network,
+        setNetwork,
+    } = useApp();
 
     useEffect(() => {
         const savedWallet = Storage.getItem<TAuthWallet>("paymematic");
@@ -37,7 +44,12 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
         <ThemeProvider theme={theme}>
             <CssBaseline enableColorScheme />
             <NextProgress color="#ce93d8" />
-            <MainLayout toggleAccounts={toggleAccounts} authWallet={authWallet}>
+            <MainLayout
+                network={network}
+                setNetwork={setNetwork}
+                toggleAccounts={toggleAccounts}
+                authWallet={authWallet}
+            >
                 <Head>
                     <title>
                         {String(Component.displayName || "🤔")} | PayMeMatic

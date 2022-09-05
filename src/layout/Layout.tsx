@@ -18,6 +18,8 @@ export const MainLayout: FC<IMainLayout> = ({
     children,
     authWallet,
     toggleAccounts,
+    network,
+    setNetwork,
 }) => (
     <>
         <LayoutRoot>
@@ -34,7 +36,12 @@ export const MainLayout: FC<IMainLayout> = ({
                 <Container>{children}</Container>
             </Box>
         </LayoutRoot>
-        <Navbar authWallet={authWallet} toggleAccounts={toggleAccounts} />
+        <Navbar
+            authWallet={authWallet}
+            toggleAccounts={toggleAccounts}
+            network={network}
+            setNetwork={setNetwork}
+        />
         <Credits />
     </>
 );

@@ -1,9 +1,7 @@
-import { FC } from "react";
-import Image from "next/image";
+import { Dispatch, FC } from "react";
 import {
     AppBar,
     Button,
-    Avatar,
     Container,
     Box,
     Typography,
@@ -13,12 +11,18 @@ import {
     styled,
 } from "@mui/material";
 import {
-    AccountBox,
     WalletRounded,
     AccountBalanceWalletRounded,
 } from "@mui/icons-material";
-import { TAuthWallet, TCallback } from "src/types";
+import { ENetwork, TAuthWallet, TCallback } from "src/types";
 import { Select } from "src/components/Select";
+
+const networks = Object.entries(ENetwork)
+    .filter(([label]) => Number.isNaN(Number(label)))
+    .map(([label, value]) => ({
+        label,
+        value,
+    }));
 
 const NavbarRoot = styled(AppBar)(({ theme }) => ({
     backgroundColor: "transparent",
@@ -26,10 +30,17 @@ const NavbarRoot = styled(AppBar)(({ theme }) => ({
 }));
 
 export interface INavbar {
+    network: ENetwork | string | undefined;
+    setNetwork: Dispatch<ENetwork>;
     authWallet: TAuthWallet;
     toggleAccounts: TCallback;
 }
-export const Navbar: FC<INavbar> = ({ authWallet, toggleAccounts }) => (
+export const Navbar: FC<INavbar> = ({
+    network,
+    authWallet,
+    toggleAccounts,
+    setNetwork,
+}) => (
     <>
         <NavbarRoot>
             <Toolbar
@@ -68,9 +79,11 @@ export const Navbar: FC<INavbar> = ({ authWallet, toggleAccounts }) => (
                     <Stack spacing={2} direction="row" alignItems="center">
                         <Stack direction="row" spacing={1}>
                             <Select
-                                placeholder="Select a Network"
-                                options={[]}
+                                options={networks}
+                                value={network}
+                                onChange={(netW) => setNetwork(Number(netW))}
                                 sx={{ height: "32px" }}
+                                placeholder="Select a Network"
                             />
                             {!authWallet.connected && (
                                 <Tooltip
