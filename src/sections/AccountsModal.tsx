@@ -45,7 +45,7 @@ export const AccountsModal: FC<IAccountsModal> = ({
             </Typography>
             <Stack direction="column" spacing={1} sx={{ mt: 2 }}>
                 {Object.entries(wallets).map(([wallet, color]) => (
-                    <Tooltip key={wallet} title={`Connect to ${wallet}`}>
+                    <Tooltip key={wallet} title={`Connect using ${wallet}`}>
                         <Button
                             sx={{ textTransform: "capitalize" }}
                             color={color as TColor}
