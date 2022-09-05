@@ -1,14 +1,23 @@
 import { FC } from "react";
-import { Box, Modal, Typography } from "@mui/material";
-import { TCallback } from "src/types";
+import { Box, Button, Modal, Stack, Tooltip, Typography } from "@mui/material";
+import { TAuthWallet, TCallback, TColor } from "src/types";
+import Image from "next/image";
+
+const wallets = {
+    CoinBase: "info",
+    MetaMask: "warning",
+    WalletConnect: "primary",
+};
 
 interface IAccountsModal {
     isOpen: boolean;
     toggleAccounts: TCallback;
+    authWallet: TAuthWallet;
 }
 export const AccountsModal: FC<IAccountsModal> = ({
     isOpen,
     toggleAccounts,
+    authWallet,
 }) => (
     <Modal
         open={isOpen}
@@ -29,14 +38,39 @@ export const AccountsModal: FC<IAccountsModal> = ({
                 p: 4,
             }}
         >
-            <Typography
-                id="accounts-modal-title"
-                align="center"
-                variant="h6"
-                component="h2"
-            >
-                Connect Your Wallet
+            <Typography id="accounts-modal-title" align="center" variant="h6">
+                {authWallet.connected
+                    ? "Connected Wallets"
+                    : "Connect your Wallet"}
             </Typography>
+            <Stack direction="column" spacing={1} sx={{ mt: 2 }}>
+                {Object.entries(wallets).map(([wallet, color]) => (
+                    <Tooltip key={wallet} title={`Connect to ${wallet}`}>
+                        <Button
+                            sx={{ textTransform: "capitalize" }}
+                            color={color as TColor}
+                            variant="outlined"
+                            onClick={toggleAccounts}
+                        >
+                            <Image
+                                src={`/assets/wallets/${wallet.toLowerCase()}.png`}
+                                width={20}
+                                height={20}
+                                alt={wallet}
+                            />
+                            <Typography
+                                sx={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    ml: 1,
+                                }}
+                            >
+                                {wallet}
+                            </Typography>
+                        </Button>
+                    </Tooltip>
+                ))}
+            </Stack>
         </Box>
     </Modal>
 );

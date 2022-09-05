@@ -7,7 +7,7 @@ import {
     SxProps,
 } from "@mui/material";
 import { FC } from "react";
-import { TCallback } from "src/types";
+import { TCallback, TColor } from "src/types";
 
 export type TSelectOption = {
     label?: string;
@@ -16,7 +16,7 @@ export type TSelectOption = {
 
 export interface ISelect extends TSelectOption {
     placeholder?: string;
-    color?: "primary" | "secondary" | "error" | "info" | "success" | "warning";
+    color?: TColor;
     options: TSelectOption[];
     onChange?: TCallback<void, string | number>;
     sx?: SxProps;

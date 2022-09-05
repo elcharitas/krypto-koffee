@@ -59,6 +59,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
             </MainLayout>
             <AccountsModal
                 isOpen={showAccounts}
+                authWallet={authWallet}
                 toggleAccounts={toggleAccounts}
             />
             <Toaster />
