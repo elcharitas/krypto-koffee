@@ -37,7 +37,9 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
             <NextProgress color="#ce93d8" />
             <MainLayout toggleAccounts={toggleAccounts} authWallet={authWallet}>
                 <Head>
-                    <title>{Component.displayName || "🤔"} | PayMeMatic</title>
+                    <title>
+                        {String(Component.displayName || "🤔")} | PayMeMatic
+                    </title>
                 </Head>
                 <Component {...pageProps} />
             </MainLayout>
