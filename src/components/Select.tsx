@@ -10,11 +10,10 @@ import { FC } from "react";
 
 export type TSelectOption = {
     label?: string;
-    value: string | number;
+    value?: string | number;
 };
 
-export interface ISelect {
-    label?: string;
+export interface ISelect extends TSelectOption {
     placeholder?: string;
     color?: "primary" | "secondary" | "error" | "info" | "success" | "warning";
     options: TSelectOption[];
@@ -23,6 +22,7 @@ export interface ISelect {
 export const Select: FC<ISelect> = ({
     sx,
     label,
+    value,
     placeholder,
     color,
     options = [],
@@ -30,7 +30,7 @@ export const Select: FC<ISelect> = ({
     <Box>
         <FormControl fullWidth>
             {label && <InputLabel color={color}>{label}</InputLabel>}
-            <MUISelect label={label} color={color} sx={sx}>
+            <MUISelect label={label} color={color} sx={sx} value={value || " "}>
                 {[{ value: " ", label: placeholder }, ...options].map(
                     ({ value, label }, index) => (
                         <MenuItem key={index} color={color} value={value}>
