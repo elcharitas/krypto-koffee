@@ -67,13 +67,11 @@ export const Navbar: FC<INavbar> = ({ authWallet, toggleAccounts }) => (
 
                     <Stack spacing={2} direction="row" alignItems="center">
                         <Stack direction="row" spacing={1}>
-                            <Tooltip title="Select Network">
-                                <Select
-                                    placeholder="Select a Network"
-                                    options={[]}
-                                    sx={{ height: "32px" }}
-                                />
-                            </Tooltip>
+                            <Select
+                                placeholder="Select a Network"
+                                options={[]}
+                                sx={{ height: "32px" }}
+                            />
                             {!authWallet.connected && (
                                 <Tooltip
                                     title={
@@ -95,20 +93,10 @@ export const Navbar: FC<INavbar> = ({ authWallet, toggleAccounts }) => (
                                                     alignItems: "center",
                                                 }}
                                             >
-                                                <Typography
-                                                    sx={{
-                                                        display: {
-                                                            xs: "none",
-                                                            md: "flex",
-                                                        },
-                                                        alignItems: "center",
-                                                    }}
-                                                >
-                                                    Connect Wallet
-                                                    <AccountBalanceWalletRounded
-                                                        sx={{ ml: 1 }}
-                                                    />
-                                                </Typography>
+                                                Connect Wallet
+                                                <AccountBalanceWalletRounded
+                                                    sx={{ ml: 1 }}
+                                                />
                                             </Typography>
                                         ) : (
                                             authWallet.shortAddress

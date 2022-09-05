@@ -4,22 +4,24 @@ import { Box } from "@mui/material";
 
 export const Credits = () => (
     <>
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-                <Typography>
-                    Ingeniously Crafted with &nbsp;
-                    <Box sx={{ display: "inline" }} color="error">
-                        ❤️
-                    </Box>
-                    &nbsp; by &nbsp;
-                    <Link
-                        sx={{ color: "#ce93d8" }}
-                        href="https://github.com/elcharitas"
-                    >
-                        Jonathan Irhodia
-                    </Link>
-                </Typography>
-            </Box>
+        <Box
+            sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+            }}
+        >
+            <Typography>
+                Ingeniously Crafted with &nbsp;
+                <span style={{ color: "red" }}>❤️</span>
+                &nbsp; by &nbsp;
+                <Link
+                    sx={{ color: "#ce93d8" }}
+                    href="https://github.com/elcharitas"
+                >
+                    Jonathan Irhodia
+                </Link>
+            </Typography>
         </Box>
     </>
 );
