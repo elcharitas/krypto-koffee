@@ -27,6 +27,7 @@ export const MainLayout: FC<IMainLayout> = ({
                     flex: "1 1 auto",
                     flexDirection: "column",
                     width: "100%",
+                    minHeight: "85vh",
                 }}
             >
                 {children}
