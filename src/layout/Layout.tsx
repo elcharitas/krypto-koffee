@@ -17,7 +17,7 @@ interface IMainLayout extends INavbar {
 export const MainLayout: FC<IMainLayout> = ({
     children,
     authWallet,
-    toggleAccount,
+    toggleAccounts,
 }) => (
     <>
         <LayoutRoot>
@@ -32,7 +32,7 @@ export const MainLayout: FC<IMainLayout> = ({
                 {children}
             </Box>
         </LayoutRoot>
-        <Navbar authWallet={authWallet} toggleAccount={toggleAccount} />
+        <Navbar authWallet={authWallet} toggleAccounts={toggleAccounts} />
         <Credits />
     </>
 );
