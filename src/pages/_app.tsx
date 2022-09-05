@@ -3,11 +3,13 @@ import { AppProps } from "next/app";
 import NextProgress from "next-progress";
 import { Toaster } from "react-hot-toast";
 import { CssBaseline } from "@mui/material";
-import { ThemeProvider } from "@mui/material/styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { MainLayout } from "src/layout";
 import { useApp } from "src/hooks";
 import { Storage } from "src/utils/storage";
 import { TAuthWallet } from "src/types";
+
+const theme = createTheme({ palette: { mode: "dark" } });
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
     const { authWallet, updateWallet, toggleAccounts } = useApp();
@@ -18,8 +20,8 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
     }, []);
 
     return (
-        <ThemeProvider theme="dark">
-            <CssBaseline />
+        <ThemeProvider theme={theme}>
+            <CssBaseline enableColorScheme />
             <NextProgress />
             <MainLayout toggleAccounts={toggleAccounts} authWallet={authWallet}>
                 <Component {...pageProps} />
