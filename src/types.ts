@@ -6,3 +6,8 @@ export type TAuthWallet = {
     photoURL: string;
     connected: boolean;
 };
+
+export enum ENetwork {
+    Ethereum = 1,
+    Polygon,
+}
