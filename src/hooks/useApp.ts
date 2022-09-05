@@ -18,6 +18,8 @@ export const useApp = (): TApp => {
         shortAddress: "",
         connected: false,
         photoURL: "",
+        accounts: [],
+        wallet: undefined,
     });
 
     const toggleAccounts = () => setShowAccounts((show) => !show);
