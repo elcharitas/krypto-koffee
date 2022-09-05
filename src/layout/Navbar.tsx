@@ -85,38 +85,36 @@ export const Navbar: FC<INavbar> = ({
                                 sx={{ height: "32px" }}
                                 placeholder="Select a Network"
                             />
-                            {!authWallet.connected && (
-                                <Tooltip
-                                    title={
-                                        !authWallet.connected
-                                            ? "Connect Wallet"
-                                            : `Disconnect ${authWallet.shortAddress}`
-                                    }
+                            <Tooltip
+                                title={
+                                    !authWallet.connected
+                                        ? "Connect Wallet"
+                                        : `Disconnect ${authWallet.shortAddress}`
+                                }
+                            >
+                                <Button
+                                    sx={{ textTransform: "capitalize" }}
+                                    color="secondary"
+                                    variant="outlined"
+                                    onClick={toggleAccounts}
                                 >
-                                    <Button
-                                        sx={{ textTransform: "capitalize" }}
-                                        color="secondary"
-                                        variant="outlined"
-                                        onClick={toggleAccounts}
-                                    >
-                                        {!authWallet.connected ? (
-                                            <Typography
-                                                sx={{
-                                                    display: "flex",
-                                                    alignItems: "center",
-                                                }}
-                                            >
-                                                Connect Wallet
-                                                <AccountBalanceWalletRounded
-                                                    sx={{ ml: 1 }}
-                                                />
-                                            </Typography>
-                                        ) : (
-                                            authWallet.shortAddress
-                                        )}
-                                    </Button>
-                                </Tooltip>
-                            )}
+                                    {!authWallet.connected ? (
+                                        <Typography
+                                            sx={{
+                                                display: "flex",
+                                                alignItems: "center",
+                                            }}
+                                        >
+                                            Connect Wallet
+                                            <AccountBalanceWalletRounded
+                                                sx={{ ml: 1 }}
+                                            />
+                                        </Typography>
+                                    ) : (
+                                        authWallet.shortAddress
+                                    )}
+                                </Button>
+                            </Tooltip>
                         </Stack>
                     </Stack>
                 </Container>
