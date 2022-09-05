@@ -1,5 +1,11 @@
 import { utils, ethers } from "ethers";
 
+export const etherScanUrl = (address: string) =>
+    `https://etherscan.io/address/${address}`;
+
+export const formatAddress = (address: string) =>
+    address.substring(0, 6) + "..." + address.substring(address.length - 4);
+
 /**
  * Parses an arbitrary number into currency styles
  *
