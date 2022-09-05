@@ -50,6 +50,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
                     Storage.setItem("paymematic", wallet);
                 }
             })
+            .then(toggleAccounts)
             .catch(() => {});
     };
 
