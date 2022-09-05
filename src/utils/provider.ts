@@ -18,7 +18,7 @@ interface IWalletProvider {
     ethersSync(uri: string): providers.JsonRpcProvider;
     send<T = unknown>(
         method: string,
-        params?: Record<string, string>
+        params?: Record<string, string | string[]>
     ): Promise<T>;
 }
 
@@ -44,7 +44,10 @@ export const provider: IWalletProvider = {
         }
         return this.rpcNode;
     },
-    send<T = unknown>(method: string, params?: Record<string, string>) {
+    send<T = unknown>(
+        method: string,
+        params?: Record<string, string | string[]>
+    ) {
         return Promise.resolve<T>(
             this.connector?.provider?.request({ method, params }) as Promise<T>
         );
