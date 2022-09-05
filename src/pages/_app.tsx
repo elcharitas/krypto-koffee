@@ -71,7 +71,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
                 }
             })
             .then(toggleAccounts)
-            .catch((e) => {
+            .catch(() => {
                 disconnectWallet();
             });
     };
@@ -84,6 +84,16 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    useEffect(() => {
+        provider.on("accountsChanged", (accounts) => {
+            if (!accounts || accounts.length === 0) disconnectWallet();
+        });
+        provider.on<number>("chainChanged", (chainId) => {
+            if (chainId) setNetwork(chainId);
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [authWallet.connected === true]);
 
     return (
         <ThemeProvider theme={theme}>
