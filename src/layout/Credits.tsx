@@ -13,7 +13,7 @@ export const Credits = () => (
                     </Box>
                     &nbsp; by &nbsp;
                     <Link
-                        sx={{ color: "orange" }}
+                        sx={{ color: "#ce93d8" }}
                         href="https://github.com/elcharitas"
                     >
                         elcharitas
