@@ -9,7 +9,14 @@ import { useApp } from "src/hooks";
 import { Storage } from "src/utils/storage";
 import { TAuthWallet } from "src/types";
 
-const theme = createTheme({ palette: { mode: "dark" } });
+const theme = createTheme({
+    palette: {
+        mode: "dark",
+    },
+    typography: {
+        fontFamily: "Nunito",
+    },
+});
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
     const { authWallet, updateWallet, toggleAccounts } = useApp();
