@@ -31,7 +31,7 @@ export const Select: FC<ISelect> = ({
         <FormControl fullWidth>
             {label && <InputLabel color={color}>{label}</InputLabel>}
             <MUISelect label={label} color={color} sx={sx}>
-                {[{ value: "", label: placeholder }, ...options].map(
+                {[{ value: " ", label: placeholder }, ...options].map(
                     ({ value, label }, index) => (
                         <MenuItem key={index} color={color} value={value}>
                             {label || value}
