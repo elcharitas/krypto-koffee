@@ -9,5 +9,7 @@ export type TAuthWallet = {
 
 export enum ENetwork {
     Ethereum = 1,
-    Polygon,
+    Goerli = 5,
+    Polygon = 137,
+    Mumbai = 80001,
 }
