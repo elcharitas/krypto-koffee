@@ -16,7 +16,7 @@ export const Credits = () => (
                         sx={{ color: "#ce93d8" }}
                         href="https://github.com/elcharitas"
                     >
-                        elcharitas
+                        Jonathan Irhodia
                     </Link>
                 </Typography>
             </Box>
