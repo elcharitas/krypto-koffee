@@ -7,6 +7,7 @@ import {
     SxProps,
 } from "@mui/material";
 import { FC } from "react";
+import { TCallback } from "src/types";
 
 export type TSelectOption = {
     label?: string;
@@ -17,6 +18,7 @@ export interface ISelect extends TSelectOption {
     placeholder?: string;
     color?: "primary" | "secondary" | "error" | "info" | "success" | "warning";
     options: TSelectOption[];
+    onChange?: TCallback<void, string | number>;
     sx?: SxProps;
 }
 export const Select: FC<ISelect> = ({
@@ -26,11 +28,20 @@ export const Select: FC<ISelect> = ({
     placeholder,
     color,
     options = [],
+    onChange,
 }) => (
     <Box>
         <FormControl fullWidth>
             {label && <InputLabel color={color}>{label}</InputLabel>}
-            <MUISelect label={label} color={color} sx={sx} value={value || " "}>
+            <MUISelect
+                label={label}
+                color={color}
+                sx={sx}
+                value={value || " "}
+                onChange={(e) => {
+                    if (onChange) onChange(e.target.value);
+                }}
+            >
                 {[{ value: " ", label: placeholder }, ...options].map(
                     ({ value, label }, index) => (
                         <MenuItem key={index} color={color} value={value}>
