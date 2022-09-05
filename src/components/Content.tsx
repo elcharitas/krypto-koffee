@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 
 interface IContent {
-    title?: string;
+    title?: ReactNode;
     children: ReactNode;
 }
 export const Content: FC<IContent & CardTypeMap["props"]> = ({
@@ -25,14 +25,7 @@ export const Content: FC<IContent & CardTypeMap["props"]> = ({
             </>
         )}
         <CardContent>
-            <Box
-                sx={{
-                    minHeight: 300,
-                    position: "relative",
-                }}
-            >
-                {children}
-            </Box>
+            <Box sx={{ position: "relative" }}>{children}</Box>
         </CardContent>
     </Card>
 );
