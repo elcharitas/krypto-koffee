@@ -1,9 +1,17 @@
 import { FC } from "react";
 import Image from "next/image";
-import { Box, Button, Modal, Stack, Tooltip, Typography } from "@mui/material";
+import {
+    Box,
+    Button,
+    Link,
+    Modal,
+    Stack,
+    Tooltip,
+    Typography,
+} from "@mui/material";
 import { EWallet, TAuthWallet, TCallback, TColor } from "src/types";
 import { Content } from "src/components";
-import { formatAddress } from "src/utils/formats";
+import { etherScanUrl, formatAddress } from "src/utils/formats";
 
 const wallets = {
     CoinBase: "info",
@@ -139,16 +147,37 @@ export const AccountsModal: FC<IAccountsModal> = ({
                                       </Button>
                                   </Stack>
                               </Stack>
-                              {authWallet.address === account && (
+                              <Stack
+                                  direction="row"
+                                  justifyContent="space-between"
+                                  alignItems="center"
+                                  sx={{ mt: 1 }}
+                              >
                                   <Typography
                                       color="grey"
                                       fontSize="small"
                                       textTransform="capitalize"
                                       sx={{ textDecoration: "underline" }}
                                   >
-                                      Connected With {authWallet.wallet}
+                                      {authWallet.address === account && (
+                                          <>
+                                              Connected With {authWallet.wallet}
+                                          </>
+                                      )}
+                                      &nbsp;
                                   </Typography>
-                              )}
+                                  <Link
+                                      color="secondary"
+                                      href={etherScanUrl(account)}
+                                      target="_blank"
+                                      rel="noreferrer"
+                                      fontSize="small"
+                                      textTransform="capitalize"
+                                      sx={{ textDecoration: "none" }}
+                                  >
+                                      View on etherscan
+                                  </Link>
+                              </Stack>
                           </Content>
                       ))}
             </Stack>
