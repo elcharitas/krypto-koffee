@@ -29,7 +29,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline enableColorScheme />
-            <NextProgress />
+            <NextProgress color="#ce93d8" />
             <MainLayout toggleAccounts={toggleAccounts} authWallet={authWallet}>
                 <Component {...pageProps} />
             </MainLayout>
