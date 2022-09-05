@@ -10,7 +10,7 @@ import { FC } from "react";
 
 export type TSelectOption = {
     label?: string;
-    value: string;
+    value: string | number;
 };
 
 export interface ISelect {
