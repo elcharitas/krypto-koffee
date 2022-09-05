@@ -9,6 +9,7 @@ import { MainLayout } from "src/layout";
 import { useApp } from "src/hooks";
 import { Storage } from "src/utils/storage";
 import { TAuthWallet } from "src/types";
+import { AccountsModal } from "src/sections";
 
 const theme = createTheme({
     palette: {
@@ -20,7 +21,7 @@ const theme = createTheme({
 });
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
-    const { authWallet, updateWallet, toggleAccounts } = useApp();
+    const { authWallet, updateWallet, showAccounts, toggleAccounts } = useApp();
 
     useEffect(() => {
         const savedWallet = Storage.getItem<TAuthWallet>("paymematic");
@@ -29,6 +30,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
         return () => {
             Storage.setItem("paymematic", authWallet);
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -43,6 +45,10 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
                 </Head>
                 <Component {...pageProps} />
             </MainLayout>
+            <AccountsModal
+                isOpen={showAccounts}
+                toggleAccounts={toggleAccounts}
+            />
             <Toaster />
         </ThemeProvider>
     );
