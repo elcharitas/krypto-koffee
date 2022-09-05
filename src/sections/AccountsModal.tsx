@@ -1,7 +1,8 @@
 import { FC } from "react";
+import Image from "next/image";
 import { Box, Button, Modal, Stack, Tooltip, Typography } from "@mui/material";
 import { TAuthWallet, TCallback, TColor } from "src/types";
-import Image from "next/image";
+import { EWallet } from "src/utils/network";
 
 const wallets = {
     CoinBase: "info",
@@ -13,11 +14,13 @@ interface IAccountsModal {
     isOpen: boolean;
     toggleAccounts: TCallback;
     authWallet: TAuthWallet;
+    connectWallet: TCallback<void, EWallet>;
 }
 export const AccountsModal: FC<IAccountsModal> = ({
     isOpen,
     toggleAccounts,
     authWallet,
+    connectWallet,
 }) => (
     <Modal
         open={isOpen}
@@ -51,7 +54,9 @@ export const AccountsModal: FC<IAccountsModal> = ({
                             sx={{ textTransform: "capitalize" }}
                             color={color as TColor}
                             variant="outlined"
-                            onClick={toggleAccounts}
+                            onClick={() =>
+                                connectWallet(wallet.toLowerCase() as EWallet)
+                            }
                         >
                             <Image
                                 src={`/assets/wallets/${wallet.toLowerCase()}.png`}

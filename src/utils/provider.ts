@@ -14,6 +14,7 @@ interface IWalletProvider {
         reject: TCallback
     ): Promise<Web3ReactHooks | null>;
     disconnect(): void | Promise<void> | undefined;
+    ethers(): providers.Web3Provider | undefined;
     ethersSync(uri: string): providers.JsonRpcProvider;
 }
 
@@ -21,15 +22,17 @@ export const provider: IWalletProvider = {
     chainId: "1",
     async connect(wallet, chainId, reject) {
         const [connector, hooks] = initConnector(wallet);
-        if (!this.connector) {
-            this.chainId = chainId;
-            this.connector = connector;
-            await connector.activate().catch(reject);
-        }
+        this.chainId = chainId;
+        this.connector = connector;
+        await connector.activate().catch(reject);
         return hooks;
     },
     disconnect() {
         return this.connector?.deactivate?.call([]);
+    },
+    ethers() {
+        if (!this.connector?.provider) return undefined;
+        return new providers.Web3Provider(this.connector.provider);
     },
     ethersSync(uri) {
         if (!this.rpcNode) {

@@ -10,6 +10,8 @@ import { useApp } from "src/hooks";
 import { Storage } from "src/utils/storage";
 import { TAuthWallet } from "src/types";
 import { AccountsModal } from "src/sections";
+import { provider } from "src/utils/provider";
+import { EWallet } from "src/utils/network";
 
 const theme = createTheme({
     palette: {
@@ -29,6 +31,24 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
         network,
         setNetwork,
     } = useApp();
+
+    const connectWallet = (wallet = EWallet.MetaMask) => {
+        provider
+            .connect(wallet, String(network), console.log)
+            .then(() => provider.ethers()?.listAccounts())
+            .then((accounts) => {
+                if (accounts) {
+                    const [account] = accounts;
+                    updateWallet({
+                        address: account,
+                        shortAddress: account,
+                        connected: true,
+                        photoURL: "",
+                    });
+                }
+            })
+            .catch(() => {});
+    };
 
     useEffect(() => {
         const savedWallet = Storage.getItem<TAuthWallet>("paymematic");
@@ -61,6 +81,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
                 isOpen={showAccounts}
                 authWallet={authWallet}
                 toggleAccounts={toggleAccounts}
+                connectWallet={connectWallet}
             />
             <Toaster />
         </ThemeProvider>
