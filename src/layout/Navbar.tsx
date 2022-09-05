@@ -16,6 +16,7 @@ import {
 } from "@mui/icons-material";
 import { ENetwork, TAuthWallet, TCallback } from "src/types";
 import { Select } from "src/components/Select";
+import Image from "next/image";
 
 const networks = Object.entries(ENetwork)
     .filter(([label]) => Number.isNaN(Number(label)))
@@ -98,21 +99,32 @@ export const Navbar: FC<INavbar> = ({
                                     variant="outlined"
                                     onClick={toggleAccounts}
                                 >
-                                    {!authWallet.connected ? (
-                                        <Typography
-                                            sx={{
-                                                display: "flex",
-                                                alignItems: "center",
-                                            }}
-                                        >
-                                            Connect Wallet
-                                            <AccountBalanceWalletRounded
-                                                sx={{ ml: 1 }}
-                                            />
-                                        </Typography>
-                                    ) : (
-                                        authWallet.shortAddress
-                                    )}
+                                    <Typography
+                                        sx={{
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "space-between",
+                                        }}
+                                    >
+                                        {!authWallet.connected ? (
+                                            <>
+                                                Connect Wallet
+                                                <AccountBalanceWalletRounded
+                                                    sx={{ ml: 1 }}
+                                                />
+                                            </>
+                                        ) : (
+                                            <>
+                                                {authWallet.shortAddress} &nbsp;
+                                                <Image
+                                                    src={`/assets/wallets/${authWallet.wallet?.toLowerCase()}.png`}
+                                                    width={18}
+                                                    height={18}
+                                                    alt={authWallet.wallet}
+                                                />
+                                            </>
+                                        )}
+                                    </Typography>
                                 </Button>
                             </Tooltip>
                         </Stack>
