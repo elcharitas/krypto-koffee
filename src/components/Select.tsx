@@ -14,27 +14,30 @@ export type TSelectOption = {
 };
 
 export interface ISelect {
-    label: string;
+    label?: string;
+    placeholder?: string;
     color?: "primary" | "secondary" | "error" | "info" | "success" | "warning";
     options: TSelectOption[];
-    sx: SxProps;
+    sx?: SxProps;
 }
 export const Select: FC<ISelect> = ({
     sx,
     label,
+    placeholder,
     color,
     options = [],
-    ...props
 }) => (
-    <Box sx={sx}>
+    <Box>
         <FormControl fullWidth>
-            <InputLabel color={color}>{label}</InputLabel>
-            <MUISelect label={label} color={color} {...props}>
-                {[{ value: "" }, ...options].map(({ value, label }, index) => (
-                    <MenuItem key={index} color={color} value={value}>
-                        {label || value}
-                    </MenuItem>
-                ))}
+            {label && <InputLabel color={color}>{label}</InputLabel>}
+            <MUISelect label={label} color={color} sx={sx}>
+                {[{ value: "", label: placeholder }, ...options].map(
+                    ({ value, label }, index) => (
+                        <MenuItem key={index} color={color} value={value}>
+                            {label || value}
+                        </MenuItem>
+                    )
+                )}
             </MUISelect>
         </FormControl>
     </Box>
