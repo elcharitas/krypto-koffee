@@ -43,6 +43,7 @@ export const Wallet: Record<EWallet, TWalletOpts> = {
 export const initConnector = (wallet: EWallet) => {
     const { connector, options } = Wallet[wallet];
     return initializeConnector(
-        (actions) => new connector(actions as any, options)
+        (actions) =>
+            new connector({ ...actions, actions } as any, options, true)
     );
 };
