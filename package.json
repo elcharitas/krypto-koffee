@@ -21,6 +21,7 @@
         "@web3-react/types": "8.0.20-beta.0",
         "@web3-react/walletconnect": "8.0.35-beta.0",
         "@worldcoin/id": "^0.8.0",
+        "cobe": "^0.6.0",
         "ethers": "^5.7.0",
         "immer": "^9.0.15",
         "md5": "^2.3.0",

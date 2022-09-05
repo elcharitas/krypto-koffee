@@ -19,6 +19,7 @@ specifiers:
   '@web3-react/types': 8.0.20-beta.0
   '@web3-react/walletconnect': 8.0.35-beta.0
   '@worldcoin/id': ^0.8.0
+  cobe: ^0.6.0
   eslint: 8.23.0
   eslint-config-next: 12.2.5
   ethers: ^5.7.0
@@ -47,6 +48,7 @@ dependencies:
   '@web3-react/types': 8.0.20-beta.0_immer@9.0.15+react@18.2.0
   '@web3-react/walletconnect': 8.0.35-beta.0_5hitfakxooif7o7kp7wz4ye5eu
   '@worldcoin/id': 0.8.0_biqbaboplfbrettd7655fr4n2y
+  cobe: 0.6.0
   ethers: 5.7.0
   immer: 9.0.15
   md5: 2.3.0
@@ -2107,6 +2109,12 @@ packages:
   /clsx/1.2.1:
     resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
     engines: {node: '>=6'}
+    dev: false
+
+  /cobe/0.6.0:
+    resolution: {integrity: sha512-+FuvBjhfxPMOGXkSzAmj3XVmXqq6vqKtufeg64axTr0ipBxOwGIpyXN6T6wR7SGRCueF/bkbyL2fMITtZwjUNQ==}
+    dependencies:
+      phenomenon: 1.6.0
     dev: false
 
   /color-convert/1.9.3:
@@ -4382,6 +4390,10 @@ packages:
       multiformats: 9.7.1
       protobufjs: 6.11.3
       uint8arrays: 3.1.0
+    dev: false
+
+  /phenomenon/1.6.0:
+    resolution: {integrity: sha512-7h9/fjPD3qNlgggzm88cY58l9sudZ6Ey+UmZsizfhtawO6E3srZQXywaNm2lBwT72TbpHYRPy7ytIHeBUD/G0A==}
     dev: false
 
   /picocolors/1.0.0:
