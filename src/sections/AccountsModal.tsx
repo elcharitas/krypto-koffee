@@ -24,12 +24,14 @@ interface IAccountsModal {
     toggleAccounts: TCallback;
     authWallet: TAuthWallet;
     connectWallet: TCallback<void, EWallet>;
+    disconnectWallet: TCallback;
 }
 export const AccountsModal: FC<IAccountsModal> = ({
     isOpen,
     toggleAccounts,
     authWallet,
     connectWallet,
+    disconnectWallet,
 }) => (
     <Modal
         open={isOpen}
@@ -139,6 +141,7 @@ export const AccountsModal: FC<IAccountsModal> = ({
                                           }}
                                           color="error"
                                           variant="outlined"
+                                          onClick={disconnectWallet}
                                           disabled={
                                               authWallet.address !== account
                                           }

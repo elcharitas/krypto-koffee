@@ -8,7 +8,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { MainLayout } from "src/layout";
 import { useApp } from "src/hooks";
 import { Storage } from "src/utils/storage";
-import { EWallet, TAuthWallet } from "src/types";
+import { ENetwork, EWallet, TAuthWallet } from "src/types";
 import { AccountsModal } from "src/sections";
 import { provider } from "src/utils/provider";
 import { formatAddress } from "src/utils/formats";
@@ -34,7 +34,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
 
     const connectWallet = (wallet = EWallet.MetaMask) => {
         provider
-            .connect(wallet, String(network), console.log)
+            .connect(wallet, String(network || ENetwork.Ethereum), console.log)
             .then(() => provider.send<string[]>("eth_requestAccounts"))
             .then((accounts) => {
                 if (accounts) {
@@ -56,9 +56,25 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
             .catch(() => {});
     };
 
+    const disconnectWallet = () => {
+        provider.disconnect().then(() => {
+            const newAuthWallet = {
+                accounts: [],
+                address: "",
+                shortAddress: "",
+                connected: false,
+                photoURL: "",
+                wallet: undefined,
+                network: undefined,
+            };
+            updateWallet(newAuthWallet);
+            Storage.setItem("paymematic", newAuthWallet);
+        });
+    };
+
     useEffect(() => {
         const savedWallet = Storage.getItem<TAuthWallet>("paymematic");
-        if (savedWallet) {
+        if (savedWallet?.connected) {
             if (savedWallet.network) setNetwork(savedWallet.network);
             connectWallet(savedWallet.wallet);
         }
@@ -87,6 +103,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
                 authWallet={authWallet}
                 toggleAccounts={toggleAccounts}
                 connectWallet={connectWallet}
+                disconnectWallet={disconnectWallet}
             />
             <Toaster />
         </ThemeProvider>

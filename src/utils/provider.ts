@@ -13,7 +13,7 @@ interface IWalletProvider {
         chainId: string,
         reject: TCallback
     ): Promise<Web3ReactHooks | null>;
-    disconnect(): void | Promise<void> | undefined;
+    disconnect(): Promise<void>;
     ethers(): providers.Web3Provider | undefined;
     ethersSync(uri: string): providers.JsonRpcProvider;
     send<T = unknown>(method: string): Promise<T>;
@@ -29,7 +29,7 @@ export const provider: IWalletProvider = {
         return hooks;
     },
     disconnect() {
-        return this.connector?.deactivate?.call([]);
+        return Promise.resolve(this.connector?.deactivate?.call([]));
     },
     ethers() {
         if (!this.connector?.provider) return undefined;
