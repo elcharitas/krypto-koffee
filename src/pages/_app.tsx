@@ -49,8 +49,9 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
     };
 
     const connectWallet = (wallet = EWallet.MetaMask) => {
+        const chainId = network || ENetwork.Ethereum;
         provider
-            .connect(wallet, String(network || ENetwork.Ethereum), console.log)
+            .connect(wallet, String(chainId), console.log)
             .then(() => provider.send<string[]>("eth_requestAccounts"))
             .then((accounts) => {
                 if (accounts) {
@@ -61,9 +62,10 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
                         shortAddress: formatAddress(account),
                         connected: true,
                         photoURL: "",
+                        network: chainId,
                         wallet,
-                        network,
                     };
+                    setNetwork(chainId);
                     updateWallet(newAuthWallet);
                     Storage.setItem("paymematic", newAuthWallet);
                 }
