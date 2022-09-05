@@ -4,17 +4,24 @@ import {
     AppBar,
     Button,
     Avatar,
+    Container,
     Box,
     Typography,
     Toolbar,
     Tooltip,
+    Stack,
     styled,
 } from "@mui/material";
-import { SupervisedUserCircle, WalletRounded } from "@mui/icons-material";
+import {
+    AccountBox,
+    WalletRounded,
+    AccountBalanceWalletRounded,
+} from "@mui/icons-material";
 import { TAuthWallet, TCallback } from "src/types";
+import { Select } from "src/components/Select";
 
 const NavbarRoot = styled(AppBar)(({ theme }) => ({
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "transparent",
     boxShadow: theme.shadows[3],
 }));
 
@@ -28,73 +35,90 @@ export const Navbar: FC<INavbar> = ({ authWallet, toggleAccounts }) => (
             <Toolbar
                 disableGutters
                 sx={{
-                    minHeight: 64,
+                    minHeight: 44,
                     left: 0,
                     px: 2,
+                    justifyContent: "space-around",
+                    backgroundColor: "#111",
                 }}
             >
-                <Tooltip title="Token Manager">
-                    <Typography sx={{ ml: 1 }}>
-                        <Image
-                            src="/images/logo.png"
-                            alt="Token Manager"
-                            width="40"
-                            height="40"
-                        />
-                    </Typography>
-                </Tooltip>
-
-                <Box sx={{ flexGrow: 1 }} />
-
-                {!authWallet.connected && (
-                    <Tooltip
-                        title={
-                            !authWallet.connected
-                                ? "Connect Non-Custodial Wallet"
-                                : `Disconnect ${authWallet.shortAddress}`
-                        }
-                    >
-                        <Button
-                            sx={{ textTransform: "capitalize" }}
-                            color="warning"
-                            variant="outlined"
-                            onClick={toggleAccounts}
-                        >
-                            {!authWallet.connected ? (
-                                <Typography
-                                    sx={{
-                                        display: "flex",
-                                        alignItems: "center",
-                                    }}
-                                >
-                                    <Typography
-                                        sx={{
-                                            display: {
-                                                xs: "none",
-                                                md: "inline",
-                                            },
-                                        }}
-                                    >
-                                        Connect Wallet <WalletRounded />
-                                    </Typography>
-                                </Typography>
-                            ) : (
-                                authWallet.shortAddress
-                            )}
-                        </Button>
-                    </Tooltip>
-                )}
-                <Avatar
+                <Container
                     sx={{
-                        height: 40,
-                        width: 40,
-                        ml: 1,
-                        border: "0.7px solid",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "flex-start",
                     }}
-                    src={authWallet.photoURL}
                 >
-                    <SupervisedUserCircle fontSize="small" />
-                </Avatar>
+                    <Box sx={{ lineHeight: 0, position: "relative" }}>
+                        <Tooltip title="PayMeMatic">
+                            <Typography
+                                sx={{
+                                    ml: 1,
+                                    display: "flex",
+                                    alignItems: "center",
+                                }}
+                            >
+                                <WalletRounded sx={{ mr: 1 }} /> PayMeMatic
+                            </Typography>
+                        </Tooltip>
+                    </Box>
+
+                    <Box sx={{ flexGrow: 1 }} />
+
+                    <Stack spacing={2} direction="row" alignItems="center">
+                        <Stack direction="row" spacing={1}>
+                            <Tooltip title="Select Network">
+                                <Select
+                                    placeholder="Select a Network"
+                                    options={[]}
+                                    sx={{ height: "32px" }}
+                                />
+                            </Tooltip>
+                            {!authWallet.connected && (
+                                <Tooltip
+                                    title={
+                                        !authWallet.connected
+                                            ? "Connect Wallet"
+                                            : `Disconnect ${authWallet.shortAddress}`
+                                    }
+                                >
+                                    <Button
+                                        sx={{ textTransform: "capitalize" }}
+                                        color="secondary"
+                                        variant="outlined"
+                                        onClick={toggleAccounts}
+                                    >
+                                        {!authWallet.connected ? (
+                                            <Typography
+                                                sx={{
+                                                    display: "flex",
+                                                    alignItems: "center",
+                                                }}
+                                            >
+                                                <Typography
+                                                    sx={{
+                                                        display: {
+                                                            xs: "none",
+                                                            md: "flex",
+                                                        },
+                                                        alignItems: "center",
+                                                    }}
+                                                >
+                                                    Connect Wallet
+                                                    <AccountBalanceWalletRounded
+                                                        sx={{ ml: 1 }}
+                                                    />
+                                                </Typography>
+                                            </Typography>
+                                        ) : (
+                                            authWallet.shortAddress
+                                        )}
+                                    </Button>
+                                </Tooltip>
+                            )}
+                        </Stack>
+                    </Stack>
+                </Container>
             </Toolbar>
         </NavbarRoot>
     </>
