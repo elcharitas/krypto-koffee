@@ -25,6 +25,10 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
     useEffect(() => {
         const savedWallet = Storage.getItem<TAuthWallet>("paymematic");
         if (savedWallet) updateWallet(savedWallet);
+
+        return () => {
+            Storage.setItem("paymematic", authWallet);
+        };
     }, []);
 
     return (
