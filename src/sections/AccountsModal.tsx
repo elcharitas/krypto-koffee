@@ -139,6 +139,16 @@ export const AccountsModal: FC<IAccountsModal> = ({
                                       </Button>
                                   </Stack>
                               </Stack>
+                              {authWallet.address === account && (
+                                  <Typography
+                                      color="grey"
+                                      fontSize="small"
+                                      textTransform="capitalize"
+                                      sx={{ textDecoration: "underline" }}
+                                  >
+                                      Connected With {authWallet.wallet}
+                                  </Typography>
+                              )}
                           </Content>
                       ))}
             </Stack>
