@@ -32,6 +32,22 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
         setNetwork,
     } = useApp();
 
+    const disconnectWallet = () => {
+        provider.disconnect().then(() => {
+            const newAuthWallet = {
+                accounts: [],
+                address: "",
+                shortAddress: "",
+                connected: false,
+                photoURL: "",
+                wallet: undefined,
+                network: undefined,
+            };
+            updateWallet(newAuthWallet);
+            Storage.setItem("paymematic", newAuthWallet);
+        });
+    };
+
     const connectWallet = (wallet = EWallet.MetaMask) => {
         provider
             .connect(wallet, String(network || ENetwork.Ethereum), console.log)
@@ -53,23 +69,9 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
                 }
             })
             .then(toggleAccounts)
-            .catch(() => {});
-    };
-
-    const disconnectWallet = () => {
-        provider.disconnect().then(() => {
-            const newAuthWallet = {
-                accounts: [],
-                address: "",
-                shortAddress: "",
-                connected: false,
-                photoURL: "",
-                wallet: undefined,
-                network: undefined,
-            };
-            updateWallet(newAuthWallet);
-            Storage.setItem("paymematic", newAuthWallet);
-        });
+            .catch((e) => {
+                disconnectWallet();
+            });
     };
 
     useEffect(() => {
