@@ -46,6 +46,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
                         connected: true,
                         photoURL: "",
                         wallet,
+                        network,
                     };
                     updateWallet(newAuthWallet);
                     Storage.setItem("paymematic", newAuthWallet);
@@ -57,7 +58,10 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
 
     useEffect(() => {
         const savedWallet = Storage.getItem<TAuthWallet>("paymematic");
-        if (savedWallet) connectWallet(savedWallet.wallet);
+        if (savedWallet) {
+            if (savedWallet.network) setNetwork(savedWallet.network);
+            connectWallet(savedWallet.wallet);
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

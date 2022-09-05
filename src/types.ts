@@ -19,6 +19,7 @@ export type TAuthWallet = {
     shortAddress: string;
     accounts: string[];
     wallet: EWallet | undefined;
+    network: ENetwork | undefined;
     photoURL: string;
     connected: boolean;
 };
