@@ -47,7 +47,7 @@ export const Navbar: FC<INavbar> = ({
             <Toolbar
                 disableGutters
                 sx={{
-                    minHeight: 44,
+                    minHeight: 60,
                     left: 0,
                     px: 2,
                     justifyContent: "space-around",
@@ -83,7 +83,10 @@ export const Navbar: FC<INavbar> = ({
                                 options={networks}
                                 value={network}
                                 onChange={(netW) => setNetwork(Number(netW))}
-                                sx={{ height: "32px" }}
+                                sx={{
+                                    height: "32px",
+                                    display: { xs: "none", md: "flex" },
+                                }}
                                 placeholder="Select a Network"
                             />
                             <Tooltip
