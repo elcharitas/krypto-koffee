@@ -23,8 +23,8 @@ export const HeroContent: FC = () => (
                     Welcome to PayMeMatic
                 </Typography>
                 <Typography
-                    variant="h1"
                     sx={{
+                        fontSize: { xs: "3.5em", md: "5em" },
                         fontWeight: "bold",
                         fontFamily: "Poppins",
                     }}
@@ -54,7 +54,9 @@ export const HeroContent: FC = () => (
                     </Typography>
                 </Button>
             </Box>
-            <Globe width={580} height={580} />
+            <Box sx={{ display: { xs: "none", md: "flex" }, p: 8 }}>
+                <Globe width={560} height={560} />
+            </Box>
         </Stack>
     </Content>
 );

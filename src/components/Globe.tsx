@@ -25,8 +25,8 @@ export const Globe: FC<IGlobe> = ({ width, height }) => {
 
         const globe = createGlobe(canvasRef.current, {
             ...GLOBE_OPTS,
-            width: width * 2,
-            height: height * 2,
+            width: width * 1.5,
+            height: height * 1.5,
             baseColor: [0.3, 0.3, 0.3],
             markerColor: [0.1, 0.8, 1],
             glowColor: [1, 1, 1],
@@ -39,16 +39,16 @@ export const Globe: FC<IGlobe> = ({ width, height }) => {
         return () => {
             globe.destroy();
         };
-    }, []);
+    }, [height, width]);
 
     return (
         <canvas
             ref={canvasRef}
             style={{
                 width,
-                height,
                 maxWidth: "100%",
                 aspectRatio: "1",
+                margin: "8px",
             }}
         />
     );
