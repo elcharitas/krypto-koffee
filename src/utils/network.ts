@@ -7,7 +7,7 @@ import { EWallet } from "src/types";
 type TWalletOpts = {
     options: {
         url: string;
-        appName?: string;
+        appName: string;
         rpc?: string[];
     };
     connector: typeof MetaMask | typeof CoinbaseWallet | typeof WalletConnect;
@@ -16,19 +16,21 @@ export const Wallet: Record<EWallet, TWalletOpts> = {
     metamask: {
         options: {
             url: "",
+            appName: "PayMeMatic",
         },
         connector: MetaMask,
     },
     coinbase: {
         options: {
             url: "",
-            appName: "",
+            appName: "PayMeMatic",
         },
         connector: CoinbaseWallet,
     },
     walletconnect: {
         options: {
             url: "",
+            appName: "PayMeMatic",
             rpc: [],
         },
         connector: WalletConnect,
