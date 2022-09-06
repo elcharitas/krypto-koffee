@@ -86,12 +86,18 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
     }, []);
 
     useEffect(() => {
-        provider.on("accountsChanged", (accounts) => {
+        const accountsChanged = (accounts?: string[]) => {
             if (!accounts || accounts.length === 0) disconnectWallet();
-        });
-        provider.on<number>("chainChanged", (chainId) => {
+        };
+        const chainChanged = (chainId?: number) => {
             if (chainId) setNetwork(chainId);
-        });
+        };
+        provider.on("accountsChanged", accountsChanged);
+        provider.on<number>("chainChanged", chainChanged);
+        return () => {
+            provider.removeListener("accountsChanged", accountsChanged);
+            provider.removeListener<number>("chainChanged", chainChanged);
+        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [authWallet.connected === true]);
 
