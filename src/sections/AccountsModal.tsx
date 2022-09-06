@@ -14,7 +14,7 @@ import { Content } from "src/components";
 import { etherScanUrl, formatAddress } from "src/utils/formats";
 
 const wallets = {
-    CoinBase: "info",
+    Coinbase: "info",
     MetaMask: "warning",
     WalletConnect: "primary",
 };
@@ -45,7 +45,7 @@ export const AccountsModal: FC<IAccountsModal> = ({
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
-                width: 400,
+                width: 320,
                 bgcolor: "background.paper",
                 border: "2px solid #000",
                 borderRadius: "8px",
@@ -53,7 +53,7 @@ export const AccountsModal: FC<IAccountsModal> = ({
                 p: 2,
             }}
         >
-            <Typography id="accounts-modal-title" variant="h6">
+            <Typography id="accounts-modal-title" align="center" variant="h6">
                 {authWallet.connected ? "Accounts" : "Connect Wallet"}
             </Typography>
             <Stack direction="column" spacing={1} sx={{ mt: 2 }}>
@@ -64,7 +64,12 @@ export const AccountsModal: FC<IAccountsModal> = ({
                               title={`Connect using ${wallet}`}
                           >
                               <Button
-                                  sx={{ textTransform: "capitalize" }}
+                                  sx={{
+                                      textTransform: "capitalize",
+                                      display: "flex",
+                                      justifyContent: "space-between",
+                                      alignItems: "center",
+                                  }}
                                   color={color as TColor}
                                   variant="outlined"
                                   onClick={() =>
@@ -73,12 +78,6 @@ export const AccountsModal: FC<IAccountsModal> = ({
                                       )
                                   }
                               >
-                                  <Image
-                                      src={`/assets/wallets/${wallet.toLowerCase()}.png`}
-                                      width={20}
-                                      height={20}
-                                      alt={wallet}
-                                  />
                                   <Typography
                                       sx={{
                                           display: "flex",
@@ -88,6 +87,12 @@ export const AccountsModal: FC<IAccountsModal> = ({
                                   >
                                       {wallet}
                                   </Typography>
+                                  <Image
+                                      src={`/assets/wallets/${wallet.toLowerCase()}.png`}
+                                      width={20}
+                                      height={20}
+                                      alt={wallet}
+                                  />
                               </Button>
                           </Tooltip>
                       ))
