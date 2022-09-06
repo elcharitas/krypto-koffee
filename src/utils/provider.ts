@@ -21,6 +21,10 @@ interface IWalletProvider {
         params?: Record<string, string | string[]>
     ): Promise<T>;
     on<T = string[]>(ev: string, cb: TCallback<void, T>): IWalletProvider;
+    removeListener<T = string[]>(
+        ev: string,
+        cb: TCallback<void, T>
+    ): IWalletProvider;
 }
 
 export const provider: IWalletProvider = {
@@ -55,6 +59,10 @@ export const provider: IWalletProvider = {
     },
     on<T = string[]>(ev: string, cb: TCallback<void, T>) {
         this.connector?.provider?.on(ev, cb);
+        return this;
+    },
+    removeListener<T = string[]>(ev: string, cb: TCallback<void, T>) {
+        this.connector?.provider?.removeListener(ev, cb);
         return this;
     },
 };
