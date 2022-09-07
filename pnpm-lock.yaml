@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 overrides:
+  '@web3-react/coinbase-wallet': 8.0.34-beta.0
   '@web3-react/types': 8.0.20-beta.0
 
 specifiers:
@@ -13,7 +14,7 @@ specifiers:
   '@types/react': 18.0.18
   '@types/react-dom': 18.0.6
   '@walletconnect/ethereum-provider': ^1.8.0
-  '@web3-react/coinbase-wallet': 8.0.22-beta.0
+  '@web3-react/coinbase-wallet': 8.0.34-beta.0
   '@web3-react/core': 8.0.35-beta.0
   '@web3-react/metamask': 8.0.28-beta.0
   '@web3-react/network': 8.0.27-beta.0
@@ -44,7 +45,7 @@ dependencies:
   '@mui/icons-material': 5.10.3_uvkfhlgw25w6lhmyous67zd66u
   '@mui/material': 5.10.3_vbxcdxy3bftsefaguotlgalomu
   '@walletconnect/ethereum-provider': 1.8.0
-  '@web3-react/coinbase-wallet': 8.0.22-beta.0_exdjyznljy4ahdum3sqagbxn5y
+  '@web3-react/coinbase-wallet': 8.0.34-beta.0_exdjyznljy4ahdum3sqagbxn5y
   '@web3-react/core': 8.0.35-beta.0_immer@9.0.15+react@18.2.0
   '@web3-react/metamask': 8.0.28-beta.0_immer@9.0.15+react@18.2.0
   '@web3-react/network': 8.0.27-beta.0_immer@9.0.15+react@18.2.0
@@ -1779,10 +1780,10 @@ packages:
       web-streams-polyfill: 3.2.1
     dev: false
 
-  /@web3-react/coinbase-wallet/8.0.22-beta.0_exdjyznljy4ahdum3sqagbxn5y:
-    resolution: {integrity: sha512-dabgu/5t/7rugp43cdKe6HCD3ZR1BmkJkIyZeXNXp7e+I4iQH5GXuGLXJS6VO7S0vYN8NhQdjjLQ+kTfUV+CrA==}
+  /@web3-react/coinbase-wallet/8.0.34-beta.0_exdjyznljy4ahdum3sqagbxn5y:
+    resolution: {integrity: sha512-eGgtGtAqcRL64U1lcWeICB9CmpUycVl/mWD/b2Nd7yE0hXFUbPGLZHNvBTpnOpkANkjHI5ufFoyDGzzoxdw12A==}
     peerDependencies:
-      '@coinbase/wallet-sdk': ^3.0.1
+      '@coinbase/wallet-sdk': ^3.0.4
     dependencies:
       '@coinbase/wallet-sdk': 3.5.2
       '@web3-react/types': 8.0.20-beta.0_immer@9.0.15+react@18.2.0

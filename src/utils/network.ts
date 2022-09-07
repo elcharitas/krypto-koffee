@@ -29,21 +29,11 @@ export const initConnector = (
     const connector = Wallet[wallet];
     return initializeConnector(
         (actions) =>
-            new connector(
-                /**
-                 * web3-react is still in beta. Most connectors are not in sync
-                 * This hack allows connectors to work regardless.
-                 * TODO: replace this once package becomes stable
-                 */
-                {
-                    ...actions,
-                    actions,
-                    options,
-                    defaultChainId: network,
-                    onError,
-                } as any,
+            new connector({
+                actions,
                 options,
-                true
-            )
+                onError,
+                defaultChainId: network,
+            })
     );
 };
