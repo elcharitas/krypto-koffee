@@ -1,16 +1,16 @@
 import { providers } from "ethers";
 import { Web3ReactHooks } from "@web3-react/core";
 import { Connector } from "@web3-react/types";
-import { EWallet, TCallback } from "src/types";
+import { ENetwork, EWallet, TCallback } from "src/types";
 import { initConnector } from "./network";
 
 interface IWalletProvider {
-    chainId: string;
+    chainId: ENetwork;
     connector?: Connector;
     rpcNode?: providers.JsonRpcProvider;
     connect(
         wallet: EWallet,
-        chainId: string,
+        chainId: ENetwork,
         reject: TCallback
     ): Promise<Web3ReactHooks | null>;
     disconnect(): Promise<void>;
@@ -28,9 +28,9 @@ interface IWalletProvider {
 }
 
 export const provider: IWalletProvider = {
-    chainId: "1",
+    chainId: ENetwork.Ethereum,
     async connect(wallet, chainId, reject) {
-        const [connector, hooks] = initConnector(wallet);
+        const [connector, hooks] = initConnector(wallet, chainId);
         this.chainId = chainId;
         this.connector = connector;
         await connector.activate().catch(reject);

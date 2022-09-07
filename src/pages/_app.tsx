@@ -51,7 +51,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
     const connectWallet = (wallet = EWallet.MetaMask) => {
         const chainId = network || ENetwork.Ethereum;
         provider
-            .connect(wallet, String(chainId), console.log)
+            .connect(wallet, chainId, console.log)
             .then(() => provider.send<string[]>("eth_requestAccounts"))
             .then((accounts) => {
                 if (accounts) {

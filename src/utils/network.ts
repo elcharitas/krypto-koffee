@@ -2,43 +2,25 @@ import { MetaMask } from "@web3-react/metamask";
 import { WalletConnect } from "@web3-react/walletconnect";
 import { CoinbaseWallet } from "@web3-react/coinbase-wallet";
 import { initializeConnector } from "@web3-react/core";
-import { EWallet } from "src/types";
+import { ENetwork, EWallet } from "src/types";
 
-type TWalletOpts = {
-    options: {
-        url: string;
-        appName: string;
-        rpc?: string[];
-    };
-    connector: typeof MetaMask | typeof CoinbaseWallet | typeof WalletConnect;
+type TWalletConnector =
+    | typeof MetaMask
+    | typeof CoinbaseWallet
+    | typeof WalletConnect;
+
+const options = {
+    appName: "PayMeMatic",
+    url: `https://${process.env.NETX_PUBLIC_VERCEL_URL || `localhost:7000`}`,
 };
-export const Wallet: Record<EWallet, TWalletOpts> = {
-    metamask: {
-        options: {
-            url: "",
-            appName: "PayMeMatic",
-        },
-        connector: MetaMask,
-    },
-    coinbase: {
-        options: {
-            url: "",
-            appName: "PayMeMatic",
-        },
-        connector: CoinbaseWallet,
-    },
-    walletconnect: {
-        options: {
-            url: "",
-            appName: "PayMeMatic",
-            rpc: [],
-        },
-        connector: WalletConnect,
-    },
+export const Wallet: Record<EWallet, TWalletConnector> = {
+    metamask: MetaMask,
+    coinbase: CoinbaseWallet,
+    walletconnect: WalletConnect,
 };
 
-export const initConnector = (wallet: EWallet) => {
-    const { connector, options } = Wallet[wallet];
+export const initConnector = (wallet: EWallet, network: ENetwork) => {
+    const connector = Wallet[wallet];
     return initializeConnector(
         (actions) =>
             new connector({ ...actions, actions } as any, options, true)
