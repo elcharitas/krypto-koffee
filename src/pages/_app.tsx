@@ -128,7 +128,18 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
                 connectWallet={connectWallet}
                 disconnectWallet={disconnectWallet}
             />
-            <Toaster />
+            <Toaster
+                position="top-right"
+                toastOptions={{
+                    style: {
+                        borderRadius: "6px",
+                        background: "#333",
+                        padding: "8px 12px",
+                        fontFamily: "Nunito",
+                        color: "#fff",
+                    },
+                }}
+            />
         </ThemeProvider>
     );
 };
