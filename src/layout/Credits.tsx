@@ -13,7 +13,11 @@ export const Credits = () => (
             >
                 <Typography
                     variant="body2"
-                    sx={{ display: "flex", alignItems: "center" }}
+                    sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: { xs: "center", md: "start" },
+                    }}
                 >
                     &copy; {new Date().getFullYear()}. Proudly Made in
                     <Box
