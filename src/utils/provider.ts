@@ -30,7 +30,7 @@ interface IWalletProvider {
 export const provider: IWalletProvider = {
     chainId: ENetwork.Ethereum,
     async connect(wallet, chainId, reject) {
-        const [connector, hooks] = initConnector(wallet);
+        const [connector, hooks] = initConnector(wallet, chainId, reject);
         this.chainId = chainId;
         this.connector = connector;
         await connector.activate().catch(reject);

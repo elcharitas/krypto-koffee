@@ -2,7 +2,7 @@ import { MetaMask } from "@web3-react/metamask";
 import { WalletConnect } from "@web3-react/walletconnect";
 import { CoinbaseWallet } from "@web3-react/coinbase-wallet";
 import { initializeConnector } from "@web3-react/core";
-import { EWallet } from "src/types";
+import { ENetwork, EWallet, TCallback } from "src/types";
 import { getRPCUrls } from "./rpc";
 
 type TWalletConnector =
@@ -21,10 +21,29 @@ export const Wallet: Record<EWallet, TWalletConnector> = {
     walletconnect: WalletConnect,
 };
 
-export const initConnector = (wallet: EWallet) => {
+export const initConnector = (
+    wallet: EWallet,
+    network: ENetwork,
+    onError: TCallback
+) => {
     const connector = Wallet[wallet];
     return initializeConnector(
         (actions) =>
-            new connector({ ...actions, actions } as any, options, true)
+            new connector(
+                /**
+                 * web3-react is still in beta. Most connectors are not in sync
+                 * This hack allows connectors to work regardless.
+                 * TODO: replace this once package becomes stable
+                 */
+                {
+                    ...actions,
+                    actions,
+                    options,
+                    defaultChainId: network,
+                    onError,
+                } as any,
+                options,
+                true
+            )
     );
 };
