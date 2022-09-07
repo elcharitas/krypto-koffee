@@ -17,6 +17,7 @@ import {
 import { ENetwork, TAuthWallet, TCallback } from "src/types";
 import { Select } from "src/components/Select";
 import Image from "next/image";
+import NextLink from "next/link";
 
 const networks = Object.entries(ENetwork)
     .filter(([label]) => Number.isNaN(Number(label)))
@@ -62,17 +63,19 @@ export const Navbar: FC<INavbar> = ({
                     }}
                 >
                     <Box sx={{ lineHeight: 0, position: "relative" }}>
-                        <Tooltip title="PayMeMatic">
-                            <Typography
-                                sx={{
-                                    ml: 1,
-                                    display: "flex",
-                                    alignItems: "center",
-                                }}
-                            >
-                                <WalletRounded sx={{ mr: 1 }} /> PayMeMatic
-                            </Typography>
-                        </Tooltip>
+                        <NextLink href="/" passHref>
+                            <Tooltip title="PayMeMatic">
+                                <Typography
+                                    sx={{
+                                        ml: 1,
+                                        display: "flex",
+                                        alignItems: "center",
+                                    }}
+                                >
+                                    <WalletRounded sx={{ mr: 1 }} /> PayMeMatic
+                                </Typography>
+                            </Tooltip>
+                        </NextLink>
                     </Box>
 
                     <Box sx={{ flexGrow: 1 }} />
