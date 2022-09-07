@@ -11,7 +11,7 @@ interface IWalletProvider {
     connect(
         wallet: EWallet,
         chainId: ENetwork,
-        reject: TCallback
+        reject: TCallback<void, Error>
     ): Promise<Web3ReactHooks | null>;
     disconnect(): Promise<void>;
     ethers(): providers.Web3Provider | undefined;

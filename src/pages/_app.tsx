@@ -2,7 +2,7 @@ import { FC, useEffect } from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import NextProgress from "next-progress";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { MainLayout } from "src/layout";
@@ -51,7 +51,9 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
     const connectWallet = (wallet = EWallet.MetaMask) => {
         const chainId = network || ENetwork.Ethereum;
         provider
-            .connect(wallet, chainId, console.log)
+            .connect(wallet, chainId, (e) => {
+                if (e?.message) toast.error(e.message);
+            })
             .then(() => provider.send<string[]>("eth_requestAccounts"))
             .then((accounts) => {
                 if (accounts) {
@@ -73,6 +75,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
             .then(toggleAccounts)
             .catch(() => {
                 disconnectWallet();
+                toast.error("Sorry, Wallet connection failed");
             });
     };
 

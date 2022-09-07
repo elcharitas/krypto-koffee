@@ -24,7 +24,7 @@ export const Wallet: Record<EWallet, TWalletConnector> = {
 export const initConnector = (
     wallet: EWallet,
     network: ENetwork,
-    onError: TCallback
+    onError: TCallback<void, Error>
 ) => {
     const connector = Wallet[wallet];
     return initializeConnector(
