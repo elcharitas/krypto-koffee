@@ -47,7 +47,6 @@
     },
     "pnpm": {
         "overrides": {
-            "@web3-react/coinbase-wallet": "8.0.34-beta.0",
             "@web3-react/types": "8.0.20-beta.0"
         }
     }
