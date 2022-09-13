@@ -7,11 +7,9 @@ import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { MainLayout } from "src/layout";
 import { useApp } from "src/hooks";
-import { Storage } from "src/utils/storage";
+import { Storage, provider, formatAddress } from "src/utils";
 import { ENetwork, EWallet, TAuthWallet } from "src/types";
 import { AccountsModal } from "src/sections";
-import { provider } from "src/utils/provider";
-import { formatAddress } from "src/utils/formats";
 
 const theme = createTheme({
     palette: {

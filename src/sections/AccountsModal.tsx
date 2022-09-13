@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { EWallet, TAuthWallet, TCallback, TColor } from "src/types";
 import { Content } from "src/components";
-import { etherScanUrl, formatAddress } from "src/utils/formats";
+import { etherScanUrl, formatAddress } from "src/utils";
 
 const wallets = {
     Coinbase: "info",
