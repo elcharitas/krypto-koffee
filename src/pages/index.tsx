@@ -4,7 +4,7 @@ import { Box, debounce } from "@mui/material";
 import { Tabs, Carousel, CreatorCard } from "src/components";
 import { HeroContent } from "src/sections";
 import { ECreatorCategory, IPage } from "src/types";
-import { contract, denum } from "src/utils";
+import { contract, denum, pageContractAbi } from "src/utils";
 import { useContract } from "src/hooks/useContract";
 
 const categories = denum(ECreatorCategory);
@@ -34,7 +34,7 @@ interface IHome extends IPage {
     }[];
 }
 const Page: FC<IHome> = ({ creators }) => {
-    const pageContract = contract("", [], true);
+    const pageContract = contract("", pageContractAbi, true);
     const [pageId, setPageId] = useState<string | undefined>();
     const { send, isValidating } = useContract({
         contract: pageContract,

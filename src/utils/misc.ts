@@ -1,10 +1,10 @@
 import { ethers } from "ethers";
-import { TCallback } from "src/types";
+import PayMeMatic from "src/contracts/PayMeMatic.json";
 import { provider } from "./provider";
 
 export const contract = (
     address: string,
-    abi: string[],
+    abi: ethers.ContractInterface,
     withSignerIfPossible = true
 ) => {
     const signerProvider = provider.ethers() || provider.ethersSync();
@@ -14,10 +14,4 @@ export const contract = (
     return new ethers.Contract(address, abi, signer);
 };
 
-export const debounce = <T extends TCallback>(fn: T, delay: number) => {
-    let timeout: NodeJS.Timeout;
-    return (...args: unknown[]) => {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => fn(...args), delay);
-    };
-};
+export const pageContractAbi: ethers.ContractInterface = PayMeMatic.abi;
