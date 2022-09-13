@@ -15,7 +15,8 @@ export const CreatorCard: FC<ICreatorCard> = ({ creator }) => {
             <Typography variant="h6" gutterBottom={!!creator.bio}>
                 {creator.name ? (
                     <>
-                        {creator.name} ({formatAddress(creator.address)})
+                        <strong>{creator.name}</strong> (
+                        {formatAddress(creator.address)})
                     </>
                 ) : (
                     creator.address
