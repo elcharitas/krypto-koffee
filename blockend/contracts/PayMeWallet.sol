@@ -9,18 +9,18 @@ interface IPayRouter {
     function swapExactTokensForTokens(
         uint amountIn,
         uint amountOutMin,
-        address[] calldata path,
+        address[2] calldata path,
         address to,
         uint deadline
-    ) external returns (uint[] memory amounts);
+    ) external returns (uint256[] memory amounts);
 
     function swapExactTokensForETH(
         uint amountIn,
         uint amountOutMin,
-        address[] calldata path,
+        address[2] calldata path,
         address to,
         uint deadline
-    ) external returns (uint[] memory amounts);
+    ) external returns (uint256[] memory amounts);
 }
 
 contract PayMeWallet {
@@ -62,7 +62,7 @@ contract PayMeWallet {
         IERC20(_tokenIn).approve(router, _amountIn);
 
         // swap the token
-        (uint256 _amountOut, ) = IPayRouter(router).swapExactTokensForTokens(
+        IPayRouter(router).swapExactTokensForTokens(
             _amountIn,
             0,
             [_tokenIn, _tokenOut],
@@ -70,37 +70,26 @@ contract PayMeWallet {
             _deadline
         );
 
-        emit TokenWithdrawn(_tokenOut, _amountOut);
+        emit TokenWithdrawn(_tokenIn, _amountIn);
     }
 
     /**
      * @dev Withdraws the specified amount of the specified token from the contract in ETH.
      */
     function withdrawEth(
-        uint256 _amountIn,
-        address _tokenIn,
-        uint256 _deadline
+        uint256 _amount
     ) external {
-        require(msg.sender == creator, "Only creator can withdraw");
-
-        // approve the router to spend the token
-        IERC20(_tokenIn).approve(router, 0);
-        IERC20(_tokenIn).approve(router, _amountIn);
-
-        // swap the token
-        address _tokenOut = IPayRouter(router).WETH();
-        (uint256 _amountOut, ) = IPayRouter(router).swapExactTokensForETH(
-            _amountIn,
-            0,
-            [_tokenIn, _tokenOut],
-            creator,
-            _deadline
-        );
-
-        emit TokenWithdrawn(_tokenOut, _amountOut);
+        require(msg.sender == creator, "only creator can withdraw");
+        (bool withdrawn, ) = payable(msg.sender).call{value: _amount}("");
+        require(withdrawn, "Token Withdrawal failed");
+        emit TokenWithdrawn(address(0), _amount);
     }
 
     fallback() external payable {
+        emit TokenReceived(msg.sender, msg.value);
+    }
+
+    receive() external payable {
         emit TokenReceived(msg.sender, msg.value);
     }
 }

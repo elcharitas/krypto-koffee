@@ -19,6 +19,6 @@ contract PayMeMatic {
     }
 
     function claim(string memory _pageId) external {
-        paypageOwner[_pageId] = address(PayMeWallet(msg.sender, router));
+        paypage[_pageId] = address(new PayMeWallet(msg.sender, router));
     }
 }
