@@ -15,6 +15,9 @@ import { AccountsModal } from "src/sections";
 const theme = createTheme({
     palette: {
         mode: "dark",
+        secondary: {
+            main: "#ED7D3A",
+        },
     },
     typography: {
         fontFamily: "Nunito",
@@ -110,7 +113,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline enableColorScheme />
-            <NextProgress color="#ce93d8" />
+            <NextProgress color="#ED7D3A" />
             <MainLayout
                 network={network}
                 setNetwork={setNetwork}

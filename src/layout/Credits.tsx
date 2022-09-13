@@ -55,7 +55,7 @@ export const Credits = () => {
                         </Box>
                         By &nbsp;
                         <Link
-                            sx={{ color: "#ce93d8" }}
+                            sx={{ color: "#ED7D3A" }}
                             href="https://github.com/elcharitas"
                         >
                             Jonathan Irhodia
@@ -63,12 +63,12 @@ export const Credits = () => {
                     </Typography>
                     <Stack direction="row" spacing={3} justifyContent="center">
                         <Link
-                            sx={{ color: "#ce93d8" }}
+                            sx={{ color: "#ED7D3A" }}
                             onClick={() => setOpenHelp(true)}
                         >
                             How it Works?
                         </Link>
-                        <Link sx={{ color: "#ce93d8" }} href="/elcharitas">
+                        <Link sx={{ color: "#ED7D3A" }} href="/elcharitas">
                             Support &#64;elcharitas
                         </Link>
                     </Stack>

@@ -40,7 +40,7 @@ export const HeroContent: FC<IHeroContent> = ({
                     <span
                         style={{
                             display: "block",
-                            color: "#ce93d8",
+                            color: "#ED7D3A",
                             font: "inherit",
                             fontSize: "0.7em",
                             marginTop: -10,
