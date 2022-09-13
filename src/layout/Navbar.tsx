@@ -70,10 +70,17 @@ export const Navbar: FC<INavbar> = ({
                                         display: "flex",
                                         alignItems: "center",
                                         cursor: "pointer",
+                                        fontWeight: "bold",
                                     }}
                                 >
-                                    <WalletRounded sx={{ mr: 1 }} />{" "}
-                                    CryptoCoffee
+                                    <WalletRounded sx={{ mr: 1 }} /> Crypto
+                                    <Typography
+                                        component="span"
+                                        color="secondary"
+                                        fontWeight="bold"
+                                    >
+                                        Coffee
+                                    </Typography>
                                 </Typography>
                             </Tooltip>
                         </NextLink>
