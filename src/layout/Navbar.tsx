@@ -69,6 +69,7 @@ export const Navbar: FC<INavbar> = ({
                                         ml: 1,
                                         display: "flex",
                                         alignItems: "center",
+                                        cursor: "pointer",
                                     }}
                                 >
                                     <WalletRounded sx={{ mr: 1 }} /> PayMeMatic
