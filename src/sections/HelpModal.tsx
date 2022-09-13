@@ -19,7 +19,6 @@ export const HelpModal: FC<IHelpModal> = ({ isOpen, toggleHelp }) => (
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
-                width: 320,
                 bgcolor: "background.paper",
                 border: "2px solid #000",
                 borderRadius: "8px",
@@ -27,12 +26,13 @@ export const HelpModal: FC<IHelpModal> = ({ isOpen, toggleHelp }) => (
                 p: 2,
             }}
         >
-            <Typography id="accounts-modal-title" align="center" variant="h6">
-                Help
-            </Typography>
-            <Stack direction="column" spacing={1} sx={{ mt: 2 }}>
-                Help
-            </Stack>
+            <Box
+                component="iframe"
+                src="https://www.youtube.com/embed/pvgBYYnsUkg"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+                sx={{ width: { xs: "320px", md: "800px" }, height: "400px" }}
+            />
         </Box>
     </Modal>
 );
