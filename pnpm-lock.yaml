@@ -10,6 +10,7 @@ specifiers:
   '@mui/icons-material': ^5.10.3
   '@mui/material': ^5.10.3
   '@nomiclabs/hardhat-ethers': ^2.1.1
+  '@openzeppelin/contracts': ^4.7.3
   '@types/node': 18.7.14
   '@types/react': 18.0.18
   '@types/react-dom': 18.0.6
@@ -74,6 +75,7 @@ dependencies:
 
 devDependencies:
   '@nomiclabs/hardhat-ethers': 2.1.1_niamqnp2kmjo6tv45x3e7iqytu
+  '@openzeppelin/contracts': 4.7.3
   '@types/node': 18.7.14
   '@types/react': 18.0.18
   '@types/react-dom': 18.0.6
@@ -1511,6 +1513,10 @@ packages:
     dependencies:
       ethers: 5.7.0
       hardhat: 2.11.1_s5ojjbx2isjkawqptqpitvy25q
+    dev: true
+
+  /@openzeppelin/contracts/4.7.3:
+    resolution: {integrity: sha512-dGRS0agJzu8ybo44pCIf3xBaPQN/65AIXNgK8+4gzKd5kbvlqyxryUYVLJv7fK98Seyd2hDZzVEHSWAh0Bt1Yw==}
     dev: true
 
   /@pedrouid/environment/1.0.1:

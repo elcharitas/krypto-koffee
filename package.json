@@ -43,6 +43,7 @@
     },
     "devDependencies": {
         "@nomiclabs/hardhat-ethers": "^2.1.1",
+        "@openzeppelin/contracts": "^4.7.3",
         "@types/node": "18.7.14",
         "@types/react": "18.0.18",
         "@types/react-dom": "18.0.6",
