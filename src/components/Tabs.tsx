@@ -1,6 +1,5 @@
 import { useState, FC, SyntheticEvent, ReactNode } from "react";
 import { Tabs as MUITabs, TabsTypeMap, Tab, Box } from "@mui/material";
-import { TColor } from "src/types";
 
 type TTabs = TabsTypeMap["props"];
 interface ITabs extends TTabs {
@@ -19,7 +18,7 @@ export const Tabs: FC<ITabs> = ({ tabs, color, ...props }) => {
 
     return (
         <Box
-            sx={{ maxWidth: { xs: 320, sm: 480 }, bgcolor: "background.paper" }}
+            sx={{ maxWidth: { xs: 320, sm: 800 }, bgcolor: "background.paper" }}
         >
             <MUITabs
                 value={value}
