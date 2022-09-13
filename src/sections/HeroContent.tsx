@@ -32,8 +32,9 @@ export const HeroContent: FC = () => (
                     </span>
                 </Typography>
                 <Typography sx={{ px: { xs: 2, md: 8 } }}>
-                    PayMeMatic is a growing means of personalized donations
-                    built for a decentralized and transparent world
+                    PayMeMatic is a growing means of personalized donations and
+                    member subscriptions built for a decentralized and
+                    transparent world
                 </Typography>
 
                 <TextField
