@@ -61,7 +61,12 @@ export const Credits = () => {
                             Jonathan Irhodia
                         </Link>
                     </Typography>
-                    <Stack direction="row" spacing={3} justifyContent="center">
+                    <Stack
+                        direction="row"
+                        spacing={3}
+                        justifyContent="center"
+                        sx={{ fontSize: "small" }}
+                    >
                         <Link
                             sx={{ color: "#ED7D3A" }}
                             onClick={() => setOpenHelp(true)}
@@ -69,7 +74,10 @@ export const Credits = () => {
                             How it Works?
                         </Link>
                         <Link sx={{ color: "#ED7D3A" }} href="/elcharitas">
-                            Support &#64;elcharitas
+                            Smart Contracts
+                        </Link>
+                        <Link sx={{ color: "#ED7D3A" }} href="/elcharitas">
+                            Support
                         </Link>
                     </Stack>
                 </Stack>
