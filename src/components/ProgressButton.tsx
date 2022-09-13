@@ -5,9 +5,11 @@ import {
     CircularProgress,
     CircularProgressProps,
 } from "@mui/material";
+import { TCallback } from "src/types";
 
 type TMUIButton = ButtonTypeMap["props"];
 interface IProgressButton extends TMUIButton {
+    onClick?: TCallback;
     progressProps?: CircularProgressProps;
     isSubmitting?: boolean;
     children: ReactNode;
@@ -16,10 +18,11 @@ export const ProgressButton: FC<IProgressButton> = ({
     children,
     isSubmitting,
     progressProps,
+    onClick,
     ...props
 }) => {
     return (
-        <Button {...props}>
+        <Button onClick={onClick} {...props}>
             {isSubmitting ? (
                 <CircularProgress
                     size="1.5em"
