@@ -16,7 +16,7 @@ interface IWalletProvider {
     ): Promise<Web3ReactHooks | null>;
     disconnect(): Promise<void>;
     ethers(): providers.Web3Provider | undefined;
-    ethersSync(network: ENetwork): providers.JsonRpcProvider;
+    ethersSync(network?: ENetwork): providers.JsonRpcProvider;
     send<T = unknown>(
         method: string,
         params?: Record<string, string | string[]>
@@ -46,7 +46,7 @@ export const provider: IWalletProvider = {
     },
     ethersSync(network) {
         if (!this.rpcNode) {
-            const rpcUrl = getRPCUrl(network);
+            const rpcUrl = getRPCUrl(network || this.chainId);
             this.rpcNode = new providers.JsonRpcProvider(rpcUrl);
         }
         return this.rpcNode;
