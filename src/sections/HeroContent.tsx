@@ -36,9 +36,17 @@ export const HeroContent: FC<IHeroContent> = ({
                         fontFamily: "Poppins",
                     }}
                 >
-                    Membership{" "}
-                    <span style={{ color: "#ce93d8", font: "inherit" }}>
-                        Subscription
+                    Monetize
+                    <span
+                        style={{
+                            display: "block",
+                            color: "#ce93d8",
+                            font: "inherit",
+                            fontSize: "0.7em",
+                            marginTop: -10,
+                        }}
+                    >
+                        Your Audience!
                     </span>
                 </Typography>
                 <Typography sx={{ px: { xs: 2, md: 8 } }}>
