@@ -3,6 +3,7 @@ import { Web3ReactHooks } from "@web3-react/core";
 import { Connector } from "@web3-react/types";
 import { ENetwork, EWallet, TCallback } from "src/types";
 import { initConnector } from "./network";
+import { getRPCUrl } from "./rpc";
 
 interface IWalletProvider {
     chainId: ENetwork;
@@ -15,7 +16,7 @@ interface IWalletProvider {
     ): Promise<Web3ReactHooks | null>;
     disconnect(): Promise<void>;
     ethers(): providers.Web3Provider | undefined;
-    ethersSync(uri: string): providers.JsonRpcProvider;
+    ethersSync(network: ENetwork): providers.JsonRpcProvider;
     send<T = unknown>(
         method: string,
         params?: Record<string, string | string[]>
@@ -43,9 +44,10 @@ export const provider: IWalletProvider = {
         if (!this.connector?.provider) return undefined;
         return new providers.Web3Provider(this.connector.provider);
     },
-    ethersSync(uri) {
+    ethersSync(network) {
         if (!this.rpcNode) {
-            this.rpcNode = new providers.JsonRpcProvider(uri);
+            const rpcUrl = getRPCUrl(network);
+            this.rpcNode = new providers.JsonRpcProvider(rpcUrl);
         }
         return this.rpcNode;
     },
