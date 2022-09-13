@@ -18,13 +18,12 @@ import { ENetwork, TAuthWallet, TCallback } from "src/types";
 import { Select } from "src/components/Select";
 import Image from "next/image";
 import NextLink from "next/link";
+import { denum } from "src/utils";
 
-const networks = Object.entries(ENetwork)
-    .filter(([label]) => Number.isNaN(Number(label)))
-    .map(([label, value]) => ({
-        label,
-        value,
-    }));
+const networks = denum(ENetwork).map(([label, value]) => ({
+    label,
+    value,
+}));
 
 const NavbarRoot = styled(AppBar)(({ theme }) => ({
     backgroundColor: "transparent",

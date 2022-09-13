@@ -1,10 +1,32 @@
 import { utils, ethers } from "ethers";
 
+/**
+ * Generates a url to the Etherscan page for a given address.
+ *
+ * @param address
+ * @returns
+ */
 export const etherScanUrl = (address: string) =>
     `https://etherscan.io/address/${address}`;
 
+/**
+ * Formats an address to be displayed in the UI
+ *
+ * @param address
+ * @returns
+ */
 export const formatAddress = (address: string) =>
     address.substring(0, 6) + "..." + address.substring(address.length - 4);
+
+/**
+ * Converts an enum to an array of its values
+ *
+ * @param enumValue
+ * @returns
+ */
+export const denum = <T extends Record<string, string | number>>(
+    enumValue: T
+) => Object.entries(enumValue).filter(([value]) => Number.isNaN(Number(value)));
 
 /**
  * Parses an arbitrary number into currency styles
