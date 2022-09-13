@@ -26,9 +26,6 @@ export const HeroContent: FC<IHeroContent> = ({
                 justifyContent="center"
                 sx={{ textAlign: "center" }}
             >
-                <Typography textTransform="uppercase">
-                    Welcome to CryptoCoffee
-                </Typography>
                 <Typography
                     sx={{
                         fontSize: { xs: "3.5em", md: "5em" },
@@ -70,7 +67,10 @@ export const HeroContent: FC<IHeroContent> = ({
                             maxWidth: "400px",
                         },
                         startAdornment: (
-                            <Typography fontWeight="bold">
+                            <Typography
+                                fontWeight="bold"
+                                sx={{ width: "inherit" }}
+                            >
                                 crypto-coffee.app/
                             </Typography>
                         ),
@@ -79,7 +79,7 @@ export const HeroContent: FC<IHeroContent> = ({
                                 sx={{
                                     textTransform: "capitalize",
                                     borderRadius: "5em",
-                                    minWidth: "140px",
+                                    minWidth: "135px",
                                     color: "white",
                                 }}
                                 color="secondary"
