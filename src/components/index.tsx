@@ -3,3 +3,4 @@ export * from "./Globe";
 export * from "./Select";
 export * from "./Carousel";
 export * from "./Tabs";
+export * from "./CreatorCard";

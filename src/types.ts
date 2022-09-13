@@ -24,6 +24,13 @@ export type TAuthWallet = {
     connected: boolean;
 };
 
+export type TCreator = {
+    name?: string;
+    bio?: string;
+    address: string;
+    photoURL: string;
+};
+
 export enum ENetwork {
     Ethereum = 1,
     Goerli = 5,
