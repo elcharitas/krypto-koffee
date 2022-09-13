@@ -10,15 +10,7 @@ export const HeroContent: FC = () => (
             alignItems="center"
             justifyContent={{ xs: "center", md: "space-between" }}
         >
-            <Box
-                sx={{
-                    textAlign: "center",
-                    "&:hover": {
-                        transform: "scale(1.2)",
-                        cursor: "pointer",
-                    },
-                }}
-            >
+            <Box sx={{ textAlign: "center" }}>
                 <Typography textTransform="uppercase">
                     Welcome to PayMeMatic
                 </Typography>
