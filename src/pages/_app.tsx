@@ -1,6 +1,7 @@
 import { FC, useEffect } from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
+import Moralis from "moralis";
 import NextProgress from "next-progress";
 import toast, { Toaster } from "react-hot-toast";
 import { CssBaseline } from "@mui/material";
@@ -19,6 +20,9 @@ const theme = createTheme({
         fontFamily: "Nunito",
     },
 });
+
+/** start Moralis */
+Moralis.start({ apiKey: process.env.MORALIS_API_KEY });
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
     const {
