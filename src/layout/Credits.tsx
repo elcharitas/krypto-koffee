@@ -54,7 +54,7 @@ export const Credits = () => (
                 <Stack direction="row" spacing={3} justifyContent="center">
                     <Link sx={{ color: "#ce93d8" }}>How it Works?</Link>
                     <Link sx={{ color: "#ce93d8" }} href="/elcharitas">
-                        Pay &#64;elcharitas
+                        Support &#64;elcharitas
                     </Link>
                 </Stack>
             </Stack>
