@@ -3,7 +3,7 @@ import { GetServerSideProps } from "next";
 import { Box, debounce } from "@mui/material";
 import { Tabs, Carousel, CreatorCard } from "src/components";
 import { HeroContent } from "src/sections";
-import { ECreatorCategory } from "src/types";
+import { ECreatorCategory, IPage } from "src/types";
 import { contract, denum } from "src/utils";
 import { useContract } from "src/hooks/useContract";
 
@@ -27,7 +27,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     };
 };
 
-interface IHome {
+interface IHome extends IPage {
     creators: {
         address: string;
         category: ECreatorCategory;

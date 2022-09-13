@@ -22,6 +22,11 @@ export enum ECreatorCategory {
     Other,
 }
 
+export interface IPage {
+    authWallet: TAuthWallet;
+    network: ENetwork;
+}
+
 export type TColor =
     | "primary"
     | "secondary"

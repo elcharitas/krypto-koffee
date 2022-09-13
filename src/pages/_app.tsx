@@ -122,7 +122,11 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
                         {String(Component.displayName || "🤔")} | PayMeMatic
                     </title>
                 </Head>
-                <Component {...pageProps} />
+                <Component
+                    network={network}
+                    authWallet={authWallet}
+                    {...pageProps}
+                />
             </MainLayout>
             <AccountsModal
                 isOpen={showAccounts}
