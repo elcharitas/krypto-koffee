@@ -23,7 +23,7 @@ interface IPayRouter {
     ) external returns (uint256[] memory amounts);
 }
 
-contract PayMeWallet {
+contract PayWallet {
     // the address of the creator of this wallet
     address private creator;
     // address for dex router
@@ -76,9 +76,7 @@ contract PayMeWallet {
     /**
      * @dev Withdraws the specified amount of the specified token from the contract in ETH.
      */
-    function withdrawEth(
-        uint256 _amount
-    ) external {
+    function withdrawEth(uint256 _amount) external {
         require(msg.sender == creator, "only creator can withdraw");
         (bool withdrawn, ) = payable(msg.sender).call{value: _amount}("");
         require(withdrawn, "Token Withdrawal failed");

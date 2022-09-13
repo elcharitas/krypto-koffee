@@ -1,5 +1,5 @@
 {
-    "name": "paymematic-v2",
+    "name": "crypto-coffee",
     "version": "0.1.0",
     "private": true,
     "scripts": {
@@ -8,8 +8,8 @@
         "start": "next start",
         "export": "next export",
         "lint": "next lint",
-        "contract:flatten": "hardhat flatten blockend/contracts/PayMeMatic.sol > blockend/contracts/PayMeMaticFlattened.sol",
-        "contract:compile": "hardhat compile --force && cp blockend/artifacts/contracts/PayMeMatic.sol/PayMeMatic.json src/contracts/PayMeMatic.json"
+        "contract:flatten": "hardhat flatten blockend/contracts/CryptoCoffee.sol > blockend/contracts/CryptoCoffeeFlattened.sol",
+        "contract:compile": "hardhat compile --force && cp blockend/artifacts/contracts/CryptoCoffee.sol/CryptoCoffee.json src/contracts/CryptoCoffee.json"
     },
     "dependencies": {
         "@coinbase/wallet-sdk": "^3.5.2",

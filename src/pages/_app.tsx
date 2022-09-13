@@ -50,7 +50,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
                 network: undefined,
             };
             updateWallet(newAuthWallet);
-            Storage.setItem("paymematic", newAuthWallet);
+            Storage.setItem("crypto-coffee", newAuthWallet);
         });
     };
 
@@ -75,7 +75,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
                     };
                     setNetwork(chainId);
                     updateWallet(newAuthWallet);
-                    Storage.setItem("paymematic", newAuthWallet);
+                    Storage.setItem("crypto-coffee", newAuthWallet);
                 }
             })
             .then(toggleAccounts)
@@ -86,7 +86,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
     };
 
     useEffect(() => {
-        const savedWallet = Storage.getItem<TAuthWallet>("paymematic");
+        const savedWallet = Storage.getItem<TAuthWallet>("crypto-coffee");
         if (savedWallet?.connected) {
             if (savedWallet.network) setNetwork(savedWallet.network);
             connectWallet(savedWallet.wallet);
@@ -122,7 +122,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
             >
                 <Head>
                     <title>
-                        {String(Component.displayName || "🤔")} | PayMeMatic
+                        {String(Component.displayName || "🤔")} | CryptoCoffee
                     </title>
                 </Head>
                 <Component

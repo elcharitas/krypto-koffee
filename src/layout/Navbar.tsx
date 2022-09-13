@@ -63,7 +63,7 @@ export const Navbar: FC<INavbar> = ({
                 >
                     <Box sx={{ lineHeight: 0, position: "relative" }}>
                         <NextLink href="/" passHref>
-                            <Tooltip title="PayMeMatic">
+                            <Tooltip title="CryptoCoffee">
                                 <Typography
                                     sx={{
                                         ml: 1,
@@ -72,7 +72,8 @@ export const Navbar: FC<INavbar> = ({
                                         cursor: "pointer",
                                     }}
                                 >
-                                    <WalletRounded sx={{ mr: 1 }} /> PayMeMatic
+                                    <WalletRounded sx={{ mr: 1 }} />{" "}
+                                    CryptoCoffee
                                 </Typography>
                             </Tooltip>
                         </NextLink>

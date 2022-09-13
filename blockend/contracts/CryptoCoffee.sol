@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.16;
 
-import "./PayMeWallet.sol";
+import "./PayWallet.sol";
 
 /**
- * @dev PayMeMatic is a contract that allows users
+ * @dev CryptoCoffee is a contract that allows users
  * to receive donations and optionally swap them for MATIC
  * withdraw tokens from the contract.
  */
-contract PayMeMatic {
+contract CryptoCoffee {
     // router address
     address private immutable router;
     // the address of the wallet
@@ -19,6 +19,6 @@ contract PayMeMatic {
     }
 
     function claim(string memory _pageId) external {
-        paypage[_pageId] = address(new PayMeWallet(msg.sender, router));
+        paypage[_pageId] = address(new PayWallet(msg.sender, router));
     }
 }

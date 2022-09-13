@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import PayMeMatic from "src/contracts/PayMeMatic.json";
+import CryptoCoffee from "src/contracts/CryptoCoffee.json";
 import { provider } from "./provider";
 
 export const contract = (
@@ -14,4 +14,4 @@ export const contract = (
     return new ethers.Contract(address, abi, signer);
 };
 
-export const pageContractAbi: ethers.ContractInterface = PayMeMatic.abi;
+export const pageContractAbi: ethers.ContractInterface = CryptoCoffee.abi;

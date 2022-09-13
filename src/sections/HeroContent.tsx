@@ -27,7 +27,7 @@ export const HeroContent: FC<IHeroContent> = ({
                 sx={{ textAlign: "center" }}
             >
                 <Typography textTransform="uppercase">
-                    Welcome to PayMeMatic
+                    Welcome to CryptoCoffee
                 </Typography>
                 <Typography
                     sx={{
@@ -50,8 +50,8 @@ export const HeroContent: FC<IHeroContent> = ({
                     </span>
                 </Typography>
                 <Typography sx={{ px: { xs: 2, md: 8 } }}>
-                    PayMeMatic is a growing means of personalized donations and
-                    member subscriptions built for a decentralized and
+                    CryptoCoffee is a growing means of personalized donations
+                    and member subscriptions built for a decentralized and
                     transparent world
                 </Typography>
 
@@ -71,7 +71,7 @@ export const HeroContent: FC<IHeroContent> = ({
                         },
                         startAdornment: (
                             <Typography fontWeight="bold">
-                                paymematic.app/
+                                crypto-coffee.app/
                             </Typography>
                         ),
                         endAdornment: (

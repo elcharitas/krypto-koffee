@@ -1,6 +1,6 @@
-# PayMeMatic
+# CryptoCoffee
 
-> PayMeMatic is a growing means of personalized donations built for a decentralized and transparent world
+> CryptoCoffee is a growing means of personalized donations built for a decentralized and transparent world
 
 ## Team members
 
