@@ -1,8 +1,18 @@
-import { FC } from "react";
+import { FC, FormEventHandler } from "react";
 import { Box, Stack, TextField, Typography } from "@mui/material";
 import { Content, Globe, ProgressButton } from "src/components";
+import { TCallback } from "src/types";
 
-export const HeroContent: FC = () => (
+interface IHeroContent {
+    handleClaim: TCallback;
+    handlePageSearch: FormEventHandler;
+    isClaiming: boolean;
+}
+export const HeroContent: FC<IHeroContent> = ({
+    handleClaim,
+    handlePageSearch,
+    isClaiming,
+}) => (
     <Content sx={{ background: "transparent" }}>
         <Stack
             spacing={2}
@@ -43,6 +53,7 @@ export const HeroContent: FC = () => (
                     placeholder="yourname"
                     autoComplete="off"
                     fullWidth
+                    onChange={handlePageSearch}
                     InputProps={{
                         autoFocus: true,
                         sx: {
@@ -65,6 +76,8 @@ export const HeroContent: FC = () => (
                                 }}
                                 color="secondary"
                                 variant="contained"
+                                onClick={handleClaim}
+                                isSubmitting={isClaiming}
                             >
                                 <Typography
                                     sx={{
