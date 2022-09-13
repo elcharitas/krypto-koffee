@@ -13,12 +13,12 @@ export enum ENetwork {
 
 export enum ECreatorCategory {
     Developer,
-    Video,
-    Music,
-    Art,
-    Photography,
-    Writing,
-    Gaming,
+    YouTuber,
+    Influencer,
+    Educator,
+    Blogger,
+    Coach,
+    Gamer,
     Other,
 }
 

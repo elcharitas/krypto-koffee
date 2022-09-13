@@ -13,7 +13,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     const creators = [
         {
             address: "0x123",
-            category: ECreatorCategory.Art,
+            category: ECreatorCategory.Educator,
         },
         {
             address: "0x456",
