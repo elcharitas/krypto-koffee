@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { Box, Button, Stack, TextField, Typography } from "@mui/material";
-import { Content, Globe } from "src/components";
+import { Box, Stack, TextField, Typography } from "@mui/material";
+import { Content, Globe, ProgressButton } from "src/components";
 
 export const HeroContent: FC = () => (
     <Content sx={{ background: "transparent", py: 8 }}>
@@ -56,11 +56,11 @@ export const HeroContent: FC = () => (
                             </Typography>
                         ),
                         endAdornment: (
-                            <Button
+                            <ProgressButton
                                 sx={{
                                     textTransform: "capitalize",
                                     borderRadius: "5em",
-                                    minWidth: "120px",
+                                    minWidth: "140px",
                                     color: "white",
                                 }}
                                 color="secondary"
@@ -74,7 +74,7 @@ export const HeroContent: FC = () => (
                                 >
                                     Claim PayPage
                                 </Typography>
-                            </Button>
+                            </ProgressButton>
                         ),
                     }}
                     sx={{ m: 1, alignItems: "center" }}
