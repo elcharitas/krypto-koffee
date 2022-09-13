@@ -62,7 +62,7 @@ export const HeroContent: FC<IHeroContent> = ({
                     InputProps={{
                         autoFocus: true,
                         sx: {
-                            pl: 3,
+                            px: { xs: 1, md: 3 },
                             borderRadius: "4em",
                             maxWidth: "400px",
                         },
@@ -81,6 +81,7 @@ export const HeroContent: FC<IHeroContent> = ({
                                     borderRadius: "5em",
                                     minWidth: "135px",
                                     color: "white",
+                                    display: { xs: "none", md: "flex" },
                                 }}
                                 color="secondary"
                                 variant="contained"
@@ -93,13 +94,38 @@ export const HeroContent: FC<IHeroContent> = ({
                                         alignItems: "right",
                                     }}
                                 >
-                                    Claim PayPage
+                                    Claim Wall
                                 </Typography>
                             </ProgressButton>
                         ),
                     }}
                     sx={{ m: 1, alignItems: "center" }}
                 />
+
+                <ProgressButton
+                    sx={{
+                        display: { xs: "flex", md: "none" },
+                        textTransform: "capitalize",
+                        borderRadius: "5em",
+                        minWidth: "80%",
+                        color: "white",
+                        py: 1.4,
+                        mb: 2,
+                    }}
+                    color="secondary"
+                    variant="contained"
+                    onClick={handleClaim}
+                    isSubmitting={isClaiming}
+                >
+                    <Typography
+                        sx={{
+                            display: "flex",
+                            alignItems: "right",
+                        }}
+                    >
+                        Claim Wall
+                    </Typography>
+                </ProgressButton>
                 <Typography>
                     It&apos;s free to setup. All data is stored on blockchain
                 </Typography>
