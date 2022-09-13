@@ -4,6 +4,24 @@ export enum EWallet {
     WalletConnect = "walletconnect",
 }
 
+export enum ENetwork {
+    Ethereum = 1,
+    Goerli = 5,
+    Polygon = 137,
+    Mumbai = 80001,
+}
+
+export enum ECreatorCategory {
+    Developer,
+    Video,
+    Music,
+    Art,
+    Photography,
+    Writing,
+    Gaming,
+    Other,
+}
+
 export type TColor =
     | "primary"
     | "secondary"
@@ -30,10 +48,3 @@ export type TCreator = {
     address: string;
     photoURL: string;
 };
-
-export enum ENetwork {
-    Ethereum = 1,
-    Goerli = 5,
-    Polygon = 137,
-    Mumbai = 80001,
-}
