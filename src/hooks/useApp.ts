@@ -11,7 +11,7 @@ type TApp = {
     updateWallet: Updater<TAuthWallet>;
 };
 export const useApp = (): TApp => {
-    const [network, setNetwork] = useState<ENetwork>();
+    const [network, setNetwork] = useState<ENetwork>(ENetwork.Ethereum);
     const [showAccounts, setShowAccounts] = useState(false);
     const [authWallet, updateWallet] = useImmer<TAuthWallet>({
         address: "",
@@ -27,7 +27,11 @@ export const useApp = (): TApp => {
 
     return {
         network,
-        setNetwork,
+        setNetwork: (network) => {
+            if (network in ENetwork) {
+                setNetwork(network);
+            }
+        },
         authWallet,
         updateWallet,
         showAccounts,
