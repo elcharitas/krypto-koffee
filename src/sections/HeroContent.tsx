@@ -3,7 +3,7 @@ import { Box, Stack, TextField, Typography } from "@mui/material";
 import { Content, Globe, ProgressButton } from "src/components";
 
 export const HeroContent: FC = () => (
-    <Content sx={{ background: "transparent", py: 8 }}>
+    <Content sx={{ background: "transparent" }}>
         <Stack
             spacing={2}
             direction={{ xs: "column", md: "row" }}
