@@ -26,6 +26,7 @@ specifiers:
   ethers: ^5.7.0
   immer: ^9.0.15
   md5: ^2.3.0
+  moralis: ^2.4.0
   next: 12.2.5
   next-progress: ^2.2.0
   nuka-carousel: ^5.3.0
@@ -56,6 +57,7 @@ dependencies:
   ethers: 5.7.0
   immer: 9.0.15
   md5: 2.3.0
+  moralis: 2.4.0
   next: 12.2.5_biqbaboplfbrettd7655fr4n2y
   next-progress: 2.2.0_next@12.2.5+react@18.2.0
   nuka-carousel: 5.3.0_biqbaboplfbrettd7655fr4n2y
@@ -822,6 +824,93 @@ packages:
     resolution: {integrity: sha512-/kSXhY692qiV1MXu6EeOZvg5nECLclxNXcKCxJ3cXQgYuRymRHpdx/t7JXfsK+JLjwA1e1c1/SBrlQYpusC29Q==}
     dev: false
 
+  /@moralisweb3/api-utils/2.4.0:
+    resolution: {integrity: sha512-6L47EOahHcuNgbGi4e/FIFCqZ3WgjNi8Xg5BySNzzWcL9te4IXl6uSht99flLTjVwgPCF48AV/sSJiTUi66lUQ==}
+    dependencies:
+      '@moralisweb3/core': 2.4.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /@moralisweb3/auth/2.4.0:
+    resolution: {integrity: sha512-qjPxvUVa44qFEdhkIcJ99V508D/h8Zs9N0Hp8TXvu6bvRn2xybzWhl+g4kjxln9d9gmpYkY1f2eExmUMN8qtEw==}
+    dependencies:
+      '@moralisweb3/api-utils': 2.4.0
+      '@moralisweb3/core': 2.4.0
+      '@moralisweb3/evm-utils': 2.4.0
+      '@moralisweb3/sol-utils': 2.4.0
+    transitivePeerDependencies:
+      - bufferutil
+      - debug
+      - encoding
+      - utf-8-validate
+    dev: false
+
+  /@moralisweb3/core/2.4.0:
+    resolution: {integrity: sha512-tdPnEST5E8Jg80CrBtaPl8S351HoqFXYe73N2M3qSZ3hHc64f8z77O5tS8v1yxlKiM29yiL+75a41rB27rx2xg==}
+    dependencies:
+      axios: 0.27.2
+      eventemitter3: 4.0.7
+      typed-emitter: 2.1.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /@moralisweb3/evm-api/2.4.0:
+    resolution: {integrity: sha512-FwEO57fOuqxm49VtGj6RslyolbrgQxbMdJKk9fkJH5JdHUiuv57RxGutZvVfgGnl+yf+sJUXffQz6Ri7AlQ7gQ==}
+    dependencies:
+      '@moralisweb3/api-utils': 2.4.0
+      '@moralisweb3/core': 2.4.0
+      '@moralisweb3/evm-utils': 2.4.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /@moralisweb3/evm-utils/2.4.0:
+    resolution: {integrity: sha512-cy3VhoYi43SA8OwHyzClL7nBCVvwRvbTe9uRvrOajHq3F4xx02pnxiM5paGr/tEsh15SAiFSB1mf+cl/n7w6Dw==}
+    dependencies:
+      '@ethersproject/address': 5.7.0
+      '@ethersproject/transactions': 5.7.0
+      '@moralisweb3/core': 2.4.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /@moralisweb3/sol-api/2.4.0:
+    resolution: {integrity: sha512-WYDFt1wwxcsh5phtzd04G2qCg/2ysG3Am4gcVX+Iujk/xMdpSbQ4IU75ZeT+92VyiiDlpj3qneFVEC3xYwH4Kw==}
+    dependencies:
+      '@moralisweb3/api-utils': 2.4.0
+      '@moralisweb3/core': 2.4.0
+      '@moralisweb3/sol-utils': 2.4.0
+    transitivePeerDependencies:
+      - bufferutil
+      - debug
+      - encoding
+      - utf-8-validate
+    dev: false
+
+  /@moralisweb3/sol-utils/2.4.0:
+    resolution: {integrity: sha512-tlRjUFaHNjpbGoxu07g23pzMRL5fsSUlYyo8SYP0xwh4E+4WArrXtHrPySBtZ2UGSejUza//W+ZwBU683RTLnQ==}
+    dependencies:
+      '@moralisweb3/core': 2.4.0
+      '@solana/web3.js': 1.61.0
+    transitivePeerDependencies:
+      - bufferutil
+      - debug
+      - encoding
+      - utf-8-validate
+    dev: false
+
+  /@moralisweb3/streams/2.4.0:
+    resolution: {integrity: sha512-8MQFJWhO6qL0NExJHQ819j9v1kNClazKozZ1XLj9H9DbHE//BK8dq0KoXCIlorDDmU+Za5kA8mLIbg6mBBqPMQ==}
+    dependencies:
+      '@moralisweb3/api-utils': 2.4.0
+      '@moralisweb3/core': 2.4.0
+      '@moralisweb3/evm-utils': 2.4.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
   /@mui/base/5.0.0-alpha.95_63dfw6rfgd64rl77ptfma4cvt4:
     resolution: {integrity: sha512-fcxnDeO7rBwzP0buVdI5fn0aA7NQ/AeUV5RzIIH0kOXVVT21HB4JFf41Qhwd0PIq63PXxmc6Fs2mdlzMYuPo9g==}
     engines: {node: '>=12.0.0'}
@@ -1135,6 +1224,10 @@ packages:
     resolution: {integrity: sha512-LeAxFK0+181zQOhOUuKE8Jnd3duzYhDNd3iCLxpmzA5K+e4I1FdbrK3Ot0ZHBwZMeRD/6EojyUfTbpHZ+hkQHg==}
     dev: false
 
+  /@noble/hashes/1.1.2:
+    resolution: {integrity: sha512-KYRCASVTv6aeUi1tsF8/vpyR7zpfs3FUzy2Jqm+MU+LmUKhQ0y2FpfwqkCcxSg2ua4GALJd8k2R76WxwZGbQpA==}
+    dev: false
+
   /@noble/secp256k1/1.6.3:
     resolution: {integrity: sha512-T04e4iTurVy7I8Sw4+c5OSN9/RkPlo1uKxAomtxQNLq8j1uPAqnsqG1bqvY3Jv7c13gyr6dui0zmh/I3+f/JaQ==}
     dev: false
@@ -1244,6 +1337,31 @@ packages:
       - bufferutil
       - encoding
       - react-native
+      - utf-8-validate
+    dev: false
+
+  /@solana/web3.js/1.61.0:
+    resolution: {integrity: sha512-vwkETDmqQDuTRikW8o3tLkNNlzQ/NU7MVtQOTkJ/wmlwsUAMgWrWlTNQoP3fzmsenn/5Y/3UbeOYdHaGCNHCgQ==}
+    engines: {node: '>=12.20.0'}
+    dependencies:
+      '@babel/runtime': 7.18.9
+      '@noble/ed25519': 1.7.0
+      '@noble/hashes': 1.1.2
+      '@noble/secp256k1': 1.6.3
+      '@solana/buffer-layout': 4.0.0
+      bigint-buffer: 1.1.5
+      bn.js: 5.2.1
+      borsh: 0.7.0
+      bs58: 4.0.1
+      buffer: 6.0.1
+      fast-stable-stringify: 1.0.0
+      jayson: 3.7.0
+      node-fetch: 2.6.7
+      rpc-websockets: 7.5.0
+      superstruct: 0.14.2
+    transitivePeerDependencies:
+      - bufferutil
+      - encoding
       - utf-8-validate
     dev: false
 
@@ -2075,6 +2193,10 @@ packages:
       tslib: 2.4.0
     dev: false
 
+  /asynckit/0.4.0:
+    resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
+    dev: false
+
   /available-typed-arrays/1.0.5:
     resolution: {integrity: sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==}
     engines: {node: '>= 0.4'}
@@ -2089,6 +2211,15 @@ packages:
     resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
     dependencies:
       follow-redirects: 1.15.1
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /axios/0.27.2:
+    resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==}
+    dependencies:
+      follow-redirects: 1.15.1
+      form-data: 4.0.0
     transitivePeerDependencies:
       - debug
     dev: false
@@ -2455,6 +2586,13 @@ packages:
   /color-name/1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
 
+  /combined-stream/1.0.8:
+    resolution: {integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==}
+    engines: {node: '>= 0.8'}
+    dependencies:
+      delayed-stream: 1.0.0
+    dev: false
+
   /commander/2.20.3:
     resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
     dev: false
@@ -2612,6 +2750,11 @@ packages:
   /delay/5.0.0:
     resolution: {integrity: sha512-ReEBKkIfe4ya47wlPYf/gu5ib6yUG0/Aez0JQZQz94kiWtRQvZIQbTiehsnwHvLSWJnQdhVeqYue7Id1dKr0qw==}
     engines: {node: '>=10'}
+    dev: false
+
+  /delayed-stream/1.0.0:
+    resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}
+    engines: {node: '>=0.4.0'}
     dev: false
 
   /detect-browser/5.2.0:
@@ -3624,6 +3767,15 @@ packages:
       is-callable: 1.2.4
     dev: false
 
+  /form-data/4.0.0:
+    resolution: {integrity: sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==}
+    engines: {node: '>= 6'}
+    dependencies:
+      asynckit: 0.4.0
+      combined-stream: 1.0.8
+      mime-types: 2.1.35
+    dev: false
+
   /fs.realpath/1.0.0:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
 
@@ -4625,6 +4777,18 @@ packages:
       braces: 3.0.2
       picomatch: 2.3.1
 
+  /mime-db/1.52.0:
+    resolution: {integrity: sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg==}
+    engines: {node: '>= 0.6'}
+    dev: false
+
+  /mime-types/2.1.35:
+    resolution: {integrity: sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw==}
+    engines: {node: '>= 0.6'}
+    dependencies:
+      mime-db: 1.52.0
+    dev: false
+
   /min-indent/1.0.1:
     resolution: {integrity: sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==}
     engines: {node: '>=4'}
@@ -4654,6 +4818,24 @@ packages:
 
   /minimist/1.2.6:
     resolution: {integrity: sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==}
+
+  /moralis/2.4.0:
+    resolution: {integrity: sha512-P5JwTx7/ICnrLUhOcZ3KRzJ5XACYXyyDvM8rpgszhU7aRU6sg4/mDQjjpPRBzbe5v6qk94xoY9ind8P0O5y2JQ==}
+    dependencies:
+      '@moralisweb3/api-utils': 2.4.0
+      '@moralisweb3/auth': 2.4.0
+      '@moralisweb3/core': 2.4.0
+      '@moralisweb3/evm-api': 2.4.0
+      '@moralisweb3/evm-utils': 2.4.0
+      '@moralisweb3/sol-api': 2.4.0
+      '@moralisweb3/sol-utils': 2.4.0
+      '@moralisweb3/streams': 2.4.0
+    transitivePeerDependencies:
+      - bufferutil
+      - debug
+      - encoding
+      - utf-8-validate
+    dev: false
 
   /move-file/2.1.0:
     resolution: {integrity: sha512-i9qLW6gqboJ5Ht8bauZi7KlTnQ3QFpBCvMvFfEcHADKgHGeJ9BZMO7SFCTwHPV9Qa0du9DYY1Yx3oqlGt30nXA==}
@@ -5925,6 +6107,12 @@ packages:
   /type-fest/0.8.1:
     resolution: {integrity: sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==}
     engines: {node: '>=8'}
+    dev: false
+
+  /typed-emitter/2.1.0:
+    resolution: {integrity: sha512-g/KzbYKbH5C2vPkaXGu8DJlHrGKHLsM25Zg9WuC9pMGfuvT+X25tZQWo5fK1BjBm8+UrVE9LDCvaY0CQk+fXDA==}
+    optionalDependencies:
+      rxjs: 6.6.7
     dev: false
 
   /typedarray-to-buffer/3.1.5:
