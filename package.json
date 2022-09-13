@@ -7,7 +7,9 @@
         "build": "next build",
         "start": "next start",
         "export": "next export",
-        "lint": "next lint"
+        "lint": "next lint",
+        "contract:flatten": "hardhat flatten blockend/contracts/PayMeMatic.sol > blockend/contracts/PayMeMaticFlattened.sol",
+        "contract:compile": "hardhat compile --force && cp blockend/artifacts/contracts/PayMeMatic.sol/PayMeMatic.json src/contracts/PayMeMatic.json"
     },
     "dependencies": {
         "@coinbase/wallet-sdk": "^3.5.2",
