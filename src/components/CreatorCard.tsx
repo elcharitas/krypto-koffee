@@ -11,7 +11,9 @@ interface ICreatorCard {
 export const CreatorCard: FC<ICreatorCard> = ({ creator }) => {
     return (
         <Content sx={{ maxWidth: 220 }}>
-            <Image src={creator.photoURL} width="200px" height="200px" />
+            {creator.photoURL && (
+                <Image src={creator.photoURL} width="200px" height="200px" />
+            )}
             <Typography variant="h6" gutterBottom={!!creator.bio}>
                 {creator.name ? (
                     <>

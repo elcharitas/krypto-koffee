@@ -45,6 +45,6 @@ export type TAuthWallet = {
 export type TCreator = {
     name?: string;
     bio?: string;
+    photoURL?: string;
     address: string;
-    photoURL: string;
 };
