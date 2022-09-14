@@ -21,7 +21,7 @@ export const CreatorCard: FC<ICreatorCard> = ({ creator }) => {
                         {formatAddress(creator.address)})
                     </>
                 ) : (
-                    creator.address
+                    formatAddress(creator.address)
                 )}
             </Typography>
             {creator.bio && (
