@@ -10,11 +10,11 @@ interface ICreatorCard {
 }
 export const CreatorCard: FC<ICreatorCard> = ({ creator }) => {
     return (
-        <Content sx={{ maxWidth: 220 }}>
+        <Content sx={{ maxWidth: 170 }}>
             {creator.photoURL && (
-                <Image src={creator.photoURL} width="200px" height="200px" />
+                <Image src={creator.photoURL} width="150px" height="150px" />
             )}
-            <Typography variant="h6" gutterBottom={!!creator.bio}>
+            <Typography variant="body1" gutterBottom={!!creator.bio}>
                 {creator.name ? (
                     <>
                         <strong>{creator.name}</strong> (
@@ -24,7 +24,9 @@ export const CreatorCard: FC<ICreatorCard> = ({ creator }) => {
                     creator.address
                 )}
             </Typography>
-            {creator.bio && <Typography>{creator.bio}</Typography>}
+            {creator.bio && (
+                <Typography variant="body2">{creator.bio}</Typography>
+            )}
         </Content>
     );
 };
