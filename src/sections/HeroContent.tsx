@@ -1,7 +1,8 @@
 import { FC, FormEventHandler } from "react";
 import { Box, Stack, TextField, Typography } from "@mui/material";
-import { Content, Globe, ProgressButton } from "src/components";
-import { TCallback } from "src/types";
+import { Content, Globe, ProgressButton, Select } from "src/components";
+import { ECreatorCategory, TCallback } from "src/types";
+import { denum } from "src/utils";
 
 interface IHeroContent {
     handleClaim: TCallback;
@@ -100,6 +101,20 @@ export const HeroContent: FC<IHeroContent> = ({
                         ),
                     }}
                     sx={{ m: 1, alignItems: "center" }}
+                />
+                <Select
+                    value={ECreatorCategory.Other}
+                    options={denum(ECreatorCategory).map(([label, value]) => ({
+                        label,
+                        value,
+                    }))}
+                    placeholder="Select a creator category"
+                    sx={{
+                        width: "100%",
+                        minWidth: "300px",
+                        borderRadius: "4em",
+                        height: "40px",
+                    }}
                 />
 
                 <ProgressButton
