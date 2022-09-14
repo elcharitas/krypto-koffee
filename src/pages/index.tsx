@@ -55,7 +55,9 @@ const Page: FC<IHome> = ({ creators }) => {
                 isClaiming={isValidating}
                 handleClaim={handleClaim}
                 category={category}
-                handleCategory={setCategory}
+                handleCategory={debounce((category) => {
+                    setCategory(category as ECreatorCategory);
+                }, 500)}
                 handlePageSearch={debounce(handlePageSearch, 500)}
             />
             <Box sx={{ display: "flex", justifyContent: "center" }}>

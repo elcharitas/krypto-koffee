@@ -7,7 +7,7 @@ import { denum } from "src/utils";
 interface IHeroContent {
     handleClaim: TCallback;
     handlePageSearch: FormEventHandler;
-    handleCategory: TCallback<void, ECreatorCategory>;
+    handleCategory: TCallback;
     category: ECreatorCategory | undefined;
     isClaiming: boolean;
 }
@@ -113,12 +113,13 @@ export const HeroContent: FC<IHeroContent> = ({
                         value,
                     }))}
                     onChange={handleCategory}
-                    placeholder="Select a creator category"
+                    placeholder="Select a Creator Category"
                     sx={{
                         width: "100%",
                         minWidth: "300px",
                         borderRadius: "4em",
                         height: "40px",
+                        mb: 1,
                     }}
                 />
 
