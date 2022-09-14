@@ -86,6 +86,24 @@ export const Navbar: FC<INavbar> = ({
                         </NextLink>
                     </Box>
 
+                    <NextLink href="/explore-creators" passHref>
+                        <Tooltip title="Explore Creators on Crypto Coffee">
+                            <Typography
+                                sx={{
+                                    ml: 3,
+                                    display: { xs: "none", md: "flex" },
+                                    alignItems: "center",
+                                    cursor: "pointer",
+                                    "&:hover": {
+                                        color: "secondary.main",
+                                    },
+                                }}
+                            >
+                                Explore Creators
+                            </Typography>
+                        </Tooltip>
+                    </NextLink>
+
                     <Box sx={{ flexGrow: 1 }} />
 
                     <Stack spacing={2} direction="row" alignItems="center">
