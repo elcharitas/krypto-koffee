@@ -63,7 +63,7 @@ export const Navbar: FC<INavbar> = ({
                 >
                     <Box sx={{ lineHeight: 0, position: "relative" }}>
                         <NextLink href="/" passHref>
-                            <Tooltip title="CryptoCoffee">
+                            <Tooltip title="KryptoKoffee">
                                 <Typography
                                     sx={{
                                         ml: 1,
@@ -73,13 +73,13 @@ export const Navbar: FC<INavbar> = ({
                                         fontWeight: "bold",
                                     }}
                                 >
-                                    <WalletRounded sx={{ mr: 1 }} /> Crypto
+                                    <WalletRounded sx={{ mr: 1 }} /> Krypto
                                     <Typography
                                         component="span"
                                         color="secondary"
                                         fontWeight="bold"
                                     >
-                                        Coffee
+                                        Koffee
                                     </Typography>
                                 </Typography>
                             </Tooltip>

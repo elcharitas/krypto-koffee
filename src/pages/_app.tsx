@@ -122,7 +122,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
             >
                 <Head>
                     <title>
-                        {String(Component.displayName || "🤔")} | CryptoCoffee
+                        {String(Component.displayName || "🤔")} | KryptoKoffee
                     </title>
                 </Head>
                 <Component

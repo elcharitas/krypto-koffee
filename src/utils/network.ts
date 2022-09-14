@@ -11,7 +11,7 @@ type TWalletConnector =
     | typeof WalletConnect;
 
 const options = {
-    appName: "CryptoCoffee",
+    appName: "KryptoKoffee",
     url: `https://${process.env.NETX_PUBLIC_VERCEL_URL || `localhost:7000`}`,
     rpc: getRPCUrls(),
 };

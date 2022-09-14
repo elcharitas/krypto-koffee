@@ -2,8 +2,8 @@ import "@nomiclabs/hardhat-ethers";
 import { ethers } from "hardhat";
 
 async function main(routerAddress: string) {
-    const CryptoCoffee = await ethers.getContractFactory("CryptoCoffee");
-    const manager = await CryptoCoffee.deploy(routerAddress);
+    const KryptoKoffee = await ethers.getContractFactory("KryptoKoffee");
+    const manager = await KryptoKoffee.deploy(routerAddress);
 
     await manager.deployed();
 }

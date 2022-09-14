@@ -1,6 +1,6 @@
-# CryptoCoffee
+# KryptoKoffee
 
-> CryptoCoffee is a growing means of personalized donations built for a decentralized and transparent world
+> KryptoKoffee is a growing means of personalized donations built for a decentralized and transparent world
 
 ## Team members
 

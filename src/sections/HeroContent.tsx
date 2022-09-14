@@ -47,7 +47,7 @@ export const HeroContent: FC<IHeroContent> = ({
                     </span>
                 </Typography>
                 <Typography sx={{ px: { xs: 2, md: 8 } }}>
-                    CryptoCoffee is a growing means of personalized donations
+                    Krypto Koffee is a growing means of personalized donations
                     and member subscriptions built for a decentralized and
                     transparent world
                 </Typography>
@@ -71,7 +71,7 @@ export const HeroContent: FC<IHeroContent> = ({
                                 fontWeight="bold"
                                 sx={{ width: "inherit" }}
                             >
-                                crypto-coffee.app/
+                                krypto-koffee.app/
                             </Typography>
                         ),
                         endAdornment: (
@@ -79,7 +79,7 @@ export const HeroContent: FC<IHeroContent> = ({
                                 sx={{
                                     textTransform: "capitalize",
                                     borderRadius: "5em",
-                                    minWidth: "135px",
+                                    minWidth: "65px",
                                     color: "white",
                                     display: { xs: "none", md: "flex" },
                                 }}
@@ -94,7 +94,7 @@ export const HeroContent: FC<IHeroContent> = ({
                                         alignItems: "right",
                                     }}
                                 >
-                                    Claim Wall
+                                    Claim
                                 </Typography>
                             </ProgressButton>
                         ),

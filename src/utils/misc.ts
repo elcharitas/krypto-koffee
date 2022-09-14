@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import CryptoCoffee from "src/contracts/CryptoCoffee.json";
+import KryptoKoffee from "src/contracts/KryptoKoffee.json";
 import { provider } from "./provider";
 
 export const contract = (
@@ -14,4 +14,4 @@ export const contract = (
     return new ethers.Contract(address, abi, signer);
 };
 
-export const pageContractAbi: ethers.ContractInterface = CryptoCoffee.abi;
+export const pageContractAbi: ethers.ContractInterface = KryptoKoffee.abi;

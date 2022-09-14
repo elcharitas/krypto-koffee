@@ -1,3 +1,3 @@
-# CryptoCoffee Contracts
+# KryptoKoffee Contracts
 
 > The CODE is The LAW!
