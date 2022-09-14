@@ -1,42 +1,34 @@
-import { FC, FormEventHandler, useState } from "react";
-import { GetServerSideProps } from "next";
+import { FC, FormEventHandler, useEffect, useState } from "react";
 import { Box, debounce } from "@mui/material";
 import { Tabs, Carousel, CreatorCard } from "src/components";
 import { HeroContent } from "src/sections";
-import { ECreatorCategory, IPage } from "src/types";
-import { contract, denum, pageContractAbi } from "src/utils";
+import {
+    ECreatorCategory,
+    IPage,
+    TEventResponse,
+    TPageClaimedEvent,
+} from "src/types";
+import { contract, denum, getContractEvents, pageContractAbi } from "src/utils";
 import { useContract } from "src/hooks/useContract";
 
 const categories = denum(ECreatorCategory);
 
-export const getServerSideProps: GetServerSideProps = async () => {
-    const creators = [
-        {
-            address: "0x123",
-            category: ECreatorCategory.Educator,
-        },
-        {
-            address: "0x456",
-            category: ECreatorCategory.Developer,
-        },
-    ];
-    return {
-        props: {
-            creators,
-        },
-    };
-};
+const Page: FC<IPage> = ({ network }) => {
+    const pageContract = contract(
+        String(process.env.NEXT_PUBLIC_MANAGER_CONTRACT),
+        pageContractAbi,
+        true
+    );
 
-interface IHome extends IPage {
-    creators: {
-        address: string;
-        category: ECreatorCategory;
-    }[];
-}
-const Page: FC<IHome> = ({ creators }) => {
-    const pageContract = contract("", pageContractAbi, true);
     const [pageId, setPageId] = useState<string | undefined>();
     const [category, setCategory] = useState<ECreatorCategory>();
+    const [creators, setCreators] = useState<
+        {
+            address: string;
+            category: ECreatorCategory;
+        }[]
+    >([]);
+
     const { send, isValidating } = useContract({
         contract: pageContract,
         method: "claim",
@@ -48,6 +40,28 @@ const Page: FC<IHome> = ({ creators }) => {
     const handlePageSearch: FormEventHandler = ({ target }) => {
         setPageId((target as HTMLInputElement)?.value);
     };
+
+    useEffect(() => {
+        getContractEvents({
+            chain: network,
+            address: String(process.env.NEXT_PUBLIC_MANAGER_CONTRACT),
+            abi: pageContractAbi.find(({ name }) => name === "PageClaimed"),
+            topic: String(process.env.NEXT_PUBLIC_MANAGER_EVENT),
+        })
+            .then(
+                (events) =>
+                    (events as unknown) as TEventResponse<TPageClaimedEvent>
+            )
+            .then(({ data }) => {
+                setCreators(
+                    data.result.map(({ data: { creator, category } }) => ({
+                        address: creator,
+                        category,
+                    }))
+                );
+            })
+            .catch(() => {});
+    }, [network]);
 
     return (
         <>
@@ -68,7 +82,11 @@ const Page: FC<IHome> = ({ creators }) => {
                         content: (
                             <Carousel>
                                 {creators
-                                    .filter((c) => c.category === category)
+                                    .filter(
+                                        (c) =>
+                                            Number(c.category) ===
+                                            Number(category)
+                                    )
                                     .map((creator) => (
                                         <CreatorCard
                                             key={creator.address}

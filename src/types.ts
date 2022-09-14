@@ -53,3 +53,30 @@ export type TCreator = {
     photoURL?: string;
     address: string;
 };
+
+export type TEventResponse<T = unknown> = {
+    data: TEventData<T>;
+};
+
+export type TEvent<T> = {
+    address: string;
+    transaction_hash: string;
+    block_number: number;
+    block_timestamp: number;
+    block_hash: string;
+    data: T;
+};
+
+export type TEventData<T> = {
+    total: number;
+    page: number;
+    page_size: number;
+    result: TEvent<T>[];
+};
+
+export type TPageClaimedEvent = {
+    creator: string;
+    pageId: string;
+    category: ECreatorCategory;
+    paypage: string;
+};
