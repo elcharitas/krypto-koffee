@@ -18,7 +18,9 @@ contract KryptoKoffee {
         router = _router;
     }
 
-    function claim(string memory _pageId) external {
-        paypage[_pageId] = address(new PayWallet(msg.sender, router));
+    function claim(string memory _pageId, uint256 _category) external {
+        paypage[_pageId] = address(
+            new PayWallet(msg.sender, _category, router)
+        );
     }
 }

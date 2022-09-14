@@ -25,16 +25,24 @@ interface IPayRouter {
 
 contract PayWallet {
     // the address of the creator of this wallet
-    address private creator;
+    address public creator;
+    uint256 public category;
     // address for dex router
     address private immutable router;
+    address private immutable manager;
 
     event TokenReceived(address indexed sender, uint256 amount);
     event TokenWithdrawn(address indexed token, uint256 amount);
 
-    constructor(address _creator, address _router) {
+    constructor(
+        address _creator,
+        uint256 _category,
+        address _router
+    ) {
         router = _router;
         creator = _creator;
+        category = _category;
+        manager = msg.sender;
     }
 
     /**
