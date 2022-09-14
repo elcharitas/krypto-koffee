@@ -25,8 +25,8 @@ const theme = createTheme({
 });
 
 /** start Moralis */
-if (process.env.MORALIS_API_KEY)
-    Moralis.start({ apiKey: process.env.MORALIS_API_KEY });
+if (process.env.NEXT_PUBLIC_MORALIS_API_KEY)
+    Moralis.start({ apiKey: process.env.NEXT_PUBLIC_MORALIS_API_KEY });
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
     const {
