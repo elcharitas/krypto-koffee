@@ -1,4 +1,5 @@
 import { useState } from "react";
+import NextLink from "next/link";
 import {
     Box,
     Container,
@@ -73,12 +74,18 @@ export const Credits = () => {
                         >
                             How it Works?
                         </Link>
-                        <Link sx={{ color: "#ED7D3A" }} href="/elcharitas">
+                        <Link
+                            sx={{ color: "#ED7D3A" }}
+                            href="https://github.com/elcharitas/krypto-koffee"
+                        >
+                            Github
+                        </Link>
+                        <Link sx={{ color: "#ED7D3A" }} href="/">
                             Smart Contracts
                         </Link>
-                        <Link sx={{ color: "#ED7D3A" }} href="/elcharitas">
-                            Support
-                        </Link>
+                        <NextLink href="/elcharitas" passHref>
+                            <Link sx={{ color: "#ED7D3A" }}>Support</Link>
+                        </NextLink>
                     </Stack>
                 </Stack>
             </Container>
