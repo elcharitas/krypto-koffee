@@ -62,7 +62,7 @@ export const HeroContent: FC<IHeroContent> = ({
                     InputProps={{
                         autoFocus: true,
                         sx: {
-                            px: { xs: 1, md: 3 },
+                            pl: { xs: 1, md: 3 },
                             borderRadius: "4em",
                             maxWidth: "400px",
                         },
