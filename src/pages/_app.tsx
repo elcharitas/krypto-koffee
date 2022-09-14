@@ -55,7 +55,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
     };
 
     const connectWallet = (wallet = EWallet.MetaMask) => {
-        const chainId = network || ENetwork.Ethereum;
+        const chainId = network || ENetwork.Goerli;
         provider
             .connect(wallet, chainId, (e) => {
                 if (e?.message) toast.error(e.message);

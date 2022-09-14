@@ -5,10 +5,10 @@ export enum EWallet {
 }
 
 export enum ENetwork {
-    Ethereum = 1,
+    // Ethereum = 1,
     Goerli = 5,
-    Polygon = 137,
-    Mumbai = 80001,
+    // Polygon = 137,
+    // Mumbai = 80001,
 }
 
 export enum ECreatorCategory {
