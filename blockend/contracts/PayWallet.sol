@@ -45,6 +45,13 @@ contract PayWallet {
         manager = msg.sender;
     }
 
+    function transfer(address _newCreator) external {
+        require(msg.sender == creator, "only creator can transfer page");
+        (bool paidFees, ) = payable(manager).call{value: 1 ether}("");
+        require(paidFees, "failed to pay fees for page transfer");
+        creator = _newCreator;
+    }
+
     /**
      * @dev withdraws a token to wallet
      */
