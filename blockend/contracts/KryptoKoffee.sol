@@ -12,13 +12,18 @@ contract KryptoKoffee {
     // router address
     address private immutable router;
     // the address of the wallet
-    mapping(string => address) paypage;
+    mapping(string => address) public paypage;
 
     constructor(address _router) {
         router = _router;
     }
 
+    /**
+     * Claiming a page is free.
+     * The creator of the page only has topay for Gas
+     */
     function claim(string memory _pageId, uint256 _category) external {
+        require(paypage[_pageId] == address(0), "page already claimed");
         paypage[_pageId] = address(
             new PayWallet(msg.sender, _category, router)
         );
