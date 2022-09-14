@@ -14,4 +14,4 @@ export const contract = (
     return new ethers.Contract(address, abi, signer);
 };
 
-export const pageContractAbi: ethers.ContractInterface = KryptoKoffee.abi;
+export const pageContractAbi = KryptoKoffee.abi;
