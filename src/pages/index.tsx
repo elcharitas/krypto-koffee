@@ -36,6 +36,7 @@ interface IHome extends IPage {
 const Page: FC<IHome> = ({ creators }) => {
     const pageContract = contract("", pageContractAbi, true);
     const [pageId, setPageId] = useState<string | undefined>();
+    const [category, setCategory] = useState<ECreatorCategory>();
     const { send, isValidating } = useContract({
         contract: pageContract,
         method: "claim",
@@ -53,6 +54,8 @@ const Page: FC<IHome> = ({ creators }) => {
             <HeroContent
                 isClaiming={isValidating}
                 handleClaim={handleClaim}
+                category={category}
+                handleCategory={setCategory}
                 handlePageSearch={debounce(handlePageSearch, 500)}
             />
             <Box sx={{ display: "flex", justifyContent: "center" }}>

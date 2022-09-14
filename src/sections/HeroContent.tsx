@@ -7,11 +7,15 @@ import { denum } from "src/utils";
 interface IHeroContent {
     handleClaim: TCallback;
     handlePageSearch: FormEventHandler;
+    handleCategory: TCallback<void, ECreatorCategory>;
+    category: ECreatorCategory | undefined;
     isClaiming: boolean;
 }
 export const HeroContent: FC<IHeroContent> = ({
     handleClaim,
     handlePageSearch,
+    handleCategory,
+    category,
     isClaiming,
 }) => (
     <Content sx={{ background: "transparent" }}>
@@ -103,11 +107,12 @@ export const HeroContent: FC<IHeroContent> = ({
                     sx={{ m: 1, alignItems: "center" }}
                 />
                 <Select
-                    value={ECreatorCategory.Other}
+                    value={category}
                     options={denum(ECreatorCategory).map(([label, value]) => ({
                         label,
                         value,
                     }))}
+                    onChange={handleCategory}
                     placeholder="Select a creator category"
                     sx={{
                         width: "100%",
