@@ -14,6 +14,13 @@ contract KryptoKoffee {
     // the address of the wallet
     mapping(string => address) public paypage;
 
+    event PageClaimed(
+        string pageId,
+        uint256 category,
+        address indexed creator,
+        address indexed paypage
+    );
+
     constructor(address _router) {
         router = _router;
     }
@@ -27,5 +34,6 @@ contract KryptoKoffee {
         paypage[_pageId] = address(
             new PayWallet(msg.sender, _category, router)
         );
+        emit PageClaimed(_pageId, _category, msg.sender, paypage[_pageId]);
     }
 }
