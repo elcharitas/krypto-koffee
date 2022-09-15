@@ -30,9 +30,12 @@ export interface IPage {
 export interface ICreator {
     name?: string;
     bio?: string;
+    description?: string;
     address: string;
     category?: ECreatorCategory;
     photoURL?: string;
+    links?: string[];
+    coffees?: string[];
 }
 
 export type TColor =
