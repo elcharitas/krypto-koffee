@@ -5,7 +5,7 @@ import { Skeleton, Stack, Typography } from "@mui/material";
 import { GetServerSideProps } from "next";
 import { IPage, ICreator } from "src/types";
 import { Content, Tabs } from "src/components";
-import { AboutCreator, ManageCreator } from "src/sections";
+import { AboutCreator, ManageCreator, WithdrawBalance } from "src/sections";
 import {
     contract,
     pageContractAbi,
@@ -139,6 +139,15 @@ const Page: FC<IPayWall> = ({
                                               creator={creator}
                                               publicKey={publicKey}
                                               updateField={updateField}
+                                          />
+                                      ),
+                                  },
+                                  {
+                                      label: "\u0489 Withdraw Balance \u0489",
+                                      content: (
+                                          <WithdrawBalance
+                                              creator={creator}
+                                              authWallet={authWallet}
                                           />
                                       ),
                                   },
