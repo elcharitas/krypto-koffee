@@ -9,7 +9,12 @@ import {
     TPageClaimedEvent,
 } from "src/types";
 import { useContract } from "src/hooks/useContract";
-import { contract, getContractEvents, pageContractAbi } from "src/utils";
+import {
+    contract,
+    createIpns,
+    getContractEvents,
+    pageContractAbi,
+} from "src/utils";
 
 const Page: FC<IPage> = ({ network }) => {
     const pageContract = contract(
@@ -34,7 +39,10 @@ const Page: FC<IPage> = ({ network }) => {
         skip: true,
     });
     const handleClaim = () => {
-        if (pageId) mutate(pageId, category || ECreatorCategory.Other);
+        if (pageId)
+            createIpns("")
+                .then(({ ipns, publicKey }) => mutate(pageId, ipns, publicKey))
+                .catch((e) => toast.error("Sorry, could not claim page"));
         else toast.error("Please, choose a unique name for your page first.");
     };
     const handlePageSearch: FormEventHandler = ({ target }) => {
