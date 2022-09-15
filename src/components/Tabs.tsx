@@ -19,7 +19,10 @@ export const Tabs: FC<ITabs> = ({ tabs, current, color, ...props }) => {
 
     return (
         <Box
-            sx={{ maxWidth: { xs: 320, sm: 800 }, bgcolor: "background.paper" }}
+            sx={{
+                maxWidth: { xs: 320, sm: 800 },
+                bgcolor: "background.paper",
+            }}
         >
             <MUITabs
                 value={value}
