@@ -1,15 +1,10 @@
-import { FC, FormEventHandler, useEffect, useRef, useState } from "react";
+import { FC, FormEventHandler, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { Box, debounce } from "@mui/material";
 import { HeroContent, CreatorTab } from "src/sections";
-import { IPage, TEventResponse, TPageClaimedEvent } from "src/types";
+import { IPage } from "src/types";
 import { useContract, useCreators } from "src/hooks";
-import {
-    contract,
-    createIpns,
-    getContractEvents,
-    pageContractAbi,
-} from "src/utils";
+import { contract, createIpns, pageContractAbi } from "src/utils";
 
 const Page: FC<IPage> = ({ network }) => {
     const pageContract = contract(
