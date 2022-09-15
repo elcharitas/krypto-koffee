@@ -3,29 +3,22 @@ import toast from "react-hot-toast";
 import { TextField } from "@mui/material";
 import { Content, ProgressButton } from "src/components";
 import { ICreator } from "src/types";
-import { useImmer } from "use-immer";
 import { updateIpns, createFile, storageClient } from "src/utils";
 
 interface IManageCreator {
     ipns: string;
     creator: ICreator;
     publicKey: string;
+    updateField: (field: keyof ICreator, value: string) => void;
 }
 export const ManageCreator: FC<IManageCreator> = ({
     ipns,
     publicKey,
-    creator: draft,
+    creator,
+    updateField,
 }) => {
-    const [creator, updateCreator] = useImmer<ICreator>(draft);
     const [accessKey, setAccessKey] = useState<string>("");
     const [isSaving, setIsSaving] = useState(false);
-
-    const updateField = (field: keyof ICreator, value: string) => {
-        updateCreator((draft) => {
-            draft[field] = value;
-        });
-    };
-
     return (
         <Content title="Manage PayWall">
             <TextField

@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { Skeleton, Stack, Typography } from "@mui/material";
@@ -14,6 +14,7 @@ import {
     payWalletContractAbi,
     formatAddress,
 } from "src/utils";
+import { useImmer } from "use-immer";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const { creator } = ctx.query;
@@ -57,11 +58,17 @@ const Page: FC<IPayWall> = ({
     ipns,
     authWallet,
 }) => {
-    const [creator, setCreator] = useState<ICreator>({ address });
+    const [creator, updateCreator] = useImmer<ICreator>({ address });
+
+    const updateField = (field: keyof ICreator, value: string) => {
+        updateCreator((draft) => {
+            draft[field] = value as never;
+        });
+    };
 
     useEffect(() => {
         getCreator(ipns, address, pageId)
-            .then(setCreator)
+            .then(updateCreator)
             .catch(() => {});
     }, []);
 
@@ -123,6 +130,7 @@ const Page: FC<IPayWall> = ({
                                               ipns={ipns}
                                               creator={creator}
                                               publicKey={publicKey}
+                                              updateField={updateField}
                                           />
                                       ),
                                   },
