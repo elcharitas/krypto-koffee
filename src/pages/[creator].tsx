@@ -104,9 +104,10 @@ const Page: FC<IPayWall> = ({
                             align="center"
                             variant="h6"
                             fontWeight="bold"
+                            color="secondary"
                         >
                             @{creator.name}
-                            <div style={{ fontSize: "small" }}>
+                            <div style={{ fontSize: "small", color: "white" }}>
                                 ({formatAddress(creatorAddress)})
                             </div>
                         </Typography>
