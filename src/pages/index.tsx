@@ -1,8 +1,7 @@
 import { FC, FormEventHandler, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Box, debounce } from "@mui/material";
-import { Tabs, Carousel, CreatorCard } from "src/components";
-import { HeroContent } from "src/sections";
+import { HeroContent, CreatorTab } from "src/sections";
 import {
     ECreatorCategory,
     IPage,
@@ -10,9 +9,7 @@ import {
     TPageClaimedEvent,
 } from "src/types";
 import { useContract } from "src/hooks/useContract";
-import { contract, denum, getContractEvents, pageContractAbi } from "src/utils";
-
-const categories = denum(ECreatorCategory);
+import { contract, getContractEvents, pageContractAbi } from "src/utils";
 
 const Page: FC<IPage> = ({ network }) => {
     const pageContract = contract(
@@ -27,7 +24,7 @@ const Page: FC<IPage> = ({ network }) => {
         {
             name: string;
             address: string;
-            category: ECreatorCategory;
+            ipns: string;
         }[]
     >([]);
 
@@ -57,13 +54,11 @@ const Page: FC<IPage> = ({ network }) => {
             )
             .then(({ data }) => {
                 setCreators(
-                    data.result.map(
-                        ({ data: { creator, category, pageId } }) => ({
-                            name: pageId,
-                            address: creator,
-                            category,
-                        })
-                    )
+                    data.result.map(({ data: { creator, ipns, pageId } }) => ({
+                        name: pageId,
+                        address: creator,
+                        ipns,
+                    }))
                 );
             })
             .catch(() => {});
@@ -81,32 +76,7 @@ const Page: FC<IPage> = ({ network }) => {
                 handlePageSearch={debounce(handlePageSearch, 500)}
             />
             <Box sx={{ display: "flex", justifyContent: "center" }}>
-                <Tabs
-                    color="secondary"
-                    current={ECreatorCategory.Developer}
-                    tabs={categories.map(([label, category]) => ({
-                        label,
-                        content: (
-                            <Carousel>
-                                {creators
-                                    .filter(
-                                        (c) =>
-                                            Number(c.category) ===
-                                            Number(category)
-                                    )
-                                    .map((creator) => (
-                                        <CreatorCard
-                                            key={creator.address}
-                                            creator={{
-                                                ...creator,
-                                                photoURL: "/assets/avatar.jpeg",
-                                            }}
-                                        />
-                                    ))}
-                            </Carousel>
-                        ),
-                    }))}
-                />
+                <CreatorTab creators={creators} />
             </Box>
         </>
     );
