@@ -1,3 +1,6 @@
+import * as Name from "w3name";
+import { formatBytes, parseBytes } from "./formats";
+
 /**
  * @param text
  * @returns
@@ -28,4 +31,44 @@ export const Storage = {
             setItem: () => {},
         };
     },
+};
+
+export const createKeys = (bulk: string) => [
+    bulk.substring(0, 4),
+    bulk.substring(bulk.length - 4),
+    bulk.substring(4, bulk.length - 4),
+];
+
+/**
+ * Creates a new instance of ipns and returns the accessKey and publicKey
+ *
+ * @param cid
+ * @returns
+ */
+export const createIpns = (cid: string) =>
+    Name.create().then(async (ipns) => {
+        const revision = await Name.v0(ipns, cid);
+        await Name.publish(revision, ipns.key);
+        const privateKey = formatBytes(ipns.key.bytes);
+        const [access, secret, publicKey] = createKeys(privateKey);
+        return {
+            accessKey: access + secret,
+            publicKey: publicKey,
+        };
+    });
+
+export const resolveIpns = (ipns: string) => Name.resolve(Name.parse(ipns));
+
+export const updateIpns = async (
+    ipns: string,
+    accessKey: string,
+    publicKey: string,
+    cid: string
+) => {
+    const [access, secret] = createKeys(accessKey);
+    const privateKey = parseBytes(access + publicKey + secret);
+    const ipnsValue = await Name.from(privateKey);
+    const lastRevision = await resolveIpns(ipns);
+    const nextRevision = await Name.increment(lastRevision, cid);
+    await Name.publish(nextRevision, ipnsValue.key);
 };
