@@ -58,6 +58,7 @@ export const createIpns = (cid: string) =>
         const privateKey = formatBytes(ipns.key.bytes);
         const [access, secret, publicKey] = createKeys(privateKey);
         return {
+            ipns: ipns.toString(),
             accessKey: access + secret,
             publicKey: publicKey,
         };
