@@ -29,7 +29,7 @@ interface IWalletProvider {
 }
 
 export const provider: IWalletProvider = {
-    chainId: ENetwork.Ethereum,
+    chainId: ENetwork.Goerli,
     async connect(wallet, chainId, reject) {
         const [connector, hooks] = initConnector(wallet, chainId, reject);
         this.chainId = chainId;
