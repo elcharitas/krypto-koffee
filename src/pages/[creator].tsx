@@ -18,6 +18,7 @@ import {
     getCreator,
     payWalletContractAbi,
     formatAddress,
+    storageClient,
 } from "src/utils";
 import { useImmer } from "use-immer";
 
@@ -71,6 +72,27 @@ const Page: FC<IPayWall> = ({
         });
     };
 
+    const handlePhoto = () => {
+        if (creatorAddress === authWallet.address) {
+            const input = document.createElement("input");
+            input.type = "file";
+            input.accept = "image/*";
+            input.onchange = async (e) => {
+                const file = (e.target as HTMLInputElement).files?.[0];
+                if (file) {
+                    const blob = file.slice(0, file.size, "image/png");
+                    const photoImage = new File([blob], "image.jpeg", {
+                        type: "image/png",
+                    });
+                    storageClient
+                        .put([photoImage])
+                        .then((cid) => updateField("photoURL", cid));
+                }
+            };
+            input.click();
+        }
+    };
+
     useEffect(() => {
         getCreator(ipns, address, pageId)
             .then(updateCreator)
@@ -91,10 +113,24 @@ const Page: FC<IPayWall> = ({
                     backgroundColor: "#060606",
                 }}
             >
-                <Typography align="center">
+                <Typography
+                    align="center"
+                    onClick={handlePhoto}
+                    sx={{
+                        cursor:
+                            authWallet.address === creatorAddress
+                                ? "pointer"
+                                : "auto",
+                    }}
+                >
                     {creator?.photoURL ? (
                         <Image
-                            src={creator?.photoURL}
+                            src={
+                                creator?.photoURL &&
+                                !creator.photoURL.match(/avatar/)
+                                    ? `https://${creator.photoURL}.dweb.link/image.jpeg`
+                                    : creator.photoURL
+                            }
                             width="150px"
                             height="150px"
                             style={{ borderRadius: "50%", textAlign: "center" }}
