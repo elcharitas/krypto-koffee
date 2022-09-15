@@ -101,6 +101,7 @@ const Page: FC<IPayWall> = ({
             <Stack justifyContent="center" alignItems="center">
                 <Tabs
                     color="secondary"
+                    current={1}
                     tabs={[
                         { label: "About", content: "" },
                         { label: "Donations", content: "" },
