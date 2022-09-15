@@ -81,7 +81,6 @@ export const ManageCreator: FC<IManageCreator> = ({
                             toast.success("Successfully updated your info");
                         })
                         .catch((e) => {
-                            console.log(e);
                             toast.error(
                                 "Sorry, your info could not be updated"
                             );
