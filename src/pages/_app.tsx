@@ -39,19 +39,27 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
     } = useApp();
 
     const disconnectWallet = () => {
-        provider.disconnect().then(() => {
-            const newAuthWallet = {
-                accounts: [],
-                address: "",
-                shortAddress: "",
-                connected: false,
-                photoURL: "",
-                wallet: undefined,
-                network: undefined,
-            };
-            updateWallet(newAuthWallet);
-            Storage.setItem("crypto-coffee", newAuthWallet);
-        });
+        provider
+            .disconnect()
+            .then(() => {
+                toast.success("Your Wallet has been disconnected successfully");
+            })
+            .catch(() => {
+                toast.error("Sorry, wallet disconnection incomplete");
+            })
+            .finally(() => {
+                const newAuthWallet = {
+                    accounts: [],
+                    address: "",
+                    shortAddress: "",
+                    connected: false,
+                    photoURL: "",
+                    wallet: undefined,
+                    network: undefined,
+                };
+                updateWallet(newAuthWallet);
+                Storage.setItem("crypto-coffee", newAuthWallet);
+            });
     };
 
     const connectWallet = (wallet = EWallet.MetaMask) => {
