@@ -2,6 +2,7 @@ import { FC, FormEventHandler } from "react";
 import { Box, Stack, TextField, Typography } from "@mui/material";
 import { Content, Globe, ProgressButton } from "src/components";
 import { TCallback } from "src/types";
+import WorldID from "src/components/WorldID";
 
 interface IHeroContent {
     handleClaim: TCallback;
@@ -104,6 +105,7 @@ export const HeroContent: FC<IHeroContent> = ({
                     }}
                     sx={{ m: 1, alignItems: "center" }}
                 />
+                <WorldID />
                 <ProgressButton
                     sx={{
                         display: { xs: "flex", md: "none" },

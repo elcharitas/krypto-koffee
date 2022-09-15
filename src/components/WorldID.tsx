@@ -12,10 +12,10 @@ const WorldIDWidget = dynamic<WidgetProps>(
 );
 
 interface IWorldID {
-    signal: string;
+    signal?: string;
     signalDescription?: string;
-    onSuccess: (data: VerificationResponse) => void;
-    onError: (error: VerificationErrorResponse) => void;
+    onSuccess?: (data: VerificationResponse) => void;
+    onError?: (error: VerificationErrorResponse) => void;
 }
 const WorldID: FC<IWorldID> = ({ signal, signalDescription }) => (
     <WorldIDWidget
