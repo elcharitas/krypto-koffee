@@ -1,4 +1,4 @@
-import { FC, FormEventHandler, useEffect, useState } from "react";
+import { FC, FormEventHandler, useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { Box, debounce } from "@mui/material";
 import { HeroContent, CreatorTab } from "src/sections";
@@ -18,6 +18,7 @@ const Page: FC<IPage> = ({ network }) => {
         true
     );
 
+    const pageRef = useRef<{ id: string; key: string }>();
     const [pageId, setPageId] = useState<string | undefined>();
     const [creators, setCreators] = useState<
         {
@@ -31,11 +32,25 @@ const Page: FC<IPage> = ({ network }) => {
         contract: pageContract,
         method: "claim",
         skip: true,
+        onResult: () => {
+            toast.success("PayWall has been claimed successfully!");
+            alert(pageRef.current);
+        },
+        onError: (error) => {
+            toast.error(
+                `Sorry, ${
+                    error.reason || "we could not claim this page"
+                }, please try again`
+            );
+        },
     });
     const handleClaim = () => {
         if (pageId) {
             createIpns("")
-                .then(({ ipns, publicKey }) => mutate(pageId, ipns, publicKey))
+                .then(({ ipns, accessKey, publicKey }) => {
+                    pageRef.current = { key: accessKey, id: ipns };
+                    mutate(pageId, ipns, publicKey);
+                })
                 .catch(() => toast.error("Sorry, could not claim page"));
         } else toast.error("Please, choose a unique name for your page first.");
     };
