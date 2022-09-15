@@ -119,7 +119,10 @@ const Page: FC<IPayWall> = ({
                     color="secondary"
                     current={1}
                     tabs={[
-                        { label: "About", content: <AboutCreator /> },
+                        {
+                            label: "About",
+                            content: <AboutCreator creator={creator} />,
+                        },
                         { label: "Donations", content: "" },
                         ...(creatorAddress === authWallet.address
                             ? [
