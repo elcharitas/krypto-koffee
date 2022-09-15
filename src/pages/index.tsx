@@ -63,7 +63,7 @@ const Page: FC<IPage> = ({ network }) => {
                 );
             })
             .catch(() => {});
-    }, [network]);
+    }, [network, loading]);
 
     return (
         <>
