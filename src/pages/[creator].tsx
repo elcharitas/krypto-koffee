@@ -86,16 +86,18 @@ const Page: FC<IPayWall> = ({
                     backgroundColor: "#060606",
                 }}
             >
-                {creator?.photoURL ? (
-                    <Image
-                        src={creator?.photoURL}
-                        width="150px"
-                        height="150px"
-                        style={{ borderRadius: "50%" }}
-                    />
-                ) : (
-                    <Skeleton variant="circular" width={150} height={150} />
-                )}
+                <Typography align="center">
+                    {creator?.photoURL ? (
+                        <Image
+                            src={creator?.photoURL}
+                            width="150px"
+                            height="150px"
+                            style={{ borderRadius: "50%", textAlign: "center" }}
+                        />
+                    ) : (
+                        <Skeleton variant="circular" width={150} height={150} />
+                    )}
+                </Typography>
                 {creator?.name ? (
                     <>
                         <Typography
@@ -103,7 +105,10 @@ const Page: FC<IPayWall> = ({
                             variant="h6"
                             fontWeight="bold"
                         >
-                            @{creator.name} ({formatAddress(creatorAddress)})
+                            @{creator.name}
+                            <div style={{ fontSize: "small" }}>
+                                ({formatAddress(creatorAddress)})
+                            </div>
                         </Typography>
                         <Typography>{creator?.bio}</Typography>
                     </>
