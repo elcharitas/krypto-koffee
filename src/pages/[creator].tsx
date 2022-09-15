@@ -84,9 +84,9 @@ const Page: FC<IPayWall> = ({
                     const photoImage = new File([blob], "image.jpeg", {
                         type: "image/png",
                     });
-                    storageClient
-                        .put([photoImage])
-                        .then((cid) => updateField("photoURL", cid));
+                    storageClient.put([photoImage]).then((cid) => {
+                        updateField("photoURL", cid);
+                    });
                 }
             };
             input.click();
@@ -128,7 +128,7 @@ const Page: FC<IPayWall> = ({
                             src={
                                 creator?.photoURL &&
                                 !creator.photoURL.match(/avatar/)
-                                    ? `https://${creator.photoURL}.dweb.link/image.jpeg`
+                                    ? `https://ipfs.io/ipfs/${creator.photoURL}/image.jpeg`
                                     : creator.photoURL
                             }
                             width="150px"
