@@ -11,6 +11,7 @@ import {
     formatBigNumber,
     getCreator,
     payWalletContractAbi,
+    formatAddress,
 } from "src/utils";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
@@ -22,10 +23,12 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const paypage = await pageContract.paypage(creator);
     const wallContract = contract(String(paypage), payWalletContractAbi);
     const ipns = await wallContract.ipns();
+    const creatorAddress = await wallContract.creator();
     return {
         props: {
             pageId: creator,
             address: paypage,
+            creatorAddress,
             ipns,
         },
         notFound: !formatBigNumber(paypage),
@@ -35,9 +38,16 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 interface IPayWall extends IPage {
     pageId: string;
     address: string;
+    creatorAddress: string;
     ipns: string;
 }
-const Page: FC<IPayWall> = ({ pageId, address, ipns }) => {
+const Page: FC<IPayWall> = ({
+    pageId,
+    address,
+    creatorAddress,
+    ipns,
+    authWallet,
+}) => {
     const [creator, setCreator] = useState<ICreator>({ address });
 
     useEffect(() => {
@@ -77,7 +87,7 @@ const Page: FC<IPayWall> = ({ pageId, address, ipns }) => {
                             variant="h6"
                             fontWeight="bold"
                         >
-                            @{creator.name}
+                            @{creator.name} ({formatAddress(creatorAddress)})
                         </Typography>
                         <Typography>{creator?.bio}</Typography>
                     </>
@@ -93,9 +103,15 @@ const Page: FC<IPayWall> = ({ pageId, address, ipns }) => {
                     color="secondary"
                     tabs={[
                         { label: "About", content: "" },
-                        { label: "Memberships", content: "" },
                         { label: "Donations", content: "" },
-                        { label: "\u0489 Manage \u0489", content: "" },
+                        ...(creatorAddress === authWallet.address
+                            ? [
+                                  {
+                                      label: "\u0489 Manage \u0489",
+                                      content: "",
+                                  },
+                              ]
+                            : []),
                     ]}
                 />
             </Stack>
