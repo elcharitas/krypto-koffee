@@ -63,7 +63,13 @@ export const createIpns = (cid: string) =>
         };
     });
 
-export const resolveIpns = (ipns: string) => Name.resolve(Name.parse(ipns));
+export const resolveIpns = (ipns: string) => {
+    try {
+        return Name.resolve(Name.parse(ipns));
+    } catch (e) {
+        return Promise.resolve({ value: "" });
+    }
+};
 
 export const updateIpns = async (
     ipns: string,
@@ -74,7 +80,7 @@ export const updateIpns = async (
     const [access, secret] = createKeys(accessKey);
     const privateKey = parseBytes(access + publicKey + secret);
     const ipnsValue = await Name.from(privateKey);
-    const lastRevision = await resolveIpns(ipns);
+    const lastRevision = await Name.resolve(Name.parse(ipns));
     const nextRevision = await Name.increment(lastRevision, cid);
     await Name.publish(nextRevision, ipnsValue.key);
 };
