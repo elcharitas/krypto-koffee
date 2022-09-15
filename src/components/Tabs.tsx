@@ -25,7 +25,7 @@ export const Tabs: FC<ITabs> = ({ tabs, current, color, ...props }) => {
             }}
         >
             <MUITabs
-                value={value}
+                value={value < tabs.length ? value : 0}
                 onChange={handleChange}
                 variant="scrollable"
                 scrollButtons="auto"
