@@ -9,8 +9,8 @@ import {
     TEventResponse,
     TPageClaimedEvent,
 } from "src/types";
-import { contract, denum, getContractEvents, pageContractAbi } from "src/utils";
 import { useContract } from "src/hooks/useContract";
+import { contract, denum, getContractEvents, pageContractAbi } from "src/utils";
 
 const categories = denum(ECreatorCategory);
 
@@ -30,13 +30,13 @@ const Page: FC<IPage> = ({ network }) => {
         }[]
     >([]);
 
-    const { send, isValidating } = useContract({
+    const { mutate, loading } = useContract({
         contract: pageContract,
         method: "claim",
-        skip: !pageId,
+        skip: true,
     });
     const handleClaim = () => {
-        if (pageId) send([pageId, category || ECreatorCategory.Other]);
+        if (pageId) mutate(pageId, category || ECreatorCategory.Other);
         else toast.error("Please, choose a unique name for your page first.");
     };
     const handlePageSearch: FormEventHandler = ({ target }) => {
@@ -68,7 +68,7 @@ const Page: FC<IPage> = ({ network }) => {
     return (
         <>
             <HeroContent
-                isClaiming={isValidating}
+                isClaiming={loading}
                 handleClaim={handleClaim}
                 category={category}
                 handleCategory={debounce((category) => {
