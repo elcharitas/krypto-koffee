@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
-import useSWR from "swr";
-import { parseArgs } from "util";
 
 type TArg = number | string | Record<string, number | string>;
 type TMethodOptions = {
@@ -9,6 +7,8 @@ type TMethodOptions = {
     method: string;
     args?: TArg[];
     skip: boolean;
+    onResult?: (result: unknown, prevData: unknown) => void;
+    onError?: (error: { reason?: string }) => void;
 };
 
 export const useContract = <D extends TArg[]>({
@@ -16,6 +16,8 @@ export const useContract = <D extends TArg[]>({
     method,
     args = [],
     skip = false,
+    onResult,
+    onError,
 }: TMethodOptions) => {
     const [data, setData] = useState<D | undefined>();
     const [error, setError] = useState<Error | undefined>();
@@ -24,8 +26,16 @@ export const useContract = <D extends TArg[]>({
     const mutate = (...args: TArg[]) => {
         setLoading(true);
         contract.functions[method](...args)
-            .then(setData)
-            .catch(setError)
+            .then((result) =>
+                setData((prevData) => {
+                    onResult?.(result, prevData);
+                    return result;
+                })
+            )
+            .catch((error) => {
+                onError?.(error);
+                setError(error);
+            })
             .finally(() => setLoading(false));
     };
 
