@@ -13,6 +13,7 @@ import {
     payWalletContractAbi,
     formatAddress,
 } from "src/utils";
+import { AboutCreator } from "src/sections";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const { creator } = ctx.query;
@@ -21,6 +22,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         pageContractAbi
     );
     const paypage = await pageContract.paypage(creator);
+    if (!formatBigNumber(paypage))
+        return {
+            notFound: true,
+        };
+
     const wallContract = contract(String(paypage), payWalletContractAbi);
     const ipns = await wallContract.ipns();
     const creatorAddress = await wallContract.creator();
@@ -31,7 +37,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
             creatorAddress,
             ipns,
         },
-        notFound: !formatBigNumber(paypage),
     };
 };
 
@@ -103,7 +108,7 @@ const Page: FC<IPayWall> = ({
                     color="secondary"
                     current={1}
                     tabs={[
-                        { label: "About", content: "" },
+                        { label: "About", content: <AboutCreator /> },
                         { label: "Donations", content: "" },
                         ...(creatorAddress === authWallet.address
                             ? [
