@@ -19,6 +19,7 @@ import {
     payWalletContractAbi,
     formatAddress,
     storageClient,
+    imgCIDToUrl,
 } from "src/utils";
 import { useImmer } from "use-immer";
 
@@ -125,12 +126,7 @@ const Page: FC<IPayWall> = ({
                 >
                     {creator?.photoURL ? (
                         <Image
-                            src={
-                                creator?.photoURL &&
-                                !creator.photoURL.match(/avatar/)
-                                    ? `https://ipfs.io/ipfs/${creator.photoURL}/image.jpeg`
-                                    : creator.photoURL
-                            }
+                            src={imgCIDToUrl(creator.photoURL)}
                             width="150px"
                             height="150px"
                             style={{ borderRadius: "50%", textAlign: "center" }}

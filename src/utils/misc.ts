@@ -20,6 +20,11 @@ export const contract = (
 export const pageContractAbi = KryptoKoffee.abi;
 export const payWalletContractAbi = PayWallet.abi;
 
+export const imgCIDToUrl = (cid: string) =>
+    cid && !cid.match(/avatar/)
+        ? `https://ipfs.io/ipfs/${cid}/image.jpeg`
+        : cid;
+
 export const getCreator = (
     ipns: string,
     creator: string,

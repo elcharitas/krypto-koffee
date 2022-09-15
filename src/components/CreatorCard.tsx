@@ -4,7 +4,7 @@ import NextLink from "next/link";
 import { Link, Typography } from "@mui/material";
 import { TCreator } from "src/types";
 import { Content } from "./Content";
-import { formatAddress } from "src/utils";
+import { formatAddress, imgCIDToUrl } from "src/utils";
 
 interface ICreatorCard {
     creator: TCreator;
@@ -16,7 +16,7 @@ export const CreatorCard: FC<ICreatorCard> = ({ creator }) => {
                 <Content sx={{ maxWidth: 170 }}>
                     {creator.photoURL && (
                         <Image
-                            src={creator.photoURL}
+                            src={imgCIDToUrl(creator.photoURL)}
                             width="150px"
                             height="150px"
                         />
