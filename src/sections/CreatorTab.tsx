@@ -20,16 +20,20 @@ const CreatorContent: FC<ICreatorContent> = ({ category, creators }) => (
 );
 
 interface ICreatorTab {
-    creators: { address: string; ipns: string }[];
+    creators: {
+        name: string;
+        address: string;
+        ipns: string;
+    }[];
 }
 export const CreatorTab: FC<ICreatorTab> = ({ creators }) => {
     const [parsedCreators, setParsedCreators] = useState<ICreator[]>([]);
 
     useEffect(() => {
-        creators.map(({ address, ipns }) =>
+        creators.map(({ address, name, ipns }) =>
             resolveIpns(ipns)
                 .then((data) => fetchJSON<ICreator>(data.value))
-                .then((data) => ({ ...data, address }))
+                .then((data) => ({ ...data, address, name }))
                 .then((data) => setParsedCreators((prev) => [...prev, data]))
         );
     }, [creators]);
