@@ -5,7 +5,12 @@ import { Skeleton, Stack, Typography } from "@mui/material";
 import { GetServerSideProps } from "next";
 import { IPage, ICreator } from "src/types";
 import { Content, Tabs } from "src/components";
-import { AboutCreator, ManageCreator, WithdrawBalance } from "src/sections";
+import {
+    Donate,
+    AboutCreator,
+    ManageCreator,
+    WithdrawBalance,
+} from "src/sections";
 import {
     contract,
     pageContractAbi,
@@ -129,7 +134,16 @@ const Page: FC<IPayWall> = ({
                             label: "About",
                             content: <AboutCreator creator={creator} />,
                         },
-                        { label: "Donations", content: "" },
+                        {
+                            label: "Donations",
+                            content: (
+                                <Donate
+                                    creator={creator}
+                                    authWallet={authWallet}
+                                    creatorAddress={creatorAddress}
+                                />
+                            ),
+                        },
                         ...(creatorAddress === authWallet.address
                             ? [
                                   {
