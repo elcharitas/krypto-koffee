@@ -77,6 +77,6 @@ export type TEventData<T> = {
 export type TPageClaimedEvent = {
     creator: string;
     pageId: string;
-    category: ECreatorCategory;
+    ipns: string;
     paypage: string;
 };
