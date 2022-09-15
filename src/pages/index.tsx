@@ -29,6 +29,7 @@ const Page: FC<IPage> = ({ network }) => {
         skip: true,
         onResult: () => {
             toast.success("PayWall has been claimed successfully!");
+            setPageId(undefined);
             toggleModal();
         },
         onError: (error) => {
