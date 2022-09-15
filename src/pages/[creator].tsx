@@ -47,7 +47,7 @@ const Page: FC<IPayWall> = ({ pageId, address, ipns }) => {
     return (
         <>
             <Head>
-                <title>Donate to {pageId} | Krypto Koffee</title>
+                <title>Support {pageId} | Krypto Koffee</title>
             </Head>
             <Content
                 sx={{
