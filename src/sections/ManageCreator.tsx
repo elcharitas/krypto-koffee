@@ -20,7 +20,7 @@ export const ManageCreator: FC<IManageCreator> = ({
     const [accessKey, setAccessKey] = useState<string>("");
     const [isSaving, setIsSaving] = useState(false);
     return (
-        <Content title="Manage PayWall">
+        <Content title="Manage PayWall" sx={{ maxWidth: 340 }}>
             <TextField
                 color="secondary"
                 label="PayWall Id"
