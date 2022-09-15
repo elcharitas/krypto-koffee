@@ -1,0 +1,51 @@
+import { FC, useState, useEffect } from "react";
+import { Tabs, Carousel, CreatorCard } from "src/components";
+import { ECreatorCategory, ICreator } from "src/types";
+import { denum, fetchJSON, resolveIpns } from "src/utils";
+
+const categories = denum(ECreatorCategory);
+
+interface ICreatorContent {
+    category: ECreatorCategory;
+    creators: ICreator[];
+}
+const CreatorContent: FC<ICreatorContent> = ({ category, creators }) => (
+    <Carousel>
+        {creators
+            .filter((c) => Number(c.category) === category)
+            .map((creator) => (
+                <CreatorCard key={creator.address} creator={creator} />
+            ))}
+    </Carousel>
+);
+
+interface ICreatorTab {
+    creators: { address: string; ipns: string }[];
+}
+export const CreatorTab: FC<ICreatorTab> = ({ creators }) => {
+    const [parsedCreators, setParsedCreators] = useState<ICreator[]>([]);
+
+    useEffect(() => {
+        creators.map(({ address, ipns }) =>
+            resolveIpns(ipns)
+                .then((data) => fetchJSON<ICreator>(data.value))
+                .then((data) => ({ ...data, address }))
+                .then((data) => setParsedCreators((prev) => [...prev, data]))
+        );
+    }, [creators]);
+    return (
+        <Tabs
+            color="secondary"
+            current={ECreatorCategory.Developer}
+            tabs={categories.map(([label, category]) => ({
+                label,
+                content: (
+                    <CreatorContent
+                        category={Number(category)}
+                        creators={parsedCreators}
+                    />
+                ),
+            }))}
+        />
+    );
+};

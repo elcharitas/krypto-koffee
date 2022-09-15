@@ -27,6 +27,14 @@ export interface IPage {
     network: ENetwork;
 }
 
+export interface ICreator {
+    name?: string;
+    bio?: string;
+    address: string;
+    category?: ECreatorCategory;
+    photoURL?: string;
+}
+
 export type TColor =
     | "primary"
     | "secondary"
