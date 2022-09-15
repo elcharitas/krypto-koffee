@@ -9,6 +9,7 @@ import {
     Typography,
 } from "@mui/material";
 import { HelpModal } from "src/sections";
+import { etherScanUrl } from "src/utils";
 
 export const Credits = () => {
     const [openHelp, setOpenHelp] = useState(false);
@@ -80,7 +81,12 @@ export const Credits = () => {
                         >
                             Github
                         </Link>
-                        <Link sx={{ color: "#ED7D3A" }} href="/">
+                        <Link
+                            sx={{ color: "#ED7D3A" }}
+                            href={etherScanUrl(
+                                String(process.env.NEXT_PUBLIC_MANAGER_CONTRACT)
+                            )}
+                        >
                             Smart Contracts
                         </Link>
                         <NextLink href="/elcharitas" passHref>

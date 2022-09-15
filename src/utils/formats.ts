@@ -7,7 +7,7 @@ import { utils, ethers } from "ethers";
  * @returns
  */
 export const etherScanUrl = (address: string) =>
-    `https://etherscan.io/address/${address}`;
+    `https://goerli.etherscan.io/address/${address}`;
 
 /**
  * Formats an address to be displayed in the UI
