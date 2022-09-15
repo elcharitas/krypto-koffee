@@ -41,7 +41,9 @@ const Page: FC<IPayWall> = ({ pageId, address, ipns }) => {
     const [creator, setCreator] = useState<ICreator>({ address });
 
     useEffect(() => {
-        getCreator(ipns, address, pageId).then(setCreator);
+        getCreator(ipns, address, pageId)
+            .then(setCreator)
+            .catch(() => {});
     }, []);
 
     return (
