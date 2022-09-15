@@ -1,10 +1,12 @@
 import { FC, FormEventHandler } from "react";
 import { Box, Stack, TextField, Typography } from "@mui/material";
 import { Content, Globe, ProgressButton } from "src/components";
-import { TCallback } from "src/types";
+import { TAuthWallet, TCallback } from "src/types";
 import WorldID from "src/components/WorldID";
+import toast from "react-hot-toast";
 
 interface IHeroContent {
+    authWallet: TAuthWallet;
     handleClaim: TCallback;
     handlePageSearch: FormEventHandler;
     isClaiming: boolean;
@@ -15,6 +17,7 @@ export const HeroContent: FC<IHeroContent> = ({
     handlePageSearch,
     isClaiming,
     isValid,
+    authWallet,
 }) => (
     <Content sx={{ background: "transparent" }}>
         <Stack
@@ -105,11 +108,18 @@ export const HeroContent: FC<IHeroContent> = ({
                     }}
                     sx={{ m: 1, alignItems: "center" }}
                 />
-                <WorldID
-                    signal="claim_page"
-                    signalDescription="Claim a page"
-                    onError={console.log}
-                />
+                {authWallet.connected && (
+                    <WorldID
+                        signal="claim_page"
+                        signalDescription="Claim a page"
+                        onError={(err) => toast.error(err.detail)}
+                        onSuccess={() => {
+                            toast.success(
+                                "You've successfully verified your identity"
+                            );
+                        }}
+                    />
+                )}
                 <ProgressButton
                     sx={{
                         display: { xs: "flex", md: "none" },

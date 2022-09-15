@@ -9,7 +9,7 @@ import { useContract, useCreators } from "src/hooks";
 import { contract, createIpns, pageContractAbi } from "src/utils";
 import { Content } from "src/components";
 
-const Page: FC<IPage> = ({ network }) => {
+const Page: FC<IPage> = ({ network, authWallet }) => {
     const pageContract = contract(
         String(process.env.NEXT_PUBLIC_MANAGER_CONTRACT),
         pageContractAbi,
@@ -68,6 +68,7 @@ const Page: FC<IPage> = ({ network }) => {
             <HeroContent
                 isValid={valid}
                 isClaiming={loading}
+                authWallet={authWallet}
                 handleClaim={handleClaim}
                 handlePageSearch={debounce(handlePageSearch, 500)}
             />
