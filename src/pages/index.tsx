@@ -33,11 +33,11 @@ const Page: FC<IPage> = ({ network }) => {
         skip: true,
     });
     const handleClaim = () => {
-        if (pageId)
+        if (pageId) {
             createIpns("")
                 .then(({ ipns, publicKey }) => mutate(pageId, ipns, publicKey))
                 .catch(() => toast.error("Sorry, could not claim page"));
-        else toast.error("Please, choose a unique name for your page first.");
+        } else toast.error("Please, choose a unique name for your page first.");
     };
     const handlePageSearch: FormEventHandler = ({ target }) => {
         setPageId((target as HTMLInputElement)?.value);
