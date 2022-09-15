@@ -9,7 +9,7 @@
         "export": "next export",
         "lint": "next lint",
         "contract:flatten": "hardhat flatten blockend/contracts/KryptoKoffee.sol > blockend/contracts/KryptoKoffeeFlattened.sol",
-        "contract:compile": "hardhat compile --force && cp blockend/artifacts/contracts/KryptoKoffee.sol/KryptoKoffee.json src/contracts/KryptoKoffee.json"
+        "contract:compile": "hardhat compile --force && cp blockend/artifacts/contracts/**/*.json src/contracts"
     },
     "dependencies": {
         "@coinbase/wallet-sdk": "^3.5.2",
