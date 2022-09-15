@@ -79,7 +79,7 @@ export const HeroContent: FC<IHeroContent> = ({
                                 sx={{
                                     textTransform: "capitalize",
                                     borderRadius: "5em",
-                                    minWidth: "65px",
+                                    minWidth: "85px",
                                     color: "white",
                                     display: { xs: "none", md: "flex" },
                                 }}
@@ -87,6 +87,7 @@ export const HeroContent: FC<IHeroContent> = ({
                                 variant="contained"
                                 onClick={handleClaim}
                                 isSubmitting={isClaiming}
+                                disabled={isClaiming}
                             >
                                 <Typography
                                     sx={{
