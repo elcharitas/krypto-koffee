@@ -26,7 +26,7 @@ export const WithdrawBalance: FC<IWithdrawBalance> = ({
     }, [creator]);
 
     return (
-        <Content title="Withdraw Balance">
+        <Content title="Withdraw Balance" sx={{ maxWidth: 440 }}>
             <TextField
                 color="secondary"
                 label="Amount to withdraw (in ETH)"
