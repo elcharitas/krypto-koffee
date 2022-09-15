@@ -78,6 +78,8 @@ export const Credits = () => {
                         <Link
                             sx={{ color: "#ED7D3A" }}
                             href="https://github.com/elcharitas/krypto-koffee"
+                            target="_blank"
+                            rel="noopener noreferrer"
                         >
                             Github
                         </Link>
@@ -86,6 +88,8 @@ export const Credits = () => {
                             href={etherScanUrl(
                                 String(process.env.NEXT_PUBLIC_MANAGER_CONTRACT)
                             )}
+                            target="_blank"
+                            rel="noopener noreferrer"
                         >
                             Smart Contracts
                         </Link>
