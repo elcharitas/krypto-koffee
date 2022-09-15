@@ -26,7 +26,10 @@ export const useContract = <D extends TArg[]>({
     const mutate = (...args: TArg[]) => {
         setLoading(true);
         contract.functions[method](...args)
-            .then((result) => {
+            .then(async (result) => {
+                if (result.wait) {
+                    await result.wait();
+                }
                 onResult?.(result);
                 setData(result);
             })
