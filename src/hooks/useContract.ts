@@ -7,7 +7,7 @@ type TMethodOptions = {
     method: string;
     args?: TArg[];
     skip: boolean;
-    onResult?: (result: unknown, prevData: unknown) => void;
+    onResult?: (result: unknown) => void;
     onError?: (error: { reason?: string }) => void;
 };
 
@@ -26,12 +26,10 @@ export const useContract = <D extends TArg[]>({
     const mutate = (...args: TArg[]) => {
         setLoading(true);
         contract.functions[method](...args)
-            .then((result) =>
-                setData((prevData) => {
-                    onResult?.(result, prevData);
-                    return result;
-                })
-            )
+            .then((result) => {
+                onResult?.(result);
+                setData(result);
+            })
             .catch((error) => {
                 onError?.(error);
                 setError(error);
