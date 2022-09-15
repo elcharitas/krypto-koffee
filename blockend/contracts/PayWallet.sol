@@ -25,7 +25,8 @@ interface IPayRouter {
 
 contract PayWallet {
     // the address of the creator of this wallet
-    bytes public ipns;
+    string public ipns;
+    string public publicKey;
     address public creator;
     // address for dex router
     address private immutable router;
@@ -36,11 +37,13 @@ contract PayWallet {
 
     constructor(
         address _creator,
-        bytes memory _ipns,
+        string memory _ipns,
+        string memory _publicKey,
         address _router
     ) {
         router = _router;
         creator = _creator;
+        publicKey = _publicKey;
         ipns = _ipns;
         manager = msg.sender;
     }
