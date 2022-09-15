@@ -37,7 +37,9 @@ export const Tabs: FC<ITabs> = ({ tabs, current, color, ...props }) => {
                     <Tab key={String(index)} label={label} />
                 ))}
             </MUITabs>
-            <Box sx={{ my: 1 }}>{tabs[value]?.content}</Box>
+            <Box sx={{ my: 1 }}>
+                {tabs[value < tabs.length ? value : 0]?.content}
+            </Box>
         </Box>
     );
 };
