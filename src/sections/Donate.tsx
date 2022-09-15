@@ -3,7 +3,12 @@ import { FC, useEffect, useState } from "react";
 import { Content, ProgressButton } from "src/components";
 import { useContract } from "src/hooks";
 import { ICreator, TAuthWallet } from "src/types";
-import { contract, getNativeBalance, parseNumber } from "src/utils";
+import {
+    contract,
+    getWalletTokenBalances,
+    parseNumber,
+    USDC_CONTRACT,
+} from "src/utils";
 
 interface IDonate {
     creator: ICreator;
@@ -17,10 +22,9 @@ export const Donate: FC<IDonate> = ({
 }) => {
     const [amount, setAmount] = useState("0");
     const [balance, setBalance] = useState(0);
-    const erc20Contract = contract(
-        "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6",
-        ["function transfer(address to, uint256 value) public returns (bool)"]
-    );
+    const erc20Contract = contract(USDC_CONTRACT, [
+        "function transfer(address to, uint256 value) public returns (bool)",
+    ]);
 
     const { mutate, loading } = useContract({
         contract: erc20Contract,
@@ -29,11 +33,12 @@ export const Donate: FC<IDonate> = ({
     });
 
     useEffect(() => {
-        getNativeBalance({
+        getWalletTokenBalances({
+            tokenAddresses: [USDC_CONTRACT],
             address: authWallet.address,
             chain: authWallet.network,
         })
-            .then(({ result }) => setBalance(Number(result.balance.ether)))
+            .then(({ result: [result] }) => setBalance(result.toNumber()))
             .catch(() => {});
     }, [authWallet]);
 
@@ -44,7 +49,7 @@ export const Donate: FC<IDonate> = ({
         >
             <TextField
                 color="secondary"
-                label="Amount to donate (in ETH)"
+                label="Amount to donate (in USDC)"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
                 sx={{ my: 1 }}
@@ -80,7 +85,7 @@ export const Donate: FC<IDonate> = ({
                     Donate
                 </ProgressButton>
                 {authWallet.connected && (
-                    <span>Your Balance: {balance?.toFixed(2)} ETH</span>
+                    <span>Your Balance: {balance?.toFixed(2)} USDC</span>
                 )}
             </Typography>
         </Content>

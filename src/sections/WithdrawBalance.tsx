@@ -2,7 +2,7 @@ import { TextField, Typography } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import { Content, ProgressButton } from "src/components";
 import { ICreator, TAuthWallet } from "src/types";
-import { getNativeBalance } from "src/utils";
+import { getWalletTokenBalances, USDC_CONTRACT } from "src/utils";
 
 interface IWithdrawBalance {
     creator: ICreator;
@@ -17,11 +17,12 @@ export const WithdrawBalance: FC<IWithdrawBalance> = ({
     const [withdrawAddress, setWithdrawAddress] = useState("");
 
     useEffect(() => {
-        getNativeBalance({
+        getWalletTokenBalances({
+            tokenAddresses: [USDC_CONTRACT],
             address: creator.address,
             chain: authWallet.network,
         })
-            .then(({ result }) => setBalance(Number(result.balance.ether)))
+            .then(({ result: [result] }) => setBalance(result.toNumber()))
             .catch(() => {});
     }, [creator]);
 
@@ -29,7 +30,7 @@ export const WithdrawBalance: FC<IWithdrawBalance> = ({
         <Content title="Withdraw Balance" sx={{ maxWidth: 440 }}>
             <TextField
                 color="secondary"
-                label="Amount to withdraw (in ETH)"
+                label="Amount to withdraw (in USDC)"
                 value={withdrawAmount}
                 onChange={(e) => setWithdrawAmount(e.target.value)}
                 sx={{ my: 1 }}
@@ -61,7 +62,7 @@ export const WithdrawBalance: FC<IWithdrawBalance> = ({
                 >
                     Withdraw
                 </ProgressButton>
-                <span>{balance} ETH</span>
+                <span>{balance} USDC</span>
             </Typography>
         </Content>
     );

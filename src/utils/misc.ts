@@ -17,6 +17,8 @@ export const contract = (
     return new ethers.Contract(address, abi, signer);
 };
 
+export const USDC_CONTRACT = "0x07865c6E87B9F70255377e024ace6630C1Eaa37F";
+
 export const pageContractAbi = KryptoKoffee.abi;
 export const payWalletContractAbi = PayWallet.abi;
 
