@@ -1,5 +1,6 @@
 import { ethers } from "ethers";
 import KryptoKoffee from "src/contracts/KryptoKoffee.json";
+import PayWallet from "src/contracts/PayWallet.json";
 import { ECreatorCategory, ICreator } from "src/types";
 import { provider } from "./provider";
 import { fetchJSON, resolveIpns } from "./storage";
@@ -17,6 +18,7 @@ export const contract = (
 };
 
 export const pageContractAbi = KryptoKoffee.abi;
+export const payWalletContractAbi = PayWallet.abi;
 
 export const getCreator = (
     ipns: string,
