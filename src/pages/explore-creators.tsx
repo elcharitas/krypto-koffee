@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Grid, Stack, TextField, Typography } from "@mui/material";
 import { Search } from "@mui/icons-material";
 import { Content, CreatorCard } from "src/components";
@@ -8,6 +8,7 @@ import { useCreators } from "src/hooks";
 type TExploreCreators = IPage;
 const Page: FC<TExploreCreators> = ({ network }) => {
     const creators = useCreators({ network });
+    const [search, setSearch] = useState<string>("");
 
     return (
         <>
@@ -54,6 +55,7 @@ const Page: FC<TExploreCreators> = ({ network }) => {
                             ),
                         }}
                         placeholder="Search by name, address, or category"
+                        onChange={(e) => setSearch(e.currentTarget.value)}
                     />
                 </Stack>
             </Content>
@@ -65,9 +67,14 @@ const Page: FC<TExploreCreators> = ({ network }) => {
                     justifyContent: "space-around",
                 }}
             >
-                {creators.map((creator) => (
-                    <CreatorCard key={creator.address} creator={creator} />
-                ))}
+                {creators
+                    .filter((creator) => {
+                        const query = new RegExp(search, "i");
+                        return !search || query.test(creator.name || "");
+                    })
+                    .map((creator) => (
+                        <CreatorCard key={creator.address} creator={creator} />
+                    ))}
             </Grid>
         </>
     );
