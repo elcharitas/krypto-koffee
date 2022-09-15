@@ -41,6 +41,10 @@ const Page: FC<IPage> = ({ network, authWallet }) => {
         },
     });
     const handleClaim = () => {
+        if (!authWallet.connected) {
+            toast.error("Please connect your wallet first");
+            return;
+        }
         if (pageId) {
             createIpns("")
                 .then(({ ipns, accessKey, publicKey }) => {
@@ -49,7 +53,7 @@ const Page: FC<IPage> = ({ network, authWallet }) => {
                 })
                 .catch(() => toast.error("Sorry, could not claim page"))
                 .finally(() => setPageId(undefined));
-        } else toast.error("Please, choose a unique name for your page first.");
+        } else toast.error("Please, choose a unique name for your page.");
     };
     const handlePageSearch: FormEventHandler = ({ target }) => {
         const { value } = target as HTMLInputElement;
