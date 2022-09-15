@@ -1,6 +1,5 @@
 import * as Name from "w3name";
 import { Web3Storage } from "web3.storage";
-import { formatBytes, parseBytes } from "./formats";
 
 // web3 storage client
 export const storageClient = new Web3Storage({
@@ -39,10 +38,20 @@ export const Storage = {
     },
 };
 
+export const bytesToHex = (bytes: Uint8Array) =>
+    bytes
+        .toString()
+        .split(",")
+        .map((b) => Number(b).toString(16))
+        .join("-");
+
+export const hexToBytes = (hex: string): Uint8Array =>
+    new Uint8Array(hex.split("-").map((b) => parseInt(b, 16)));
+
 export const createKeys = (bulk: string) => [
-    bulk.substring(0, 4),
-    bulk.substring(bulk.length - 4),
-    bulk.substring(4, bulk.length - 4),
+    bulk.substring(0, 8),
+    bulk.substring(bulk.length - 8),
+    bulk.substring(8, bulk.length - 8),
 ];
 
 /**
@@ -55,7 +64,7 @@ export const createIpns = (cid: string) =>
     Name.create().then(async (ipns) => {
         const revision = await Name.v0(ipns, cid);
         await Name.publish(revision, ipns.key);
-        const privateKey = formatBytes(ipns.key.bytes);
+        const privateKey = bytesToHex(ipns.key.bytes);
         const [access, secret, publicKey] = createKeys(privateKey);
         return {
             ipns: ipns.toString(),
@@ -79,7 +88,7 @@ export const updateIpns = async (
     cid: string
 ) => {
     const [access, secret] = createKeys(accessKey);
-    const privateKey = parseBytes(access + publicKey + secret);
+    const privateKey = hexToBytes(access + publicKey + secret);
     const ipnsValue = await Name.from(privateKey);
     const lastRevision = await Name.resolve(Name.parse(ipns));
     const nextRevision = await Name.increment(lastRevision, cid);
