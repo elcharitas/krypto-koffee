@@ -17,7 +17,12 @@ interface IWorldID {
     onSuccess?: (data: VerificationResponse) => void;
     onError?: (error: VerificationErrorResponse) => void;
 }
-const WorldID: FC<IWorldID> = ({ signal, signalDescription }) => (
+const WorldID: FC<IWorldID> = ({
+    signal,
+    signalDescription,
+    onError,
+    onSuccess,
+}) => (
     <WorldIDWidget
         actionId={String(process.env.NEXT_PUBLIC_WORLD_ID_ACTION_ID)}
         appName="Krypto Koffee"
@@ -26,8 +31,8 @@ const WorldID: FC<IWorldID> = ({ signal, signalDescription }) => (
         theme="dark"
         enableTelemetry={process.env.NODE_ENV === "production"}
         debug={process.env.NODE_ENV === "development"}
-        onSuccess={(data) => console.log(data)}
-        onError={(error) => console.log(error)}
+        onSuccess={onSuccess || (() => {})}
+        onError={onError}
     />
 );
 
