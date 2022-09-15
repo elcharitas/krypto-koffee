@@ -1,5 +1,6 @@
 import { TextField, Typography } from "@mui/material";
 import { FC, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { Content, ProgressButton } from "src/components";
 import { useContract } from "src/hooks";
 import { ICreator, TAuthWallet } from "src/types";
@@ -20,7 +21,7 @@ export const Donate: FC<IDonate> = ({
     creatorAddress,
     creator,
 }) => {
-    const [amount, setAmount] = useState("0");
+    const [amount, setAmount] = useState("");
     const [balance, setBalance] = useState(0);
     const erc20Contract = contract(USDC_CONTRACT, [
         "function transfer(address to, uint256 value) public returns (bool)",
@@ -30,6 +31,11 @@ export const Donate: FC<IDonate> = ({
         contract: erc20Contract,
         method: "transfer",
         skip: true,
+        onResult: () => {
+            setAmount("");
+            toast.success("You've successfully donated");
+        },
+        onError: () => toast.error("Sorry, your donation failed"),
     });
 
     useEffect(() => {
