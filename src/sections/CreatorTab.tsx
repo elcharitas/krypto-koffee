@@ -10,7 +10,7 @@ interface ICreatorContent {
     creators: ICreator[];
 }
 const CreatorContent: FC<ICreatorContent> = ({ category, creators }) => (
-    <Carousel>
+    <Carousel slidesToShow={4}>
         {creators
             .filter((c) => Number(c.category) === category)
             .map((creator) => (
