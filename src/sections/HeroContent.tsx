@@ -105,7 +105,11 @@ export const HeroContent: FC<IHeroContent> = ({
                     }}
                     sx={{ m: 1, alignItems: "center" }}
                 />
-                <WorldID />
+                <WorldID
+                    signal="claim_page"
+                    signalDescription="Claim a page"
+                    onError={console.log}
+                />
                 <ProgressButton
                     sx={{
                         display: { xs: "flex", md: "none" },
