@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import { Box, debounce } from "@mui/material";
 import { HeroContent, CreatorTab } from "src/sections";
 import { IPage, TEventResponse, TPageClaimedEvent } from "src/types";
-import { useContract } from "src/hooks/useContract";
+import { useContract, useCreators } from "src/hooks";
 import {
     contract,
     createIpns,
@@ -20,13 +20,7 @@ const Page: FC<IPage> = ({ network }) => {
 
     const pageRef = useRef<{ id: string; key: string }>();
     const [pageId, setPageId] = useState<string | undefined>();
-    const [creators, setCreators] = useState<
-        {
-            name: string;
-            address: string;
-            ipns: string;
-        }[]
-    >([]);
+    const creators = useCreators({ network });
 
     const { mutate, loading } = useContract({
         contract: pageContract,
@@ -57,29 +51,6 @@ const Page: FC<IPage> = ({ network }) => {
     const handlePageSearch: FormEventHandler = ({ target }) => {
         setPageId((target as HTMLInputElement)?.value);
     };
-
-    useEffect(() => {
-        getContractEvents({
-            chain: network,
-            address: String(process.env.NEXT_PUBLIC_MANAGER_CONTRACT),
-            abi: pageContractAbi.find(({ name }) => name === "PageClaimed"),
-            topic: String(process.env.NEXT_PUBLIC_MANAGER_EVENT),
-        })
-            .then(
-                (events) =>
-                    (events as unknown) as TEventResponse<TPageClaimedEvent>
-            )
-            .then(({ data }) => {
-                setCreators(
-                    data.result.map(({ data: { creator, ipns, pageId } }) => ({
-                        name: pageId,
-                        address: creator,
-                        ipns,
-                    }))
-                );
-            })
-            .catch(() => {});
-    }, [network, loading]);
 
     return (
         <>
