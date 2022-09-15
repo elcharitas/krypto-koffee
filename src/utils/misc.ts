@@ -29,9 +29,12 @@ export const getCreator = (
         .then((data) => fetchJSON<ICreator>(data.value))
         .then((data) => ({
             category: ECreatorCategory.Other,
-            photoURL: "/assets/avatar.jpeg",
             ...data,
             ipns,
+            photoURL:
+                data?.photoURL && !data.photoURL.match(/avatar/)
+                    ? `https://${data.photoURL}.dweb.link/image.jpeg`
+                    : "/assets/avatar.jpeg",
             address: creator,
             name: pageId,
         }));
