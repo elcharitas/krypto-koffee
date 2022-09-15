@@ -25,6 +25,7 @@ const Page: FC<IPage> = ({ network }) => {
     const [category, setCategory] = useState<ECreatorCategory>();
     const [creators, setCreators] = useState<
         {
+            name: string;
             address: string;
             category: ECreatorCategory;
         }[]
@@ -56,10 +57,13 @@ const Page: FC<IPage> = ({ network }) => {
             )
             .then(({ data }) => {
                 setCreators(
-                    data.result.map(({ data: { creator, category } }) => ({
-                        address: creator,
-                        category,
-                    }))
+                    data.result.map(
+                        ({ data: { creator, category, pageId } }) => ({
+                            name: pageId,
+                            address: creator,
+                            category,
+                        })
+                    )
                 );
             })
             .catch(() => {});
