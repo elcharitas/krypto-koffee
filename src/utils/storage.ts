@@ -85,10 +85,10 @@ export const createFile = <T = unknown>(data: T, filename?: string) => {
     });
     return new File([blob], filename || `${Date.now()}.json`);
 };
-export const fetchJSON = async (cid: string) => {
+export const fetchJSON = async <T = unknown>(cid: string) => {
     const store = await storageClient.get(cid);
     if (!store) return null;
     const [file] = await store.files();
     const text = await file.text();
-    return parseJson(text);
+    return parseJson<T>(text);
 };
