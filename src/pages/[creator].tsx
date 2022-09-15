@@ -72,8 +72,12 @@ const Page: FC<IPayWall> = ({ pageId, address, ipns }) => {
                 )}
                 {creator?.name ? (
                     <>
-                        <Typography align="center" variant="h6">
-                            {creator.name}
+                        <Typography
+                            align="center"
+                            variant="h6"
+                            fontWeight="bold"
+                        >
+                            @{creator.name}
                         </Typography>
                         <Typography>{creator?.bio}</Typography>
                     </>
@@ -91,6 +95,7 @@ const Page: FC<IPayWall> = ({ pageId, address, ipns }) => {
                         { label: "About", content: "" },
                         { label: "Memberships", content: "" },
                         { label: "Donations", content: "" },
+                        { label: "\u0489 Manage \u0489", content: "" },
                     ]}
                 />
             </Stack>
