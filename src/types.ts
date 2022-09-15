@@ -12,9 +12,9 @@ export enum ENetwork {
 }
 
 export enum ECreatorCategory {
-    Developer,
-    YouTuber,
     Influencer,
+    YouTuber,
+    Developer,
     Educator,
     Blogger,
     Coach,
