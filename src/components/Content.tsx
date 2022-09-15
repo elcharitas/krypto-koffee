@@ -20,7 +20,12 @@ export const Content: FC<IContent & CardTypeMap["props"]> = ({
     <Card {...props}>
         {title && (
             <>
-                <CardHeader title={title} sx={{ fontSize: "small" }} />
+                <CardHeader
+                    title={title}
+                    titleTypographyProps={{
+                        sx: { fontSize: "1.2em", fontWeight: "bold" },
+                    }}
+                />
                 <Divider />
             </>
         )}
