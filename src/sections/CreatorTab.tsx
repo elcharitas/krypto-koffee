@@ -33,7 +33,13 @@ export const CreatorTab: FC<ICreatorTab> = ({ creators }) => {
         creators.map(({ address, name, ipns }) =>
             resolveIpns(ipns)
                 .then((data) => fetchJSON<ICreator>(data.value))
-                .then((data) => ({ ...data, address, name }))
+                .then((data) => ({
+                    category: ECreatorCategory.Other,
+                    photoURL: "/assets/avatar.jpeg",
+                    ...data,
+                    address,
+                    name,
+                }))
                 .then((data) => setParsedCreators((prev) => [...prev, data]))
         );
     }, [creators]);
