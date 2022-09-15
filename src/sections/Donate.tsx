@@ -1,8 +1,9 @@
 import { TextField, Typography } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import { Content, ProgressButton } from "src/components";
+import { useContract } from "src/hooks";
 import { ICreator, TAuthWallet } from "src/types";
-import { getNativeBalance } from "src/utils";
+import { contract, getNativeBalance, parseNumber } from "src/utils";
 
 interface IDonate {
     creator: ICreator;
@@ -16,6 +17,16 @@ export const Donate: FC<IDonate> = ({
 }) => {
     const [amount, setAmount] = useState("0");
     const [balance, setBalance] = useState(0);
+    const erc20Contract = contract(
+        "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6",
+        ["function transfer(address to, uint256 value) public returns (bool)"]
+    );
+
+    const { mutate, loading } = useContract({
+        contract: erc20Contract,
+        method: "transfer",
+        skip: true,
+    });
 
     useEffect(() => {
         getNativeBalance({
@@ -55,7 +66,12 @@ export const Donate: FC<IDonate> = ({
                     }}
                     color="secondary"
                     variant="contained"
+                    onClick={() => {
+                        mutate(creator.address, parseNumber(amount));
+                    }}
+                    isSubmitting={loading}
                     disabled={
+                        loading ||
                         Number(amount) > balance ||
                         Number(amount) <= 0 ||
                         authWallet.address === creatorAddress

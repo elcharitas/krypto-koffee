@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
 
-type TArg = number | string | Record<string, number | string>;
+type TArg = number | string | Record<string, number | string> | BigNumber;
 type TMethodOptions = {
     contract: ethers.Contract;
     method: string;

@@ -56,7 +56,7 @@ export const parseAddress = (address: string) => utils.getAddress(address);
  * @param value
  * @returns
  */
-export const parseNumber = (value: number) => {
+export const parseNumber = (value: string | number) => {
     const strVal = value.toString();
     const ethVal = utils.parseEther(strVal);
     return ethers.BigNumber.from(ethVal);
