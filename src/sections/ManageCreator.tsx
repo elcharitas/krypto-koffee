@@ -1,15 +1,16 @@
 import { FC, useState } from "react";
 import toast from "react-hot-toast";
 import { TextField } from "@mui/material";
-import { Content, ProgressButton } from "src/components";
-import { ICreator } from "src/types";
-import { updateIpns, createFile, storageClient } from "src/utils";
+import { Content, ProgressButton, Select } from "src/components";
+import { ECreatorCategory, ICreator } from "src/types";
+import { updateIpns, createFile, storageClient, denum } from "src/utils";
 
+const categories = denum(ECreatorCategory);
 interface IManageCreator {
     ipns: string;
     creator: ICreator;
     publicKey: string;
-    updateField: (field: keyof ICreator, value: string) => void;
+    updateField: (field: keyof ICreator, value: string | number) => void;
 }
 export const ManageCreator: FC<IManageCreator> = ({
     ipns,
@@ -36,6 +37,16 @@ export const ManageCreator: FC<IManageCreator> = ({
                 onChange={(e) => updateField("bio", e.target.value)}
                 sx={{ my: 1 }}
                 fullWidth
+            />
+            <Select
+                value={creator.category}
+                label="Your Industry"
+                placeholder="Select an industry that best describes you"
+                options={categories.map(([label, value]) => ({ label, value }))}
+                onChange={(value) => {
+                    if (value) updateField("category", Number(value));
+                }}
+                sx={{ my: 1 }}
             />
             <TextField
                 rows={4}
