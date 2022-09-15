@@ -30,18 +30,19 @@ export const CreatorTab: FC<ICreatorTab> = ({ creators }) => {
     const [parsedCreators, setParsedCreators] = useState<ICreator[]>([]);
 
     useEffect(() => {
-        creators.map(({ address, name, ipns }) =>
-            resolveIpns(ipns)
-                .then((data) => fetchJSON<ICreator>(data.value))
-                .then((data) => ({
-                    category: ECreatorCategory.Other,
-                    photoURL: "/assets/avatar.jpeg",
-                    ...data,
-                    address,
-                    name,
-                }))
-                .then((data) => setParsedCreators((prev) => [...prev, data]))
-        );
+        Promise.all(
+            creators.map(({ address, name, ipns }) =>
+                resolveIpns(ipns)
+                    .then((data) => fetchJSON<ICreator>(data.value))
+                    .then((data) => ({
+                        category: ECreatorCategory.Other,
+                        photoURL: "/assets/avatar.jpeg",
+                        ...data,
+                        address,
+                        name,
+                    }))
+            )
+        ).then(setParsedCreators);
     }, [creators]);
     return (
         <Tabs
