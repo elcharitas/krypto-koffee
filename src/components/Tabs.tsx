@@ -4,13 +4,14 @@ import { Tabs as MUITabs, TabsTypeMap, Tab, Box } from "@mui/material";
 type TTabs = TabsTypeMap["props"];
 interface ITabs extends TTabs {
     color?: "secondary" | "primary";
+    current?: number;
     tabs: {
         label: ReactNode;
         content: ReactNode;
     }[];
 }
-export const Tabs: FC<ITabs> = ({ tabs, color, ...props }) => {
-    const [value, setValue] = useState(0);
+export const Tabs: FC<ITabs> = ({ tabs, current, color, ...props }) => {
+    const [value, setValue] = useState(current || 0);
 
     const handleChange = (_event: SyntheticEvent, newValue: number) => {
         setValue(newValue);
