@@ -64,7 +64,7 @@ export const ManageCreator: FC<IManageCreator> = ({
             />
             <ProgressButton
                 sx={{
-                    minWidth: "115px",
+                    minWidth: "120px",
                     color: "white",
                     display: { xs: "none", md: "flex" },
                 }}
@@ -78,10 +78,13 @@ export const ManageCreator: FC<IManageCreator> = ({
                             updateIpns(ipns, accessKey, publicKey, cid)
                         )
                         .then(() => {
-                            toast.success("Updated successfully");
+                            toast.success("Successfully updated your info");
                         })
-                        .catch(() => {
-                            toast.error("Failed to update");
+                        .catch((e) => {
+                            console.log(e);
+                            toast.error(
+                                "Sorry, your info could not be updated"
+                            );
                         })
                         .finally(() => {
                             setIsSaving(false);
@@ -90,7 +93,7 @@ export const ManageCreator: FC<IManageCreator> = ({
                 isSubmitting={isSaving}
                 disabled={!accessKey || isSaving}
             >
-                Save
+                Update
             </ProgressButton>
         </Content>
     );
