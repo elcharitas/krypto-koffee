@@ -35,7 +35,7 @@ export interface ICreator {
     category?: ECreatorCategory;
     photoURL?: string;
     links?: string[];
-    coffees?: string[];
+    coffeePrice?: string;
 }
 
 export type TColor =
