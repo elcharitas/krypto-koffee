@@ -21,7 +21,7 @@ export const useContract = <D extends TArg[]>({
 }: TMethodOptions) => {
     const [data, setData] = useState<D | undefined>();
     const [error, setError] = useState<Error | undefined>();
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     const mutate = (...args: TArg[]) => {
         setLoading(true);
