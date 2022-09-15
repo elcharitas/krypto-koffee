@@ -9,12 +9,14 @@ interface IHeroContent {
     authWallet: TAuthWallet;
     handleClaim: TCallback;
     handlePageSearch: FormEventHandler;
+    onToggleVerify: TCallback<void, boolean>;
     isClaiming: boolean;
     isValid: boolean;
 }
 export const HeroContent: FC<IHeroContent> = ({
     handleClaim,
     handlePageSearch,
+    onToggleVerify,
     isClaiming,
     isValid,
     authWallet,
@@ -112,8 +114,12 @@ export const HeroContent: FC<IHeroContent> = ({
                     <WorldID
                         signal="claim_page"
                         signalDescription="Claim a page"
-                        onError={(err) => toast.error(err.detail)}
+                        onError={(err) => {
+                            onToggleVerify(false);
+                            toast.error(err.detail);
+                        }}
                         onSuccess={() => {
+                            onToggleVerify(true);
                             toast.success(
                                 "You've successfully verified your identity"
                             );

@@ -19,6 +19,7 @@ const Page: FC<IPage> = ({ network, authWallet }) => {
     const pageRef = useRef<{ id: string; key: string }>();
     const [pageId, setPageId] = useState<string | undefined>();
     const [openModal, setOpenModal] = useState(false);
+    const [verified, setVerified] = useState(false);
     const [valid, setValid] = useState(true);
     const toggleModal = () => setOpenModal((open) => !open);
 
@@ -43,6 +44,12 @@ const Page: FC<IPage> = ({ network, authWallet }) => {
     const handleClaim = () => {
         if (!authWallet.connected) {
             toast.error("Please connect your wallet first");
+            return;
+        }
+        if (!verified) {
+            toast.error(
+                "To prevent spams, we require id verification with worldcoin. Please verify your identity first!"
+            );
             return;
         }
         if (pageId) {
@@ -74,6 +81,7 @@ const Page: FC<IPage> = ({ network, authWallet }) => {
                 isClaiming={loading}
                 authWallet={authWallet}
                 handleClaim={handleClaim}
+                onToggleVerify={(v) => setVerified(!!v)}
                 handlePageSearch={debounce(handlePageSearch, 500)}
             />
             <Box sx={{ display: "flex", justifyContent: "center" }}>
