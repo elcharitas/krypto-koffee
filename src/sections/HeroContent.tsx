@@ -7,11 +7,13 @@ interface IHeroContent {
     handleClaim: TCallback;
     handlePageSearch: FormEventHandler;
     isClaiming: boolean;
+    isValid: boolean;
 }
 export const HeroContent: FC<IHeroContent> = ({
     handleClaim,
     handlePageSearch,
     isClaiming,
+    isValid,
 }) => (
     <Content sx={{ background: "transparent" }}>
         <Stack
@@ -53,7 +55,7 @@ export const HeroContent: FC<IHeroContent> = ({
                 </Typography>
 
                 <TextField
-                    color="secondary"
+                    color={isValid ? "secondary" : "error"}
                     variant="outlined"
                     placeholder="yourname"
                     autoComplete="off"
@@ -87,7 +89,7 @@ export const HeroContent: FC<IHeroContent> = ({
                                 variant="contained"
                                 onClick={handleClaim}
                                 isSubmitting={isClaiming}
-                                disabled={isClaiming}
+                                disabled={isClaiming || !isValid}
                             >
                                 <Typography
                                     sx={{

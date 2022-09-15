@@ -19,6 +19,7 @@ const Page: FC<IPage> = ({ network }) => {
     const pageRef = useRef<{ id: string; key: string }>();
     const [pageId, setPageId] = useState<string | undefined>();
     const [openModal, setOpenModal] = useState(false);
+    const [valid, setValid] = useState(true);
     const toggleModal = () => setOpenModal((open) => !open);
 
     const creators = useCreators({ network });
@@ -45,16 +46,26 @@ const Page: FC<IPage> = ({ network }) => {
                     pageRef.current = { key: accessKey, id: pageId };
                     mutate(pageId, ipns, publicKey);
                 })
-                .catch(() => toast.error("Sorry, could not claim page"));
+                .catch(() => toast.error("Sorry, could not claim page"))
+                .finally(() => setPageId(undefined));
         } else toast.error("Please, choose a unique name for your page first.");
     };
     const handlePageSearch: FormEventHandler = ({ target }) => {
-        setPageId((target as HTMLInputElement)?.value);
+        const { value } = target as HTMLInputElement;
+        if (value.length > 0) {
+            const isValid = value.match(/^[a-z0-9\-]+$/i);
+            if (isValid) setPageId(value);
+            setValid(!!isValid?.length);
+        } else {
+            setPageId(undefined);
+            setValid(true);
+        }
     };
 
     return (
         <>
             <HeroContent
+                isValid={valid}
                 isClaiming={loading}
                 handleClaim={handleClaim}
                 handlePageSearch={debounce(handlePageSearch, 500)}
