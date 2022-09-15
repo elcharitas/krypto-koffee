@@ -1,21 +1,16 @@
 import { FC, FormEventHandler } from "react";
 import { Box, Stack, TextField, Typography } from "@mui/material";
-import { Content, Globe, ProgressButton, Select } from "src/components";
-import { ECreatorCategory, TCallback } from "src/types";
-import { denum } from "src/utils";
+import { Content, Globe, ProgressButton } from "src/components";
+import { TCallback } from "src/types";
 
 interface IHeroContent {
     handleClaim: TCallback;
     handlePageSearch: FormEventHandler;
-    handleCategory: TCallback;
-    category: ECreatorCategory | undefined;
     isClaiming: boolean;
 }
 export const HeroContent: FC<IHeroContent> = ({
     handleClaim,
     handlePageSearch,
-    handleCategory,
-    category,
     isClaiming,
 }) => (
     <Content sx={{ background: "transparent" }}>
@@ -106,23 +101,6 @@ export const HeroContent: FC<IHeroContent> = ({
                     }}
                     sx={{ m: 1, alignItems: "center" }}
                 />
-                <Select
-                    value={category}
-                    options={denum(ECreatorCategory).map(([label, value]) => ({
-                        label,
-                        value,
-                    }))}
-                    onChange={handleCategory}
-                    placeholder="Select a Creator Category"
-                    sx={{
-                        width: "100%",
-                        minWidth: "300px",
-                        borderRadius: "4em",
-                        height: "40px",
-                        mb: 1,
-                    }}
-                />
-
                 <ProgressButton
                     sx={{
                         display: { xs: "flex", md: "none" },

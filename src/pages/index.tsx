@@ -2,12 +2,7 @@ import { FC, FormEventHandler, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Box, debounce } from "@mui/material";
 import { HeroContent, CreatorTab } from "src/sections";
-import {
-    ECreatorCategory,
-    IPage,
-    TEventResponse,
-    TPageClaimedEvent,
-} from "src/types";
+import { IPage, TEventResponse, TPageClaimedEvent } from "src/types";
 import { useContract } from "src/hooks/useContract";
 import {
     contract,
@@ -24,7 +19,6 @@ const Page: FC<IPage> = ({ network }) => {
     );
 
     const [pageId, setPageId] = useState<string | undefined>();
-    const [category, setCategory] = useState<ECreatorCategory>();
     const [creators, setCreators] = useState<
         {
             name: string;
@@ -42,7 +36,7 @@ const Page: FC<IPage> = ({ network }) => {
         if (pageId)
             createIpns("")
                 .then(({ ipns, publicKey }) => mutate(pageId, ipns, publicKey))
-                .catch((e) => toast.error("Sorry, could not claim page"));
+                .catch(() => toast.error("Sorry, could not claim page"));
         else toast.error("Please, choose a unique name for your page first.");
     };
     const handlePageSearch: FormEventHandler = ({ target }) => {
@@ -77,10 +71,6 @@ const Page: FC<IPage> = ({ network }) => {
             <HeroContent
                 isClaiming={loading}
                 handleClaim={handleClaim}
-                category={category}
-                handleCategory={debounce((category) => {
-                    setCategory(category as ECreatorCategory);
-                }, 500)}
                 handlePageSearch={debounce(handlePageSearch, 500)}
             />
             <Box sx={{ display: "flex", justifyContent: "center" }}>
