@@ -60,7 +60,7 @@ const Page: FC<IPayWall> = ({
 }) => {
     const [creator, updateCreator] = useImmer<ICreator>({ address });
 
-    const updateField = (field: keyof ICreator, value: string) => {
+    const updateField = (field: keyof ICreator, value: string | number) => {
         updateCreator((draft) => {
             draft[field] = value as never;
         });
