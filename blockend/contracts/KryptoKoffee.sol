@@ -16,7 +16,7 @@ contract KryptoKoffee {
 
     event PageClaimed(
         string pageId,
-        uint256 category,
+        bytes _ipns,
         address indexed creator,
         address indexed paypage
     );
@@ -29,11 +29,9 @@ contract KryptoKoffee {
      * Claiming a page is free.
      * The creator of the page only has topay for Gas
      */
-    function claim(string memory _pageId, uint256 _category) external {
+    function claim(string memory _pageId, bytes memory _ipns) external {
         require(paypage[_pageId] == address(0), "page already claimed");
-        paypage[_pageId] = address(
-            new PayWallet(msg.sender, _category, router)
-        );
-        emit PageClaimed(_pageId, _category, msg.sender, paypage[_pageId]);
+        paypage[_pageId] = address(new PayWallet(msg.sender, _ipns, router));
+        emit PageClaimed(_pageId, _ipns, msg.sender, paypage[_pageId]);
     }
 }
