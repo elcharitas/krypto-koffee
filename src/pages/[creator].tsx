@@ -5,6 +5,7 @@ import { Skeleton, Stack, Typography } from "@mui/material";
 import { GetServerSideProps } from "next";
 import { IPage, ICreator } from "src/types";
 import { Content, Tabs } from "src/components";
+import { AboutCreator, ManageCreator } from "src/sections";
 import {
     contract,
     pageContractAbi,
@@ -13,7 +14,6 @@ import {
     payWalletContractAbi,
     formatAddress,
 } from "src/utils";
-import { AboutCreator } from "src/sections";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const { creator } = ctx.query;
@@ -30,11 +30,13 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const wallContract = contract(String(paypage), payWalletContractAbi);
     const ipns = await wallContract.ipns();
     const creatorAddress = await wallContract.creator();
+    const publicKey = await wallContract.publicKey();
     return {
         props: {
             pageId: creator,
             address: paypage,
             creatorAddress,
+            publicKey,
             ipns,
         },
     };
@@ -44,12 +46,14 @@ interface IPayWall extends IPage {
     pageId: string;
     address: string;
     creatorAddress: string;
+    publicKey: string;
     ipns: string;
 }
 const Page: FC<IPayWall> = ({
     pageId,
     address,
     creatorAddress,
+    publicKey,
     ipns,
     authWallet,
 }) => {
@@ -114,7 +118,13 @@ const Page: FC<IPayWall> = ({
                             ? [
                                   {
                                       label: "\u0489 Manage \u0489",
-                                      content: "",
+                                      content: (
+                                          <ManageCreator
+                                              ipns={ipns}
+                                              creator={creator}
+                                              publicKey={publicKey}
+                                          />
+                                      ),
                                   },
                               ]
                             : []),
