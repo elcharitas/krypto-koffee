@@ -1,4 +1,5 @@
 import { FC, FormEventHandler, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { Box, debounce } from "@mui/material";
 import { Tabs, Carousel, CreatorCard } from "src/components";
 import { HeroContent } from "src/sections";
@@ -32,10 +33,11 @@ const Page: FC<IPage> = ({ network }) => {
     const { send, isValidating } = useContract({
         contract: pageContract,
         method: "claim",
-        skip: true,
+        skip: !pageId,
     });
     const handleClaim = () => {
-        if (pageId) send([pageId]);
+        if (pageId) send([pageId, category || ECreatorCategory.Other]);
+        else toast.error("Please, choose a unique name for your page first.");
     };
     const handlePageSearch: FormEventHandler = ({ target }) => {
         setPageId((target as HTMLInputElement)?.value);
