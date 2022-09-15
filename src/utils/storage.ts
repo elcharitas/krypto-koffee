@@ -1,5 +1,11 @@
 import * as Name from "w3name";
+import { Web3Storage } from "web3.storage";
 import { formatBytes, parseBytes } from "./formats";
+
+// web3 storage client
+export const storageClient = new Web3Storage({
+    token: String(process.env.NEXT_PUBLIC_WEB3_STORAGE_TOKEN),
+});
 
 /**
  * @param text
@@ -71,4 +77,18 @@ export const updateIpns = async (
     const lastRevision = await resolveIpns(ipns);
     const nextRevision = await Name.increment(lastRevision, cid);
     await Name.publish(nextRevision, ipnsValue.key);
+};
+
+export const createFile = <T = unknown>(data: T, filename?: string) => {
+    const blob = new Blob([stringify(data)], {
+        type: "application/json",
+    });
+    return new File([blob], filename || `${Date.now()}.json`);
+};
+export const fetchJSON = async (cid: string) => {
+    const store = await storageClient.get(cid);
+    if (!store) return null;
+    const [file] = await store.files();
+    const text = await file.text();
+    return parseJson(text);
 };
