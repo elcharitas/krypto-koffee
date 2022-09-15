@@ -1,17 +1,11 @@
 import { useEffect, useState } from "react";
 import {
-    ECreatorCategory,
     TEventResponse,
     TPageClaimedEvent,
     ICreator,
     ENetwork,
 } from "src/types";
-import {
-    fetchJSON,
-    getContractEvents,
-    pageContractAbi,
-    resolveIpns,
-} from "src/utils";
+import { getContractEvents, getCreator, pageContractAbi } from "src/utils";
 
 interface IUseCreators {
     network: ENetwork;
@@ -33,16 +27,7 @@ export const useCreators = ({ network }: IUseCreators) => {
             .then(({ data }) => {
                 Promise.all(
                     data.result.map(({ data: { creator, ipns, pageId } }) =>
-                        resolveIpns(ipns)
-                            .then((data) => fetchJSON<ICreator>(data.value))
-                            .then((data) => ({
-                                category: ECreatorCategory.Other,
-                                photoURL: "/assets/avatar.jpeg",
-                                ...data,
-                                ipns,
-                                address: creator,
-                                name: pageId,
-                            }))
+                        getCreator(ipns, creator, pageId)
                     )
                 ).then(setCreators);
             })
