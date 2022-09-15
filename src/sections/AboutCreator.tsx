@@ -16,7 +16,7 @@ interface IAboutCreator {
 }
 export const AboutCreator: FC<IAboutCreator> = ({ creator }) => {
     return (
-        <Content title="About Me" sx={{ maxWidth: 340 }}>
+        <Content title="About Me" sx={{ maxWidth: 440 }}>
             <Typography variant="body1" paragraph gutterBottom>
                 {creator.description}
             </Typography>
