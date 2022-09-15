@@ -35,7 +35,7 @@ const Page: FC<TExploreCreators> = ({ network }) => {
                         color="secondary"
                         sx={{ font: "inherit" }}
                     >
-                        500,000+
+                        {creators.length}+
                     </Typography>{" "}
                     creators!
                 </Typography>
