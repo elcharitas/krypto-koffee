@@ -83,6 +83,7 @@ const Page: FC<IPage> = ({ network }) => {
             <Box sx={{ display: "flex", justifyContent: "center" }}>
                 <Tabs
                     color="secondary"
+                    current={ECreatorCategory.Developer}
                     tabs={categories.map(([label, category]) => ({
                         label,
                         content: (
