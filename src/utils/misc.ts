@@ -5,7 +5,7 @@ import { provider } from "./provider";
 export const contract = (
     address: string,
     abi: ethers.ContractInterface,
-    withSignerIfPossible = true
+    withSignerIfPossible = false
 ) => {
     const signerProvider = provider.ethers() || provider.ethersSync();
     const signer = withSignerIfPossible
