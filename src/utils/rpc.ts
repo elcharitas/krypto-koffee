@@ -3,14 +3,14 @@ import { ENetwork } from "src/types";
 type TNetworkNodes = Record<ENetwork, string>;
 
 export const networkNodes: TNetworkNodes = {
-    1: "mainnet",
+    // 1: "mainnet",
     5: "goerli",
-    137: "polygon-mainnet",
-    80001: "polygon-mumbai",
+    // 137: "polygon-mainnet",
+    // 80001: "polygon-mumbai",
 };
 
 export const getNetworkNode = (network: ENetwork) =>
-    networkNodes[network] || networkNodes[ENetwork.Ethereum];
+    networkNodes[network] || networkNodes[ENetwork.Goerli];
 
 export const getRPCUrl = (network: ENetwork) =>
     `https://${getNetworkNode(network)}.infura.io/v3/${
