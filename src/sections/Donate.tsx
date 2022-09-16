@@ -1,4 +1,4 @@
-import { TextField, Typography } from "@mui/material";
+import { Checkbox, TextField, Typography } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Content, ProgressButton } from "src/components";
@@ -23,6 +23,7 @@ export const Donate: FC<IDonate> = ({
 }) => {
     const [amount, setAmount] = useState("");
     const [balance, setBalance] = useState(0);
+    const [direct, setDirect] = useState(false);
     const erc20Contract = contract(
         USDC_CONTRACT,
         ["function transfer(address to, uint256 value) public returns (bool)"],
@@ -63,6 +64,14 @@ export const Donate: FC<IDonate> = ({
                 sx={{ my: 1 }}
                 fullWidth
             />
+            <Typography sx={{ display: "flex", alignItems: "center" }}>
+                <Checkbox
+                    color="secondary"
+                    checked={direct}
+                    onChange={() => setDirect((dir) => !dir)}
+                />{" "}
+                Donate directly to <strong>@{creator.name}</strong>
+            </Typography>
 
             <Typography
                 sx={{
@@ -80,7 +89,10 @@ export const Donate: FC<IDonate> = ({
                     color="secondary"
                     variant="contained"
                     onClick={() => {
-                        mutate(creator.address, parseNumber(amount, 6));
+                        mutate(
+                            direct ? creatorAddress : creator.address,
+                            parseNumber(amount, 6)
+                        );
                     }}
                     isSubmitting={loading}
                     disabled={
