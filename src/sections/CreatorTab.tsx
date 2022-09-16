@@ -11,7 +11,7 @@ interface ICreatorTab {
 export const CreatorTab: FC<ICreatorTab> = ({ creators }) => (
     <Tabs
         color="secondary"
-        current={ECreatorCategory.Developer}
+        current={ECreatorCategory.Influencer}
         tabs={categories.map(([label, category]) => ({
             label,
             content: (
