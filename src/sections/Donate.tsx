@@ -23,9 +23,11 @@ export const Donate: FC<IDonate> = ({
 }) => {
     const [amount, setAmount] = useState("");
     const [balance, setBalance] = useState(0);
-    const erc20Contract = contract(USDC_CONTRACT, [
-        "function transfer(address to, uint256 value) public returns (bool)",
-    ]);
+    const erc20Contract = contract(
+        USDC_CONTRACT,
+        ["function transfer(address to, uint256 value) public returns (bool)"],
+        true
+    );
 
     const { mutate, loading } = useContract({
         contract: erc20Contract,
@@ -35,7 +37,7 @@ export const Donate: FC<IDonate> = ({
             setAmount("");
             toast.success("You've successfully donated");
         },
-        onError: () => toast.error("Sorry, your donation failed"),
+        onError: (e) => toast.error(`Sorry, ${e.reason}`),
     });
 
     useEffect(() => {
@@ -78,7 +80,7 @@ export const Donate: FC<IDonate> = ({
                     color="secondary"
                     variant="contained"
                     onClick={() => {
-                        mutate(creator.address, parseNumber(amount));
+                        mutate(creator.address, parseNumber(amount, 6));
                     }}
                     isSubmitting={loading}
                     disabled={

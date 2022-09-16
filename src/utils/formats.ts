@@ -56,9 +56,12 @@ export const parseAddress = (address: string) => utils.getAddress(address);
  * @param value
  * @returns
  */
-export const parseNumber = (value: string | number) => {
+export const parseNumber = (
+    value: string | number,
+    units: ethers.BigNumberish = "ether"
+) => {
     const strVal = value.toString();
-    const ethVal = utils.parseEther(strVal);
+    const ethVal = utils.parseUnits(strVal, units);
     return ethers.BigNumber.from(ethVal);
 };
 
