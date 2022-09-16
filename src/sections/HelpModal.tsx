@@ -28,7 +28,7 @@ export const HelpModal: FC<IHelpModal> = ({ isOpen, toggleHelp }) => (
         >
             <Box
                 component="iframe"
-                src="https://www.youtube.com/embed/pvgBYYnsUkg"
+                src="https://www.youtube.com/embed/L4DUksdmA3Y"
                 allow="autoplay; encrypted-media"
                 allowFullScreen
                 sx={{ width: { xs: "320px", md: "800px" }, height: "400px" }}
