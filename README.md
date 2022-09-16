@@ -6,6 +6,12 @@ Krypto Koffee is a decentralized payment bridge for web3 content creators. It is
 
 Krypto Koffee is a decentralized crowd funding dApp designed to help creators monetize their audience, fans and followers. It will allow creators to grow and get rewarded for their effort in building a loyal community of connected users who share and engage with them on their platform.
 
+[Check Demo](https://krypto-koffee.vercel.app/) | [Watch Presentation Video](https://www.youtube.com/watch?v=L4DUksdmA3Y) | [Read the Presentation](https://drive.google.com/file/d/1L1vceR6yIQx_SxMd7sj07S1EXmacyQl-/view?usp=sharing)
+
+<a href="https://krypto-koffee.vercel.app/elcharitas" target="_blank" rel="noreferrer">
+    <img src="https://krypto-koffee.vercel.app/assets/koffee-button.png" style="width: 150px" alt="" />
+</a>
+
 ## Tracks Submitted
 
 -   Coinbase Challenge 1 x 2
