@@ -50,7 +50,7 @@ export const Donate: FC<IDonate> = ({
 
     return (
         <Content
-            title={`Buy @${creator.name} a Koffee`}
+            title={creator.name && `Buy @${creator.name} a Koffee`}
             sx={{ minWidth: 430, maxWidth: 440 }}
         >
             <TextField
