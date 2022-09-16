@@ -10,6 +10,7 @@ import {
     AboutCreator,
     ManageCreator,
     WithdrawBalance,
+    EmbedTab,
 } from "src/sections";
 import {
     contract,
@@ -190,13 +191,17 @@ const Page: FC<IPayWall> = ({
                                       ),
                                   },
                                   {
-                                      label: "\u0489 Withdraw Balance \u0489",
+                                      label: "\u0489 Withdraw \u0489",
                                       content: (
                                           <WithdrawBalance
                                               creator={creator}
                                               authWallet={authWallet}
                                           />
                                       ),
+                                  },
+                                  {
+                                      label: "\u0489 Embed \u0489",
+                                      content: <EmbedTab creator={creator} />,
                                   },
                               ]
                             : []),

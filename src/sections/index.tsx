@@ -6,3 +6,4 @@ export * from "./AboutCreator";
 export * from "./ManageCreator";
 export * from "./WithdrawBalance";
 export * from "./Donate";
+export * from "./EmbedTab";
